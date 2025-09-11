@@ -145,6 +145,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ADC\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ADC\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -154,8 +160,16 @@
     <Compile Include="UART\uart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="XMEM\xmem.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="XMEM\xmem.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ADC" />
+    <Folder Include="XMEM" />
     <Folder Include="UART" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

@@ -7,13 +7,23 @@
 #define F_CPU 4915200UL
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdlib.h>
 
 #include "uart/uart.h"
+#include "xmem/xmem.h"
+#include "adc/adc.h"
 #include <avr/interrupt.h>
 
 int main(void) {
-	/*
+	
+
 	uart_init(9600);
+	adc_init();
+	xmem_init();
+	SRAM_test();
+	
+	
+		/*
 	sei();
 	
 	printf("Hello UART! %d %s\n", 123, "test");
@@ -25,31 +35,37 @@ int main(void) {
 		}
 	}
 	*/
-	/*
-	// Port A as output
-	DDRA = 0xFF;
 	
-	// ALE pin as output
-	DDRE |= (1 << PE1);
-	
-	while(1) {
-		PORTA = 0x55;
-		PORTE |= (1 << PE1);
-		_delay_ms(1);
-		PORTE &= !(1 << PE1);
-		_delay_ms(500);
-		
-		PORTA = 0xAA;
-		PORTE |= (1 << PE1);
-		_delay_ms(1);
-		PORTE &= !(1 << PE1);
-		_delay_ms(500);
-	}
-	*/
-	volatile uint8_t *ext_ram = (uint8_t)0x8000;
-	while(1) {
-			
-	ext_ram[2] = 0x55;
-	}
 
+}
+
+
+
+void SRAM_test(void) {
+	volatile char *ext_ram = (char *) 0x1400;
+	uint16_t ext_ram_size = 0xBFF;
+	uint16_t write_errors = 0;
+	uint16_t retrieval_errors = 0;
+	printf("Starting SRAM test...\n");
+	uint16_t seed = rand();
+	srand(seed);
+	for (uint16_t i = 0; i < ext_ram_size; i++) {
+		uint8_t some_value = rand();
+		ext_ram[i] = some_value;
+		uint8_t retrieved_value = ext_ram[i];
+		if (retrieved_value != some_value) {
+			printf("Write phase error: ext_ram[%4d] = %02X (should be %02X)\n", i, retrieved_value, some_value);
+			write_errors++;
+		}
+	}
+	srand(seed);
+	for (uint16_t i = 0; i < ext_ram_size; i++) {
+		uint8_t some_value = rand();
+		uint8_t retrieved_value = ext_ram[i];
+		if (retrieved_value != some_value) {
+			printf("Retrieval phase error: ext_ram[%4d] = %02X (should be %02X)\n", i, retrieved_value, some_value);
+			retrieval_errors++;
+		}
+	}
+	printf("SRAM test completed with \n%4d errors in write phase and \n%4d errors in retreival phase\n\n", write_errors, retrieval_errors);
 }
