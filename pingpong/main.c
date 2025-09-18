@@ -18,10 +18,15 @@ int main(void) {
 	
 
 	uart_init(9600);
-	adc_init();
 	xmem_init();
-	SRAM_test();
+	adc_init();
 	
+	pos_calibrate();
+	
+	while(1) {
+		const pos_t pos = pos_read();
+		printf("pos=(%d, %d)\n", pos.x, pos.y);
+	}
 	
 		/*
 	sei();
