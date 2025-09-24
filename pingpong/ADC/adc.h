@@ -9,10 +9,12 @@
 #ifndef ADC_H_
 #define ADC_H_
 
-struct pos_s {
-	int x;
-	int y;
-} typedef pos_t; 
+struct io_inputs_s {
+	int joy_x;
+	int joy_y;
+	int pad_x;
+	int pad_y;
+} typedef io_inputs_t; 
 
 enum direction {
 	LEFT,
@@ -20,14 +22,16 @@ enum direction {
 	UP,
 	DOWN,
 	NEUTRAL
-	};
+};
 
 void adc_init(void);
 
-void pos_calibrate(void);
+void inputs_calibrate(void);
 
-pos_t pos_read(void);
+io_inputs_t get_io_inputs(void);
 
-pos_t touch_read(void);
+enum direction get_joystick_direction(io_inputs_t inputs);
+
+void print_direction(enum direction dir);
 
 #endif /* ADC_H_ */

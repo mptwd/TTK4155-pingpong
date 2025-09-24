@@ -21,13 +21,13 @@ int main(void) {
 	xmem_init();
 	adc_init();
 	
-	pos_calibrate();
+	inputs_calibrate();
 	
 	while(1) {
-		const pos_t pos = touch_read();
-		//printf("%d  \n", get_direction());
-		printf("pos=(%d, %d)\n", pos.x, pos.y);
-		//print_direction();
+		const io_inputs_t input = get_io_inputs();
+		printf("joy=(%d, %d)   pad=(%d, %d)  ", input.joy_x, input.joy_y,  input.pad_x, input.pad_y);
+		enum direction dir = get_joystick_direction(input);
+		print_direction(dir);
 	}
 	
 		/*
@@ -46,15 +46,6 @@ int main(void) {
 
 }
 
-void print_direction(void) {
-	enum direction dir = get_direction();
-	if (dir == LEFT) printf("LEFT\n");
-	else if (dir == RIGHT) printf("RIGHT\n");
-	else if (dir == UP) printf("UP\n");
-	else if (dir == DOWN) printf("DOWN\n");
-	else if (dir == NEUTRAL) printf("NEUTRAL\n");
-	else printf("ERROR: %d\n", dir);
-}
 
 
 void SRAM_test(void) {
