@@ -24,8 +24,10 @@ int main(void) {
 	pos_calibrate();
 	
 	while(1) {
-		const pos_t pos = pos_read();
+		const pos_t pos = touch_read();
+		//printf("%d  \n", get_direction());
 		printf("pos=(%d, %d)\n", pos.x, pos.y);
+		//print_direction();
 	}
 	
 		/*
@@ -44,6 +46,15 @@ int main(void) {
 
 }
 
+void print_direction(void) {
+	enum direction dir = get_direction();
+	if (dir == LEFT) printf("LEFT\n");
+	else if (dir == RIGHT) printf("RIGHT\n");
+	else if (dir == UP) printf("UP\n");
+	else if (dir == DOWN) printf("DOWN\n");
+	else if (dir == NEUTRAL) printf("NEUTRAL\n");
+	else printf("ERROR: %d\n", dir);
+}
 
 
 void SRAM_test(void) {

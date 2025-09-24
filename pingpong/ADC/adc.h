@@ -14,12 +14,20 @@ struct pos_s {
 	int y;
 } typedef pos_t; 
 
-void adc_init(void);
+enum direction {
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN,
+	NEUTRAL
+	};
 
-uint8_t adc_read(uint8_t channel);
+void adc_init(void);
 
 void pos_calibrate(void);
 
 pos_t pos_read(void);
+
+pos_t touch_read(void);
 
 #endif /* ADC_H_ */

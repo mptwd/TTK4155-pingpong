@@ -6,6 +6,7 @@
  */ 
 
 #include <avr/io.h>
+#include <util/delay.h>
 #include "adc.h"
 
 #define ADC_BASE 0x1000 // TODO
@@ -29,37 +30,88 @@ void adc_init( void ) {
 	/* ======================= */
 
 	// Write ADC configuration
-	*((volatile uint8_t*)ADC_BASE) = 0x00;
+	//*((volatile uint8_t*)ADC_BASE) = 0x00;
 	// It also starts the conversion (Rising edge of WR)
+	DDRD &= ~(1 << DDD4);
 }
 
 static inline void wait_conversion_done(void) {
 	while (!(PIND & (1 << PD4))) ; // Wait until BUSY=high
 }
 
-uint8_t adc_read(uint8_t channel) {
+uint8_t joystick_read_x(void) {
 	volatile char * ext_mem = ( char *) ADC_BASE ;
-	//return ADC_RAM(channel);
-	printf("Sending %d\n", channel);
-	ext_mem[0] = channel & 0x07;
-	__asm__ __volatile__("nop\nnop");
+	ext_mem[0] = 0;
+	_delay_us(2);
 	wait_conversion_done(); // Wait until ADC finished converting
-	__asm__ __volatile__("nop\nnop");
-	uint8_t ret_val = ext_mem [ 0 ];
-	printf("Got %d\n", ret_val);
-	
+	uint8_t ret_val = ext_mem[0];
+	ext_mem[0];
+
+	return ret_val;
+}
+
+uint8_t joystick_read_y(void) {
+	volatile char * ext_mem = ( char *) ADC_BASE ;
+	ext_mem[0] = 0;
+	_delay_us(2);
+	wait_conversion_done(); // Wait until ADC finished converting
+	ext_mem[0];
+	uint8_t ret_val = ext_mem[0];
+
+	return ret_val;
+}
+
+uint8_t touch_read_x(void) {
+	volatile char * ext_mem = ( char *) ADC_BASE ;
+	ext_mem[0] = 0;
+	_delay_us(2);
+	wait_conversion_done(); // Wait until ADC finished converting
+	ext_mem[0];
+	ext_mem[0];
+	uint8_t ret_val = ext_mem[0];
+
+	return ret_val;
+}
+
+uint8_t touch_read_y(void) {
+	volatile char * ext_mem = ( char *) ADC_BASE ;
+	ext_mem[0] = 2;
+	_delay_us(2);
+	wait_conversion_done(); // Wait until ADC finished converting
+	ext_mem[0];
+	ext_mem[0];
+	ext_mem[0];
+	uint8_t ret_val = ext_mem[0];
 
 	return ret_val;
 }
 
 void pos_calibrate(void) {
-	calibration.x = adc_read(0);
-	calibration.y = adc_read(1);
+	calibration.x = joystick_read_x();
+	calibration.y = joystick_read_y();
 }
 
 pos_t pos_read(void) {
 	pos_t tmp;
-	tmp.x = adc_read(0) - calibration.x;
-	tmp.y = adc_read(1) - calibration.y;
+	tmp.x = joystick_read_x() - calibration.x;
+
+	tmp.y = joystick_read_y() - calibration.y;
 	return tmp;
+}
+
+pos_t touch_read(void) {
+		pos_t tmp;
+		tmp.x = touch_read_x();
+
+		tmp.y = touch_read_y();
+		return tmp;
+}
+
+enum direction get_direction(void) {
+	pos_t pos = pos_read();
+	if (pos.y > 10 && pos.y > pos.x && pos.y > -pos.x) return UP;
+	else if (pos.y < -10 && pos.y < pos.x && pos.y < -pos.x) return DOWN;
+	else if (pos.x > 10 && pos.x >= pos.y && pos.x >= -pos.y) return RIGHT;
+	else if (pos.x < -10 && pos.x <= pos.y && pos.x <= -pos.y) return LEFT;
+	else return NEUTRAL;
 }
