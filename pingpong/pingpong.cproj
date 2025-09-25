@@ -154,6 +154,18 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="OLED\oled.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="OLED\oled.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SPI\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SPI\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="UART\uart.c">
       <SubType>compile</SubType>
     </Compile>
@@ -169,6 +181,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ADC" />
+    <Folder Include="OLED" />
+    <Folder Include="SPI" />
     <Folder Include="XMEM" />
     <Folder Include="UART" />
   </ItemGroup>

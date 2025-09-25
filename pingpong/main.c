@@ -12,6 +12,8 @@
 #include "uart/uart.h"
 #include "xmem/xmem.h"
 #include "adc/adc.h"
+//#include "spi/spi.h"
+#include "oled/oled.h"
 #include <avr/interrupt.h>
 
 int main(void) {
@@ -20,15 +22,39 @@ int main(void) {
 	uart_init(9600);
 	xmem_init();
 	adc_init();
-	
+	oled_init();
 	inputs_calibrate();
 	
-	while(1) {
-		const io_inputs_t input = get_io_inputs();
-		printf("joy=(%d, %d)   pad=(%d, %d)  ", input.joy_x, input.joy_y,  input.pad_x, input.pad_y);
-		enum direction dir = get_joystick_direction(input);
-		print_direction(dir);
-	}
+	oled_clear();
+	
+		
+	//while(1) {
+		
+		//const io_inputs_t input = get_io_inputs();
+		//printf("joy=(%d, %d)   pad=(%d, %d)  ", input.joy_x, input.joy_y,  input.pad_x, input.pad_y);
+		//enum direction dir = get_joystick_direction(input);
+		//print_direction(dir);
+		
+		//oled_full_off();
+		
+	//}
+	
+	//oled_draw_pixel(20, 20, 1);
+	
+
+	
+	
+
+	//oled_goto(2, 5);
+	
+	
+	//for (int i = 0; i < 100; i++) {
+		//oled_draw_pixel(4, 2, 2);
+	//}
+	
+	//while (1) {
+//
+	//}
 	
 		/*
 	sei();

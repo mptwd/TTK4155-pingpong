@@ -6,6 +6,10 @@ ADC\adc.c
 
 main.c
 
+OLED\oled.c
+
+SPI\spi.c
+
 UART\uart.c
 
 XMEM\xmem.c
