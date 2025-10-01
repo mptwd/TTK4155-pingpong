@@ -15,6 +15,7 @@
 //#include "spi/spi.h"
 #include "oled/oled.h"
 #include <avr/interrupt.h>
+#include "IO_BOARD/io_board.h"
 
 int main(void) {
 	
@@ -23,11 +24,55 @@ int main(void) {
 	xmem_init();
 	adc_init();
 	oled_init();
+	io_board_init(); 
 	inputs_calibrate();
 	
-	oled_clear();
+	doublebuf_init();
 	
+	draw_char_normal_to_buffer(0, 0, 'H');
+	draw_char_normal_to_buffer(0, 6, 'i');
+	/*
+	oled_clear();
+	oled_print_menu();
+	
+	io_board_set_led(2, ON); 
+	io_board_set_led(4, ON);
+	
+	oled_draw_pixel(35, 35, 1);
+	
+	direction prev_dir = NEUTRAL;
+	
+	while (1) {
+		const io_inputs_t in = get_io_inputs(); 
+		const direction dir = get_joystick_direction(in);
+		if (dir != prev_dir) {
+			if (dir == UP && main_menu.selected > 0) {
+				main_menu.selected--;
+				oled_print_menu();
+			} else if (dir == DOWN && main_menu.selected < main_menu.max) {
+				main_menu.selected++;
+				oled_print_menu();
+			} else if (dir == RIGHT && main_menu.selected < main_menu.max - 1) {
+				main_menu.selected += 2;
+				oled_print_menu();
+			} else if (dir == LEFT && main_menu.selected > 1) {
+				main_menu.selected -= 2;
+				oled_print_menu();
+			}
+		}
+
+		prev_dir = dir;
 		
+		if(in.joy_b) {
+			printf("PRESSED\n");
+		}
+		
+		const buttons_t buttons = io_board_read_buttons();
+		//printf("L1:%d,L2:%d,L3:%d,L4:%d,L5:%d,L6:%d,L7:%d,R1:%d,R2:%d,R3:%d,R4:%d,R5:%d,R6:%d,nav=%d\n", 
+		//buttons.left&1, buttons.left&(1<<1), buttons.left&(1<<2), buttons.left&(1<<3), buttons.left&(1<<4), buttons.left&(1<<5), buttons.left&(1<<6), 
+		//buttons.right&1, buttons.right&(1<<1), buttons.right&(1<<2), buttons.right&(1<<3),buttons.right&(1<<4),buttons.right&(1<<5), buttons.nav); 
+	}
+*/
 	//while(1) {
 		
 		//const io_inputs_t input = get_io_inputs();

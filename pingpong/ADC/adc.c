@@ -20,6 +20,7 @@ io_inputs_t calibration;
 void adc_init( void ) {
 	/* ==== Set the clock ==== */
 	DDRD |= (1 << PD5);	// OC1A pin as output
+	DDRD &= ~(1 << PD3); // PD3 as input
 	
 	TCCR1B = (1 << WGM12) | (1 << CS10);  // CTC, no prescaler
 	TCCR1A = (1 << COM1A0);				  // Toggle OC1A on compare match
@@ -49,11 +50,12 @@ io_inputs_t get_io_inputs(void) {
 	inputs.joy_y = ext_mem[0] - calibration.joy_y;
 	inputs.pad_x = ext_mem[0];
 	inputs.pad_y = ext_mem[0];
+	inputs.joy_b = !(PIND & (1 << PD3)); 
 
 	return inputs;
 }
 
-enum direction get_joystick_direction(io_inputs_t inputs) {
+direction get_joystick_direction(io_inputs_t inputs) {
 	if (inputs.joy_y > 10 && inputs.joy_y > inputs.joy_x && inputs.joy_y > -inputs.joy_x) return UP;
 	else if (inputs.joy_y < -10 && inputs.joy_y < inputs.joy_x && inputs.joy_y < -inputs.joy_x) return DOWN;
 	else if (inputs.joy_x > 10 && inputs.joy_x >= inputs.joy_y && inputs.joy_x >= -inputs.joy_y) return RIGHT;
@@ -62,7 +64,7 @@ enum direction get_joystick_direction(io_inputs_t inputs) {
 }
 
 
-void print_direction(enum direction dir) {
+void print_direction(direction dir) {
 	if (dir == LEFT) printf("LEFT\n");
 	else if (dir == RIGHT) printf("RIGHT\n");
 	else if (dir == UP) printf("UP\n");

@@ -4,6 +4,8 @@
 
 ADC\adc.c
 
+IO_BOARD\io_board.c
+
 main.c
 
 OLED\oled.c

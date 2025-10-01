@@ -31,6 +31,7 @@ void uart_init(uint32_t baudrate) {
 	UCSR0C = (1 << URSEL0) | (1 << UCSZ01) | (1 << UCSZ00); // Set length of data to 8 bits, no parity, one stop bit
 	
 	uart_printf_init();
+	printf("\n");
 }
 
 void uart_send_byte(uint8_t data) {

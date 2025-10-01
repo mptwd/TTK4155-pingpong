@@ -14,6 +14,7 @@ struct io_inputs_s {
 	int joy_y;
 	int pad_x;
 	int pad_y;
+	int joy_b;
 } typedef io_inputs_t; 
 
 enum direction {
@@ -22,7 +23,7 @@ enum direction {
 	UP,
 	DOWN,
 	NEUTRAL
-};
+} typedef direction;
 
 void adc_init(void);
 
@@ -30,8 +31,8 @@ void inputs_calibrate(void);
 
 io_inputs_t get_io_inputs(void);
 
-enum direction get_joystick_direction(io_inputs_t inputs);
+direction get_joystick_direction(io_inputs_t inputs);
 
-void print_direction(enum direction dir);
+void print_direction(direction dir);
 
 #endif /* ADC_H_ */
