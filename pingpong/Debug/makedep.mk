@@ -4,6 +4,10 @@
 
 ADC\adc.c
 
+CAN\can.c
+
+CAN\can_controller.c
+
 IO_BOARD\io_board.c
 
 main.c

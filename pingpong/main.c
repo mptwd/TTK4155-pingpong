@@ -8,14 +8,15 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdlib.h>
+#include <avr/interrupt.h>
 
 #include "uart/uart.h"
 #include "xmem/xmem.h"
 #include "adc/adc.h"
-//#include "spi/spi.h"
 #include "oled/oled.h"
-#include <avr/interrupt.h>
+#include "can/can.h"
 #include "IO_BOARD/io_board.h"
+
 
 int main(void) {
 	
@@ -27,10 +28,56 @@ int main(void) {
 	io_board_init(); 
 	inputs_calibrate();
 	
+	can_controller_reset();
+
+	
+	
 	doublebuf_init();
 	
-	draw_char_normal_to_buffer(0, 0, 'H');
-	draw_char_normal_to_buffer(0, 6, 'i');
+	//clear_backbuffer();
+	//request_buffer_swap();
+	//printf("before delay\n");
+	//_delay_ms(100);
+	//printf("after delay\n");
+		
+	draw_menu_to_buffer();
+	
+	io_board_set_led(2, ON);
+	io_board_set_led(4, ON);
+	
+	direction prev_dir = NEUTRAL;
+	while (1) {
+		printf("getting inputs\n");
+		const io_inputs_t in = get_io_inputs();
+		printf("getting directions\n");
+		const direction dir = get_joystick_direction(in);
+		if (dir != prev_dir) {
+			if (dir == UP && main_menu.selected > 0) {
+				main_menu.selected--;
+				draw_menu_to_buffer();
+				} else if (dir == DOWN && main_menu.selected < main_menu.max) {
+				main_menu.selected++;
+				draw_menu_to_buffer();
+				} else if (dir == RIGHT && main_menu.selected < main_menu.max - 1) {
+				main_menu.selected += 2;
+				draw_menu_to_buffer();
+				} else if (dir == LEFT && main_menu.selected > 1) {
+				main_menu.selected -= 2;
+				draw_menu_to_buffer();
+			}
+		}
+
+		prev_dir = dir;
+		
+		if(in.joy_b) {
+			printf("PRESSED\n");
+		}
+		
+		const buttons_t buttons = io_board_read_buttons();
+		//printf("L1:%d,L2:%d,L3:%d,L4:%d,L5:%d,L6:%d,L7:%d,R1:%d,R2:%d,R3:%d,R4:%d,R5:%d,R6:%d,nav=%d\n",
+		//buttons.left&1, buttons.left&(1<<1), buttons.left&(1<<2), buttons.left&(1<<3), buttons.left&(1<<4), buttons.left&(1<<5), buttons.left&(1<<6),
+		//buttons.right&1, buttons.right&(1<<1), buttons.right&(1<<2), buttons.right&(1<<3),buttons.right&(1<<4),buttons.right&(1<<5), buttons.nav);
+	}
 	/*
 	oled_clear();
 	oled_print_menu();
@@ -38,7 +85,7 @@ int main(void) {
 	io_board_set_led(2, ON); 
 	io_board_set_led(4, ON);
 	
-	oled_draw_pixel(35, 35, 1);
+	//oled_draw_pixel(35, 35, 1);
 	
 	direction prev_dir = NEUTRAL;
 	
@@ -49,15 +96,19 @@ int main(void) {
 			if (dir == UP && main_menu.selected > 0) {
 				main_menu.selected--;
 				oled_print_menu();
+				//draw_menu_to_buffer();
 			} else if (dir == DOWN && main_menu.selected < main_menu.max) {
 				main_menu.selected++;
 				oled_print_menu();
+				//draw_menu_to_buffer();
 			} else if (dir == RIGHT && main_menu.selected < main_menu.max - 1) {
 				main_menu.selected += 2;
 				oled_print_menu();
+				//draw_menu_to_buffer();
 			} else if (dir == LEFT && main_menu.selected > 1) {
 				main_menu.selected -= 2;
 				oled_print_menu();
+				//draw_menu_to_buffer();
 			}
 		}
 
@@ -72,7 +123,8 @@ int main(void) {
 		//buttons.left&1, buttons.left&(1<<1), buttons.left&(1<<2), buttons.left&(1<<3), buttons.left&(1<<4), buttons.left&(1<<5), buttons.left&(1<<6), 
 		//buttons.right&1, buttons.right&(1<<1), buttons.right&(1<<2), buttons.right&(1<<3),buttons.right&(1<<4),buttons.right&(1<<5), buttons.nav); 
 	}
-*/
+	*/
+
 	//while(1) {
 		
 		//const io_inputs_t input = get_io_inputs();

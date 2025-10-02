@@ -35,6 +35,7 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../ADC \
 ../IO_BOARD \
+../CAN \
 ../OLED \
 ../SPI \
 ../XMEM \
@@ -44,6 +45,8 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../ADC/adc.c \
+../CAN/can.c \
+../CAN/can_controller.c \
 ../IO_BOARD/io_board.c \
 ../main.c \
 ../OLED/oled.c \
@@ -60,6 +63,8 @@ ASM_SRCS +=
 
 OBJS +=  \
 ADC/adc.o \
+CAN/can.o \
+CAN/can_controller.o \
 IO_BOARD/io_board.o \
 main.o \
 OLED/oled.o \
@@ -69,6 +74,8 @@ XMEM/xmem.o
 
 OBJS_AS_ARGS +=  \
 ADC/adc.o \
+CAN/can.o \
+CAN/can_controller.o \
 IO_BOARD/io_board.o \
 main.o \
 OLED/oled.o \
@@ -78,6 +85,8 @@ XMEM/xmem.o
 
 C_DEPS +=  \
 ADC/adc.d \
+CAN/can.d \
+CAN/can_controller.d \
 IO_BOARD/io_board.d \
 main.d \
 OLED/oled.d \
@@ -87,6 +96,8 @@ XMEM/xmem.d
 
 C_DEPS_AS_ARGS +=  \
 ADC/adc.d \
+CAN/can.d \
+CAN/can_controller.d \
 IO_BOARD/io_board.d \
 main.d \
 OLED/oled.d \
@@ -109,6 +120,20 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 ADC/adc.o: ../ADC/adc.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+CAN/can.o: ../CAN/can.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+CAN/can_controller.o: ../CAN/can_controller.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

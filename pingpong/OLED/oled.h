@@ -49,4 +49,14 @@ void clear_backbuffer(void);
 
 void doublebuf_init(void);
 
+void draw_string_normal_to_buffer(uint8_t page, uint8_t col, char *s);
+
+void draw_char_big_to_buffer(uint8_t page, uint8_t col, char c);
+
+void draw_string_big_to_buffer(uint8_t page, uint8_t col, char *s);
+
+void draw_menu_to_buffer(void);
+
+void draw_raquette_to_buffer(uint8_t page, uint8_t col);
+
 #endif /* OLED_H_ */
