@@ -18,6 +18,8 @@ menu main_menu;
 
 void oled_init(void);
 
+void update_screen(void);
+
 void oled_goto(uint8_t page, uint8_t column);
 
 void oled_set_val(uint8_t val);

@@ -58,7 +58,7 @@ void oled_init(void) {
 #define CHUNK_SIZE 64
 
 #define F_CPU 4915200UL
-#define FRAME_RATE 10 // Hz
+#define FRAME_RATE 1 // Hz
 
 volatile uint8_t active_buf = 1; // 0 or 1: where drawing functions write (back buffer)
 volatile uint8_t front_buf = 0; // which buffer is being streamed.
@@ -70,15 +70,15 @@ volatile uint8_t transfer_col  = 0;
 volatile bool transfer_in_progress = false;
 
 void start_timer_transfer(void) {
-	const uint32_t interrupts_per_sec = (uint32_t)FRAME_RATE * (BUFFER_SIZE / CHUNK_SIZE);
-	uint16_t prescaler = 1024;
+	const uint32_t interrupts_per_sec = (uint32_t)FRAME_RATE;
+	uint16_t prescaler = 64;
 	uint32_t ocr = (F_CPU / (prescaler * interrupts_per_sec)) - 1;
 	
 	TCCR3B = 0;
 	TCCR3B |= (1 << WGM32); // CTC
 	OCR3A = ocr;
-	TCCR3B &= ~(1 << CS31);
-	TCCR3B |= (1 << CS32) | (1 << CS30);
+	TCCR3B &= ~(1 << CS32);
+	TCCR3B |= (1 << CS31) | (1 << CS30);
 	ETIMSK |= (1 << OCIE3A); // Enable compare A interrupt
 }
 
@@ -86,62 +86,40 @@ static inline uint16_t buf_base_of(uint8_t bufnum) {
 	return (bufnum == 0) ? BUF0_BASE : BUF1_BASE;
 }
 
-ISR(TIMER3_COMPA_vect) {
-	if (transfer_in_progress == false) {
-		transfer_in_progress = true;
-		transfer_pos = 0;
-		transfer_page = 0;
-		transfer_col = 0;
+uint8_t screen_update_needed = 0;
 
-		oled_goto(transfer_page, transfer_col);
-	}
-	
-	uint16_t bytes_left = BUFFER_SIZE - transfer_pos;
-	uint16_t to_send = (bytes_left > CHUNK_SIZE) ? CHUNK_SIZE : bytes_left;
-	
-	//printf("bl=%d, ts=%d, tpos=%d, tpage=%d, tcol=%d, ab=%d, fb=%d\n", bytes_left, to_send, transfer_pos, transfer_page, transfer_pos, active_buf, front_buf);
-	
-	for (uint16_t i = 0; i < to_send; ++i) {
-		uint16_t off = buf_base_of(front_buf) + transfer_pos + i;
-		uint8_t b = xmem_read(off);
-		oled_set_val(b);
-		
-		transfer_col++;
-		if (transfer_col >= WIDTH) {
-			// Finished one page -> go to next page.
-			transfer_col = 0;
-			transfer_page++;
-			if (transfer_page < 8) {
-				oled_goto(transfer_page, transfer_col);
+void update_screen(void) {
+	if (screen_update_needed) {
+		for (uint8_t page = 0; page < 8; ++page) {
+		oled_goto(page, 0);
+			for (uint16_t col = 0; col < WIDTH; ++col) {
+				uint16_t off = buf_base_of(front_buf) + page * WIDTH + col;
+				uint8_t b = xmem_read(off);
+				oled_set_val(b);
 			}
 		}
+		screen_update_needed = 0;
 	}
-	
-	transfer_pos += to_send;
+}
 
-	if (transfer_pos >= BUFFER_SIZE) {
-		// Finished full buffer
-		transfer_in_progress = false;
+ISR(TIMER3_COMPA_vect) {
+	//printf("a\n");
+	screen_update_needed = 1;
 
-		// If a swap was requested, flip the buffers now (safe point)
-		if (swap_requested) {
-			cli();
-			printf("doing\n");
-			swap_requested = false;
-			printf("fb=%d, ab=%d\n", front_buf, active_buf);
+	// If a swap was requested, flip the buffers now (safe point)
+	if (swap_requested) {
+		cli();
+
+		swap_requested = false;
 			
-			front_buf = active_buf;
-			active_buf = (active_buf == 0) ? 1 : 0;
+		front_buf = active_buf;
+		active_buf = (active_buf == 0) ? 1 : 0;
 			
-			printf("fb=%d, ab=%d\n", front_buf, active_buf);
+		// Reseting buffer (optional)
+		//uint16_t base = buf_base_of(active_buf);
+		//for (uint16_t i = 0; i < BUFFER_SIZE; ++i) xmem_write(0x00, base + i);
 			
-			// Reseting buffer (optional)
-			//uint16_t base = buf_base_of(active_buf);
-			//for (uint16_t i = 0; i < BUFFER_SIZE; ++i) xmem_write(0x00, base + i);
-			
-			sei();
-			printf("done doing\n");
-		}
+		sei();
 	}
 }
 
@@ -167,7 +145,6 @@ void doublebuf_init(void) {
 
 void clear_backbuffer(void) {
 	const uint16_t base = buf_base_of(active_buf);
-	printf("active buffer is %d, clearing it\n", active_buf);
 	for (uint16_t i = 0; i < BUFFER_SIZE; i++) xmem_write(0x00, base + i);
 	printf("done\n");
 }
@@ -192,7 +169,6 @@ void oled_draw_pixel_buffer(uint8_t x, uint8_t y, uint8_t on) {
 void draw_char_normal_to_buffer(uint8_t page, uint8_t col, char c) {
 	const uint8_t index = c - ' ';
 	uint16_t base = buf_base_of(active_buf);
-	printf("active buffer is %d, writing %c\n", active_buf, c);
 	
 	for (uint8_t i = 0; i < 5; ++i) {
 		const uint8_t data = pgm_read_byte(&(font5[index][i]));
@@ -229,7 +205,6 @@ void draw_string_big_to_buffer(uint8_t page, uint8_t col, char *s) {
 }
 
 void draw_menu_to_buffer() {
-	printf("front_base=%d, active_base=%d\n", buf_base_of(front_buf), buf_base_of(active_buf));
 	draw_string_big_to_buffer(0, 0, "Menu Ping-Pong");
 	draw_string_normal_to_buffer(2, 0, " Start");
 	draw_string_normal_to_buffer(2, 52, " Sub Menu");

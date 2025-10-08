@@ -12,14 +12,16 @@
 #include <avr/io.h>
 
 struct can_message_s {
-	uint8_t id;
+	uint16_t id;
 	uint8_t length;
-	uint8_t data;
+	uint8_t data[8];
 } typedef can_message_t;
 
 void can_init(void);
 
-void can_send(can_message_t message);
+void can_transmit(can_message_t *tx);
+
+uint8_t can_receive(can_message_t *rx);
 
 /* Can controller functions */
 
