@@ -88,7 +88,7 @@ static inline uint16_t buf_base_of(uint8_t bufnum) {
 
 uint8_t screen_update_needed = 0;
 
-void update_screen(void) {
+uint8_t update_screen(void) {
 	if (screen_update_needed) {
 		for (uint8_t page = 0; page < 8; ++page) {
 		oled_goto(page, 0);
@@ -99,14 +99,14 @@ void update_screen(void) {
 			}
 		}
 		screen_update_needed = 0;
+		return 1; // screen was updated
 	}
+	return 0; // screen was not updated
 }
 
 ISR(TIMER3_COMPA_vect) {
-	//printf("a\n");
 	screen_update_needed = 1;
 
-	// If a swap was requested, flip the buffers now (safe point)
 	if (swap_requested) {
 		cli();
 
@@ -147,6 +147,10 @@ void clear_backbuffer(void) {
 	const uint16_t base = buf_base_of(active_buf);
 	for (uint16_t i = 0; i < BUFFER_SIZE; i++) xmem_write(0x00, base + i);
 	printf("done\n");
+}
+
+void clear_all_buffers(void) {
+	for (uint16_t i = 0; i < BUFFER_SIZE * 2; ++i) xmem_write(0x00, i);	
 }
 
 void request_buffer_swap(void) {
@@ -222,9 +226,10 @@ void draw_menu_to_buffer() {
 
 void draw_raquette_to_buffer(uint8_t page, uint8_t col) {
 	uint16_t base = buf_base_of(active_buf);
+
 	for(int i = 0; i < 3; i++) {
-		for(int j = 22; j >= 0; j--) {
-			const uint8_t data = pgm_read_byte(&(raquette[i][i]));
+		for(int j =0; j < 23; j++) {
+			const uint8_t data = pgm_read_byte(&(raquette[i][22 - j]));
 			const uint16_t offset = base + (page + i) * WIDTH + (col + j);
 			xmem_write(data, offset);
 		}
@@ -237,11 +242,10 @@ void draw_raquette_to_buffer(uint8_t page, uint8_t col) {
 	xmem_write(0b00001110, base + page * WIDTH + (col + 34));
 
 
-	
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 23; j++) {
-			const uint8_t data = pgm_read_byte(&(raquette[i][i]));
-			const uint16_t offset = base + (page + i) * WIDTH + (col + j);
+			const uint8_t data = pgm_read_byte(&(raquette[i][j]));
+			const uint16_t offset = base + (page + i) * WIDTH + (col + j + 45);
 			xmem_write(data, offset);
 		}
 	}

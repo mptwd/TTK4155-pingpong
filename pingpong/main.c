@@ -25,15 +25,48 @@ int main(void) {
 	xmem_init();
 	adc_init();
 	oled_init();
-	io_board_init(); 
-	inputs_calibrate();
-	
+	io_board_init(); 	
+	doublebuf_init();
 	can_init();
+	
+	draw_string_big_to_buffer(0, 0, "Starting...");
+	request_buffer_swap();
+	while(!update_screen()) {}
+
+	inputs_calibrate();
 
 	CAN_test();
 	SRAM_test();
 	
-	doublebuf_init();
+	clear_all_buffers();
+	
+	can_message_t msg_tx;
+	can_message_t msg_rx;
+	
+
+
+			msg_tx.id = 10;
+			msg_rx.id = 0;
+			msg_tx.length = 2;
+			msg_rx.length = 0;
+			msg_tx.data[0] = msg_rx.data[0] = 0;
+			msg_tx.data[1] = msg_rx.data[0] = 0;
+			msg_tx.data[2] = msg_rx.data[0] = 0;
+			msg_tx.data[3] = msg_rx.data[0] = 0;
+			msg_tx.data[4] = msg_rx.data[0] = 0;
+			msg_tx.data[5] = msg_rx.data[0] = 0;
+			msg_tx.data[6] = msg_rx.data[0] = 0;
+			msg_tx.data[7] = msg_rx.data[0] = 0;
+			
+			msg_tx.data[0] = 0x70;
+			msg_tx.data[1] = 0x07;
+
+			
+			can_transmit(&msg_tx);
+			while (!can_receive(&msg_rx)) {}
+				
+			printf("id=%d, len=%d, data=%d, %d\n", msg_rx.id, msg_rx.length, msg_rx.data[0], msg_rx.data[1]);
+
 		
 	draw_menu_to_buffer();
 	
@@ -42,7 +75,6 @@ int main(void) {
 	
 	direction prev_dir = NEUTRAL;
 	while (1) {
-		printf("b\n");
 		const io_inputs_t in = get_io_inputs();
 		//printf("getting directions\n");
 		const direction dir = get_joystick_direction(in);
@@ -177,7 +209,7 @@ void CAN_test(void) {
 			msg_tx.id = i;
 			msg_rx.id = 0;
 			msg_tx.length = l;
-			msg_rx.length - 0;
+			msg_rx.length = 0;
 			msg_tx.data[0] = msg_rx.data[0] = 0;
 			msg_tx.data[1] = msg_rx.data[0] = 0;
 			msg_tx.data[2] = msg_rx.data[0] = 0;

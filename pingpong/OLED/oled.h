@@ -18,7 +18,7 @@ menu main_menu;
 
 void oled_init(void);
 
-void update_screen(void);
+uint8_t update_screen(void);
 
 void oled_goto(uint8_t page, uint8_t column);
 
@@ -48,6 +48,8 @@ void oled_draw_pixel_buffer(uint8_t x, uint8_t y, uint8_t on);
 void request_buffer_swap(void);
 
 void clear_backbuffer(void);
+
+void clear_all_buffers(void);
 
 void doublebuf_init(void);
 

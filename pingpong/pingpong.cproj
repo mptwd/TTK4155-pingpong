@@ -160,6 +160,9 @@
     <Compile Include="CAN\can_controller.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="CAN\can_controller.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="IO_BOARD\io_board.c">
       <SubType>compile</SubType>
     </Compile>
