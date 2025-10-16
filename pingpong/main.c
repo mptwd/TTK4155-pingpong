@@ -35,37 +35,32 @@ int main(void) {
 
 	inputs_calibrate();
 
-	CAN_test();
-	SRAM_test();
+	//CAN_test();
+	//SRAM_test();
 	
 	clear_all_buffers();
 	
 	can_message_t msg_tx;
-	can_message_t msg_rx;
 	
 
 
-			msg_tx.id = 10;
-			msg_rx.id = 0;
-			msg_tx.length = 2;
-			msg_rx.length = 0;
-			msg_tx.data[0] = msg_rx.data[0] = 0;
-			msg_tx.data[1] = msg_rx.data[0] = 0;
-			msg_tx.data[2] = msg_rx.data[0] = 0;
-			msg_tx.data[3] = msg_rx.data[0] = 0;
-			msg_tx.data[4] = msg_rx.data[0] = 0;
-			msg_tx.data[5] = msg_rx.data[0] = 0;
-			msg_tx.data[6] = msg_rx.data[0] = 0;
-			msg_tx.data[7] = msg_rx.data[0] = 0;
+	msg_tx.id = 10;
+	msg_tx.length = 2;
+			msg_tx.data[0] = 0;
+			msg_tx.data[1] = 0;
+			msg_tx.data[2] = 0;
+			msg_tx.data[3] = 0;
+			msg_tx.data[4] = 0;
+			msg_tx.data[5] = 0;
+			msg_tx.data[6] = 0;
+			msg_tx.data[7] = 0;
 			
 			msg_tx.data[0] = 0x70;
 			msg_tx.data[1] = 0x07;
 
 			
 			can_transmit(&msg_tx);
-			while (!can_receive(&msg_rx)) {}
-				
-			printf("id=%d, len=%d, data=%d, %d\n", msg_rx.id, msg_rx.length, msg_rx.data[0], msg_rx.data[1]);
+			printf("message sent\n");
 
 		
 	draw_menu_to_buffer();
@@ -93,12 +88,10 @@ int main(void) {
 				draw_menu_to_buffer();
 			}
 		}
+		
+		send_joystick_data();
 
 		prev_dir = dir;
-		
-		if(in.joy_b) {
-			printf("PRESSED\n");
-		}
 		
 		const buttons_t buttons = io_board_read_buttons();
 		//printf("L1:%d,L2:%d,L3:%d,L4:%d,L5:%d,L6:%d,L7:%d,R1:%d,R2:%d,R3:%d,R4:%d,R5:%d,R6:%d,nav=%d\n",
@@ -106,95 +99,20 @@ int main(void) {
 		//buttons.right&1, buttons.right&(1<<1), buttons.right&(1<<2), buttons.right&(1<<3),buttons.right&(1<<4),buttons.right&(1<<5), buttons.nav);
 		update_screen();
 	}
-	/*
-	oled_clear();
-	oled_print_menu();
-	
-	io_board_set_led(2, ON); 
-	io_board_set_led(4, ON);
-	
-	//oled_draw_pixel(35, 35, 1);
-	
-	direction prev_dir = NEUTRAL;
-	
-	while (1) {
-		const io_inputs_t in = get_io_inputs(); 
-		const direction dir = get_joystick_direction(in);
-		if (dir != prev_dir) {
-			if (dir == UP && main_menu.selected > 0) {
-				main_menu.selected--;
-				oled_print_menu();
-				//draw_menu_to_buffer();
-			} else if (dir == DOWN && main_menu.selected < main_menu.max) {
-				main_menu.selected++;
-				oled_print_menu();
-				//draw_menu_to_buffer();
-			} else if (dir == RIGHT && main_menu.selected < main_menu.max - 1) {
-				main_menu.selected += 2;
-				oled_print_menu();
-				//draw_menu_to_buffer();
-			} else if (dir == LEFT && main_menu.selected > 1) {
-				main_menu.selected -= 2;
-				oled_print_menu();
-				//draw_menu_to_buffer();
-			}
-		}
 
-		prev_dir = dir;
-		
-		if(in.joy_b) {
-			printf("PRESSED\n");
-		}
-		
-		const buttons_t buttons = io_board_read_buttons();
-		//printf("L1:%d,L2:%d,L3:%d,L4:%d,L5:%d,L6:%d,L7:%d,R1:%d,R2:%d,R3:%d,R4:%d,R5:%d,R6:%d,nav=%d\n", 
-		//buttons.left&1, buttons.left&(1<<1), buttons.left&(1<<2), buttons.left&(1<<3), buttons.left&(1<<4), buttons.left&(1<<5), buttons.left&(1<<6), 
-		//buttons.right&1, buttons.right&(1<<1), buttons.right&(1<<2), buttons.right&(1<<3),buttons.right&(1<<4),buttons.right&(1<<5), buttons.nav); 
-	}
-	*/
+}
 
-	//while(1) {
-		
-		//const io_inputs_t input = get_io_inputs();
-		//printf("joy=(%d, %d)   pad=(%d, %d)  ", input.joy_x, input.joy_y,  input.pad_x, input.pad_y);
-		//enum direction dir = get_joystick_direction(input);
-		//print_direction(dir);
-		
-		//oled_full_off();
-		
-	//}
+void send_joystick_data() {
+	const io_inputs_t in = get_io_inputs();
+	const direction dir = get_joystick_direction(in);
 	
-	//oled_draw_pixel(20, 20, 1);
-	
+	can_message_t msg_tx;
+	msg_tx.id = 10;
+	msg_tx.length = 2;
 
-	
-	
-
-	//oled_goto(2, 5);
-	
-	
-	//for (int i = 0; i < 100; i++) {
-		//oled_draw_pixel(4, 2, 2);
-	//}
-	
-	//while (1) {
-//
-	//}
-	
-		/*
-	sei();
-	
-	printf("Hello UART! %d %s\n", 123, "test");
-	
-	while (1) {
-		uint8_t data;
-		if (uart_receive_byte(&data)) {
-			printf("You typed: %c\n", data);
-		}
-	}
-	*/
-	
-
+	msg_tx.data[0] = dir;
+	msg_tx.data[1] = in.joy_b;
+	can_transmit(&msg_tx);
 }
 
 void CAN_test(void) {

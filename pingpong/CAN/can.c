@@ -23,9 +23,13 @@ void can_init(void)
 
 	// bit timing
 	// 16 MHz
-	can_controller_write(MCP_CNF1, 0x03);  // SJW=1, BRP=3
-	can_controller_write(MCP_CNF2, 0xBD);  // BTLMODE=1, PHSEG1=7+1, PRSEG=4+1
-	can_controller_write(MCP_CNF3, 0x07);  // PHSEG2=3
+	can_controller_write(MCP_CNF1, 0x03);  // SJW=0 + 1, BRP=0 + 1 --> TQ = 2.08 us 
+	can_controller_write(MCP_CNF2, 176);  // BTLMODE=1, PHSEG1=7+1, PRSEG=2+1
+	can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=7+1
+	
+		//can_controller_write(MCP_CNF1, 0x07);  // SJW=0 + 1, BRP=0 + 1 --> TQ = 2.08 us
+		//can_controller_write(MCP_CNF2, 0xAA);  // BTLMODE=1, PHSEG1=7+1, PRSEG=2+1
+		//can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=7+1
 
 	can_controller_write(MCP_CANINTE, 0x03); // For interruption (receive interruptions)
 	can_controller_write(MCP_RXB0CTRL, 0x64); // For reception, deactivate masks and filters
@@ -36,7 +40,7 @@ void can_init(void)
 	GICR |= (1<<INT0); 
 	sei(); // activate interrupts
 
-	can_controller_write(MCP_CANCTRL, 0x47); // Mode Loopback
+	can_controller_write(MCP_CANCTRL, 0x04); // Mode Loopback
 	_delay_ms(1);
 }
 
