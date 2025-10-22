@@ -23,13 +23,14 @@ void can_init(void)
 
 	// bit timing
 	// 16 MHz
-	can_controller_write(MCP_CNF1, 0x03);  // SJW=0 + 1, BRP=0 + 1 --> TQ = 2.08 us 
-	can_controller_write(MCP_CNF2, 176);  // BTLMODE=1, PHSEG1=7+1, PRSEG=2+1
-	can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=7+1
+	can_controller_write(MCP_CNF1, 0x03);  // SJW=0 (t_sjw = 1xTQ), BRP=3 --> TQ = 0.5 us 
+	can_controller_write(MCP_CNF2, 0xB0);  // BTLMODE=1, PHSEG1=6 (t_ps1 = 7xTQ), PRSEG=0 (t_propSeg = 1xTQ)
+	can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=5 (t_ps2 = 6xTQ)
 	
-		//can_controller_write(MCP_CNF1, 0x07);  // SJW=0 + 1, BRP=0 + 1 --> TQ = 2.08 us
-		//can_controller_write(MCP_CNF2, 0xAA);  // BTLMODE=1, PHSEG1=7+1, PRSEG=2+1
-		//can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=7+1
+	//can_controller_write(MCP_CNF1, 0x07);  // SJW=0 (t_sjw = 1xTQ), BRP=7 --> TQ = 1 us 
+	//can_controller_write(MCP_CNF2, 0xAA);  // BTLMODE=1, PHSEG1=5 (t_ps1 = 6xTQ), PRSEG=2 (t_propSeg = 3xTQ)
+	//can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=5 (t_ps2 = 6xTQ)
+	
 
 	can_controller_write(MCP_CANINTE, 0x03); // For interruption (receive interruptions)
 	can_controller_write(MCP_RXB0CTRL, 0x64); // For reception, deactivate masks and filters

@@ -133,3 +133,20 @@ void CAN0_Handler(void){
 } 
 */
 
+void print_can_error() {
+	if (CAN0->CAN_SR & (1 << 24)) {
+		printf("CRC ERROR\r\n");
+	}
+	if (CAN0->CAN_SR & (1 << 25)) {
+		printf("S ERROR\r\n");
+	}
+	if (CAN0->CAN_SR & (1 << 26)) {
+		printf("A ERROR\r\n");
+	}
+	if (CAN0->CAN_SR & (1 << 27)) {
+		printf("F ERROR\r\n");
+	}
+	if (CAN0->CAN_SR & (1 << 28)) {
+		printf("B ERROR\r\n");
+	}
+}
