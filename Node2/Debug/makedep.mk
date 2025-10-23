@@ -12,6 +12,8 @@ joystick\joystick.c
 
 main.c
 
+timer\timer.c
+
 time\time.c
 
 uart\uart.c

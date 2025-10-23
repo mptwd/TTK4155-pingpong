@@ -10,6 +10,7 @@
 #include "uart/uart.h"
 #include "can/can.h"
 #include "joystick/joystick.h"
+#include "timer/timer.h"
 
 #include <stdio.h>
 
@@ -24,6 +25,9 @@ int main(void)
     SystemInit();
 	
 	uart_init(F_CPU, 9600);
+	pwm_init(0, 50, 60);
+	pwm_init(1, 50, 60); 
+	pwm_set_pulse_width(1, 102500); //103700	//101350
 	
 	//can_init((CanInit){.brp = 83, .phase1 = 5, .phase2 = 5, .propag = 2}, 0); // brp = 83 --> TQ = 1 us --> bit time = 16 us
 	can_init((CanInit){.brp = 41, .phase1 = 6, .phase2 = 5, .propag = 0}, 0); // brp = 41 --> TQ = 0.5 us --> bit time = 7.5 us

@@ -180,6 +180,12 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="timer\timer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer\timer.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="time\time.c">
       <SubType>compile</SubType>
     </Compile>
@@ -197,6 +203,7 @@
     <Folder Include="Device_Startup\" />
     <Folder Include="can" />
     <Folder Include="joystick" />
+    <Folder Include="timer" />
     <Folder Include="time" />
     <Folder Include="uart" />
   </ItemGroup>
