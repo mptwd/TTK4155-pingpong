@@ -33,36 +33,12 @@ int main(void) {
 	request_buffer_swap();
 	while(!update_screen()) {}
 
-	inputs_calibrate();
+	//inputs_calibrate();
 
 	//CAN_test();
 	//SRAM_test();
 	
 	clear_all_buffers();
-	
-	can_message_t msg_tx;
-	
-
-
-	msg_tx.id = 10;
-	msg_tx.length = 2;
-			msg_tx.data[0] = 0;
-			msg_tx.data[1] = 0;
-			msg_tx.data[2] = 0;
-			msg_tx.data[3] = 0;
-			msg_tx.data[4] = 0;
-			msg_tx.data[5] = 0;
-			msg_tx.data[6] = 0;
-			msg_tx.data[7] = 0;
-			
-			msg_tx.data[0] = 0x70;
-			msg_tx.data[1] = 0x07;
-
-			
-			can_transmit(&msg_tx);
-			printf("message sent\n");
-
-		
 	draw_menu_to_buffer();
 	
 	io_board_set_led(2, ON);
@@ -89,7 +65,7 @@ int main(void) {
 			}
 		}
 		
-		send_joystick_data();
+		send_joystick_data(in);
 
 		prev_dir = dir;
 		
@@ -102,15 +78,14 @@ int main(void) {
 
 }
 
-void send_joystick_data() {
-	const io_inputs_t in = get_io_inputs();
-	const direction dir = get_joystick_direction(in);
-	
+void send_joystick_data(io_inputs_t in) {
+	//const direction dir = get_joystick_direction(in);
+	printf("joy.x=%d\n", in.joy_x);
 	can_message_t msg_tx;
 	msg_tx.id = 10;
 	msg_tx.length = 2;
 
-	msg_tx.data[0] = dir;
+	msg_tx.data[0] = in.joy_x;
 	msg_tx.data[1] = in.joy_b;
 	can_transmit(&msg_tx);
 }

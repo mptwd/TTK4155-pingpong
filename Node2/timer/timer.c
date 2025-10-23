@@ -66,12 +66,16 @@ void pwm_stop(uint32_t channel){
 	PWM->PWM_DIS = (1 << channel);
 }
 
-void pwm_set_pulse_width(uint32_t channel, float pulse_width){
-	//if (pulse_width < 0) pulse_width = 0;
-	//if (pulse_width > 100) pulse_width = 100;
-
-
+void pwm_set_pulse_width(uint32_t channel, uint32_t pulse_width){
 	// Update duty using update register (CDTYUPD)
 	PWM->PWM_CH_NUM[channel].PWM_CDTYUPD = pulse_width;
 
+}
+
+void servo_from_joy_x(uint32_t channel, uint8_t joy_x) {
+	if (joy_x < 70) joy_x = 70;
+	if (joy_x > 250) joy_x = 250;
+	
+	uint32_t pulse_width = (joy_x - 70) * 13 + 101350;
+	pwm_set_pulse_width(channel, pulse_width);
 }

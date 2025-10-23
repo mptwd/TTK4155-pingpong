@@ -27,7 +27,7 @@ int main(void)
 	uart_init(F_CPU, 9600);
 	pwm_init(0, 50, 60);
 	pwm_init(1, 50, 60); 
-	pwm_set_pulse_width(1, 102500); //103700	//101350
+	pwm_set_pulse_width(1, 103700); //103700	//101350
 	
 	//can_init((CanInit){.brp = 83, .phase1 = 5, .phase2 = 5, .propag = 2}, 0); // brp = 83 --> TQ = 1 us --> bit time = 16 us
 	can_init((CanInit){.brp = 41, .phase1 = 6, .phase2 = 5, .propag = 0}, 0); // brp = 41 --> TQ = 0.5 us --> bit time = 7.5 us
@@ -39,7 +39,10 @@ int main(void)
     while (1) 
     {
 		if (get_joystick(&joy)) {
-			print_joystick(joy);
+			//print_joystick(joy);
+			printf("joy.x=%d\r\n", joy.x);
+			servo_from_joy_x(1, joy.x);
+			//pwm_set_pulse_width(1, joy.x); 
 		}
 		print_can_error();
     }

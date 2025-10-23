@@ -14,7 +14,7 @@
 #define ADC_BASE 0x1000 
 #define ADC_RAM(ch) (*(volatile uint8_t*)((ADC_BASE) + ((ch)&0x07)))
 
-io_inputs_t calibration;
+io_inputs_t calibration = {0, 0, 0, 0, 0};
 
 
 void adc_init( void ) {

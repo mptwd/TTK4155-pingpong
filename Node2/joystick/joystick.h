@@ -20,7 +20,8 @@ enum direction {
 } typedef direction;
 
 struct joystick {
-	direction dir;
+	//direction dir;
+	uint8_t x;
 	uint8_t pressed;
 } typedef joystick;
 
