@@ -12,6 +12,16 @@
 
 #define F_CPU 84000000
 
+void timer_init() {
+	PMC->PMC_PCER0 |= (1 << ID_TC0);   // enable clock for TC0
+	TC0->TC_CHANNEL[0].TC_CMR = TC_CMR_TCCLKS_TIMER_CLOCK4;  // MCK/128
+    TC0->TC_CHANNEL[0].TC_CCR = TC_CCR_CLKEN | TC_CCR_SWTRG; // enable + reset
+}
+
+uint32_t timer_get() {
+	return TC0->TC_CHANNEL[0].TC_CV;
+}
+
 
 void pwm_init(uint32_t channel, uint32_t freq, float duty_cycle) {
 	PMC->PMC_PCER1 |= (1 << (ID_PWM - 32));

@@ -11,6 +11,10 @@
 
 #include <stdio.h>
 
+void timer_init();
+
+uint32_t timer_get();
+
 void pwm_init(uint32_t channel, uint32_t freq, float duty_cycle); 
 
 void pwm_start(uint32_t channel); 

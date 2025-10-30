@@ -159,6 +159,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="adc\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="can\can.c">
       <SubType>compile</SubType>
     </Compile>
@@ -171,6 +177,12 @@
     <Compile Include="Device_Startup\system_sam3xa.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ir\ir.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ir\ir.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="joystick\joystick.c">
       <SubType>compile</SubType>
     </Compile>
@@ -178,6 +190,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="score\score.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="score\score.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="timer\timer.h">
@@ -203,6 +221,9 @@
     <Folder Include="Device_Startup\" />
     <Folder Include="can" />
     <Folder Include="joystick" />
+    <Folder Include="adc" />
+    <Folder Include="ir" />
+    <Folder Include="score" />
     <Folder Include="timer" />
     <Folder Include="time" />
     <Folder Include="uart" />

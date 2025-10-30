@@ -11,6 +11,7 @@
 #include "can/can.h"
 #include "joystick/joystick.h"
 #include "timer/timer.h"
+#include "score/score.h"
 
 #include <stdio.h>
 
@@ -31,6 +32,7 @@ int main(void)
 	
 	//can_init((CanInit){.brp = 83, .phase1 = 5, .phase2 = 5, .propag = 2}, 0); // brp = 83 --> TQ = 1 us --> bit time = 16 us
 	can_init((CanInit){.brp = 41, .phase1 = 6, .phase2 = 5, .propag = 0}, 0); // brp = 41 --> TQ = 0.5 us --> bit time = 7.5 us
+	score_init(300000);
 
 	joystick joy;
 	
@@ -40,10 +42,12 @@ int main(void)
     {
 		if (get_joystick(&joy)) {
 			//print_joystick(joy);
-			printf("joy.x=%d\r\n", joy.x);
+			//printf("joy.x=%d\r\n", joy.x);
 			servo_from_joy_x(1, joy.x);
-			//pwm_set_pulse_width(1, joy.x); 
 		}
-		print_can_error();
+		print_can_error();		
+		
+		score_handle();
+		printf("%d\r\n", get_score());
     }
 }
