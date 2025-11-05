@@ -25,7 +25,7 @@ void score_init(uint32_t duration) {
 }
 
 void score_handle() {
-	uint32_t now = timer_get();
+	uint32_t now = timer_get(0);
 	if (timer_active) {
 		if ((int32_t)(now - lockout_end) >= 0) timer_active = 0;
 		else return;

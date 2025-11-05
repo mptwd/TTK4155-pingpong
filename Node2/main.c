@@ -26,6 +26,8 @@ int main(void)
     SystemInit();
 	
 	uart_init(F_CPU, 9600);
+	printf("Started\n");
+
 	pwm_init(0, 50, 60);
 	pwm_init(1, 50, 60); 
 	pwm_set_pulse_width(1, 103700); //103700	//101350
@@ -47,7 +49,10 @@ int main(void)
 		}
 		print_can_error();		
 		
+		printf("pos=%d ", timer_get(2));
+		printf("dir=%d\r\n", timer_get_dir());
+		
 		score_handle();
-		printf("%d\r\n", get_score());
+		//printf("%d\r\n", get_score());
     }
 }

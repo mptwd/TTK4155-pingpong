@@ -13,7 +13,9 @@
 
 void timer_init();
 
-uint32_t timer_get();
+uint32_t timer_get(uint8_t timer);
+
+uint8_t timer_get_dir();
 
 void pwm_init(uint32_t channel, uint32_t freq, float duty_cycle); 
 

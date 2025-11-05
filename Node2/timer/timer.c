@@ -13,13 +13,39 @@
 #define F_CPU 84000000
 
 void timer_init() {
-	PMC->PMC_PCER0 |= (1 << ID_TC0);   // enable clock for TC0
+	//PMC->PMC_PCER0 |= (1 << ID_TC0);   // enable clock for TC0
+	PMC->PMC_PCER1 = (1 << (ID_TC6 - 32));
 	TC0->TC_CHANNEL[0].TC_CMR = TC_CMR_TCCLKS_TIMER_CLOCK4;  // MCK/128
     TC0->TC_CHANNEL[0].TC_CCR = TC_CCR_CLKEN | TC_CCR_SWTRG; // enable + reset
+	
+	PMC->PMC_PCER0 |= (1 << ID_TC2);   // enable clock for TC2
+	TC2->TC_BMR = TC_BMR_QDEN          // activer quadrature decoder
+				| TC_BMR_POSEN          // activer position
+				| TC_BMR_EDGPHA         // front actif sur A et B
+				| TC_BMR_MAXFILT(1);    // filtrage minimal
+				
+	PIOC->PIO_PDR = PIO_PC25;       // Disable GPIO on PB10
+	PIOC->PIO_ABSR |= PIO_PC25;     // Select peripheral B (PWMH0)
+	PIOA->PIO_PDR = PIO_PA29;       // Disable GPIO on PB10
+	PIOA->PIO_ABSR |= PIO_PA29;     // Select peripheral B (PWMH0)
+		
+	TC2->TC_CHANNEL[0].TC_CMR = 0;
+	TC2->TC_CHANNEL[0].TC_CCR = TC_CCR_CLKEN | TC_CCR_SWTRG;
 }
 
-uint32_t timer_get() {
-	return TC0->TC_CHANNEL[0].TC_CV;
+uint32_t timer_get(uint8_t timer) {
+	if (timer == 0) {
+		return TC0->TC_CHANNEL[0].TC_CV;
+	} else if (timer == 1) {
+		return TC1->TC_CHANNEL[0].TC_CV;
+	} else if (timer == 2) {
+		return TC2->TC_CHANNEL[0].TC_CV;
+	}
+	return 0;
+}
+
+uint8_t timer_get_dir() {
+	return (TC2->TC_QISR & TC_QISR_DIR) ? 1 : 0;
 }
 
 
