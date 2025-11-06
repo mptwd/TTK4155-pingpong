@@ -192,10 +192,22 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="motor\motor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="motor\motor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="score\score.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="score\score.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="servo\servo.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="servo\servo.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="timer\timer.h">
@@ -223,6 +235,8 @@
     <Folder Include="joystick" />
     <Folder Include="adc" />
     <Folder Include="ir" />
+    <Folder Include="motor" />
+    <Folder Include="servo" />
     <Folder Include="score" />
     <Folder Include="timer" />
     <Folder Include="time" />

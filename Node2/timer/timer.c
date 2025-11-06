@@ -49,48 +49,48 @@ uint8_t timer_get_dir() {
 }
 
 
-void pwm_init(uint32_t channel, uint32_t freq, float duty_cycle) {
+void pwm_init(uint32_t channel, uint32_t freq) {
 	PMC->PMC_PCER1 |= (1 << (ID_PWM - 32));
     PWM->PWM_DIS = (1 << channel);
 
-	// 3. Reset channel configuration
+	// Reset channel configuration
 	PWM->PWM_CH_NUM[channel].PWM_CMR = 0;
 
-	// 4. Select clock and calculate prescaler
+	// Select clock and calculate prescaler
 	// We’ll use CLKA = MCK / (PREA * DIVA)
 	// Configure CLKA to target frequency range
+	
+	PWM->PWM_CLK = PWM_CLK_PREA(1) | PWM_CLK_DIVA(1) // CLKA = 84MHz / 4 = 21MHz
+					| PWM_CLK_PREB(0) | PWM_CLK_DIVB(42); // CLKB = 84MHz / 42 = 2MHz
 
-	// Example: use PREA = 0 (divide by 1), DIVA = 42 -> CLKA = 2 MHz
-	// (You can adjust for your application)
-	PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(42); // CLKA = 84MHz / 42 = 2MHz
+	if (channel == 1) {
+		// Set channel to use CLKA
+		PWM->PWM_CH_NUM[channel].PWM_CMR = PWM_CMR_CPRE_CLKB;
 
-	// 5. Set channel to use CLKA
-	PWM->PWM_CH_NUM[channel].PWM_CMR = PWM_CMR_CPRE_CLKA;
+		// Compute period and duty in counts
+		uint32_t pwm_clk = F_CPU / 42; // 2 MHz from above
+		uint32_t period = pwm_clk / freq; // 2000000 / 5000 = 400. 2000000/50 = 40000 See page 1048 datasheet
 
-	// 6. Compute period and duty in counts
-	uint32_t pwm_clk = F_CPU / 42; // 2 MHz from above
-	uint32_t period = pwm_clk / freq;
-	uint32_t duty = (uint32_t)(period * (duty_cycle / 100.0f));
-
-	// 7. Set period and duty cycle
-	PWM->PWM_CH_NUM[channel].PWM_CPRD = period;
-	PWM->PWM_CH_NUM[channel].PWM_CDTY = duty;
-
-	// 8. Enable output on corresponding pin (depends on channel)
-	// Example for PWM channel 0 → PB0, peripheral B
-	// Configure this in your main code or here:
-	if (channel == 0) {
-		PIOB->PIO_PDR = PIO_PB12;       // Disable GPIO on PB10
-		PIOB->PIO_ABSR |= PIO_PB12;     // Select peripheral B (PWMH0)
-		PIOB->PIO_PUDR = PIO_PB12;      // Disable pull-up
-	} else if (channel == 1) {
-		PIOB->PIO_PDR = PIO_PB13;       // Disable GPIO on PB21
+		// Set period and duty cycle
+		PWM->PWM_CH_NUM[channel].PWM_CPRD = period;
+		PWM->PWM_CH_NUM[channel].PWM_CDTY = 0;
+		
+		PIOB->PIO_PDR = PIO_PB13;       // Disable GPIO on PB13
 		PIOB->PIO_ABSR |= PIO_PB13;     // Select peripheral B (PWMH1)
-		PIOB->PIO_PUDR = PIO_PB13;      // Disable pull-up	
+	} else if (channel == 0) {
+		PWM->PWM_CH_NUM[channel].PWM_CMR = PWM_CMR_CPRE_CLKA;
+		uint32_t pwm_clk = F_CPU / 2; // 42 MHz from above
+		uint32_t period = pwm_clk / freq; // 42 000 000 / 35 000 = 1200. See page 1048 datasheet
+		printf("%d\r\n", period);
+		// Set period and duty cycle
+		PWM->PWM_CH_NUM[channel].PWM_CPRD = period;
+		PWM->PWM_CH_NUM[channel].PWM_CDTY = 0;
+		
+		PIOB->PIO_PDR = PIO_PB12;       // Disable GPIO on PB12
+		PIOB->PIO_ABSR |= PIO_PB12;     // Select peripheral B (PWMH0)
 	}
-
-
-	// 9. Enable PWM channel
+	
+	// Enable PWM channel
 	pwm_start(channel);
 }
 
@@ -106,12 +106,4 @@ void pwm_set_pulse_width(uint32_t channel, uint32_t pulse_width){
 	// Update duty using update register (CDTYUPD)
 	PWM->PWM_CH_NUM[channel].PWM_CDTYUPD = pulse_width;
 
-}
-
-void servo_from_joy_x(uint32_t channel, uint8_t joy_x) {
-	if (joy_x < 70) joy_x = 70;
-	if (joy_x > 250) joy_x = 250;
-	
-	uint32_t pulse_width = (joy_x - 70) * 13 + 101350;
-	pwm_set_pulse_width(channel, pulse_width);
 }

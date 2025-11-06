@@ -16,7 +16,11 @@ joystick\joystick.c
 
 main.c
 
+motor\motor.c
+
 score\score.c
+
+servo\servo.c
 
 timer\timer.c
 

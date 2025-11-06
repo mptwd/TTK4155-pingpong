@@ -23,10 +23,11 @@ void print_direction(direction dir) {
 uint8_t get_joystick(joystick *joy) {
 	CanMsg m;
 	if (can_rx(&m)) {
-		if (m.id != 10 || m.length != 2) return 0; // not a message for joystick or problem in size
+		if (m.id != 10 || m.length != 3) return 0; // not a message for joystick or problem in size
  		//joy->dir = m.byte[0];
  		joy->x = m.byte[0];
-		joy->pressed = m.byte[1];
+		 joy->y = m.byte[1];
+		joy->pressed = m.byte[2];
 		return 1; // joystick data updated
 	}
 	return 0; // Did not receive input

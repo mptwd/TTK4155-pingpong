@@ -80,13 +80,13 @@ int main(void) {
 
 void send_joystick_data(io_inputs_t in) {
 	//const direction dir = get_joystick_direction(in);
-	printf("joy.x=%d\n", in.joy_x);
 	can_message_t msg_tx;
 	msg_tx.id = 10;
-	msg_tx.length = 2;
+	msg_tx.length = 3;
 
-	msg_tx.data[0] = in.joy_x;
-	msg_tx.data[1] = in.joy_b;
+	msg_tx.data[0] = in.pad_x;
+	msg_tx.data[1] = in.joy_x;
+	msg_tx.data[2] = in.joy_b;
 	can_transmit(&msg_tx);
 }
 
