@@ -7,6 +7,7 @@
 
 #include "can_controller.h" 
 #include "../SPI/SPI.h"
+#include "mcp2515.h"
 
 void can_controller_init(void) {
 	spi_init();

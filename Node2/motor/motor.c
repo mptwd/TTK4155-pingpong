@@ -78,7 +78,6 @@ void motor_from_joy_x(uint8_t joy_x) {
 		uint32_t pulse_width = 1200 - PI;
 		pwm_set_pulse_width(0, pulse_width);
 	}
-	printf("\r\n");
 	
 
 /*	

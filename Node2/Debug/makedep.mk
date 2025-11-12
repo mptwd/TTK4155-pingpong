@@ -22,6 +22,8 @@ score\score.c
 
 servo\servo.c
 
+solenoid\solenoid.c
+
 timer\timer.c
 
 time\time.c

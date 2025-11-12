@@ -81,7 +81,6 @@ void pwm_init(uint32_t channel, uint32_t freq) {
 		PWM->PWM_CH_NUM[channel].PWM_CMR = PWM_CMR_CPRE_CLKA;
 		uint32_t pwm_clk = F_CPU / 2; // 42 MHz from above
 		uint32_t period = pwm_clk / freq; // 42 000 000 / 35 000 = 1200. See page 1048 datasheet
-		printf("%d\r\n", period);
 		// Set period and duty cycle
 		PWM->PWM_CH_NUM[channel].PWM_CPRD = period;
 		PWM->PWM_CH_NUM[channel].PWM_CDTY = 0;
