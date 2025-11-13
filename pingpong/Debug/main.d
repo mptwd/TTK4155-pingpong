@@ -20,7 +20,9 @@ main.d main.o: .././main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h \
  .././xmem/xmem.h .././adc/adc.h .././oled/oled.h .././can/can.h \
- .././IO_BOARD/io_board.h .././can/can_controller.h
+ .././IO_BOARD/io_board.h .././can/can_controller.h \
+ .././joystick/joystick.h .././joystick/../ADC/adc.h \
+ .././joystick/../IO_BOARD/io_board.h .././menu/menu.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -73,3 +75,11 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\
 .././IO_BOARD/io_board.h:
 
 .././can/can_controller.h:
+
+.././joystick/joystick.h:
+
+.././joystick/../ADC/adc.h:
+
+.././joystick/../IO_BOARD/io_board.h:
+
+.././menu/menu.h:

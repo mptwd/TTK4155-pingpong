@@ -5,15 +5,21 @@
  *  Author: marcjpo
  */ 
 #include "ir.h"
+#include "../adc/adc.h"
 #include <sam.h>
 
+uint8_t ir_initialized = 0;
 
 void ir_init() {
-	adc_init();
-	adc_enable_channel(7);
+	if (!ir_initialized) {
+		adc_init();
+		adc_enable_channel(7);	
+		ir_initialized = 1;
+	}
 }
 
 uint8_t ir_get_state() {
 	uint adc_value = adc_read(7);
-	return adc_value < 1000;
+	for (volatile uint32_t i = 0; i < 10000; i++); // Small delay for stability
+	return adc_value < 500;
 }

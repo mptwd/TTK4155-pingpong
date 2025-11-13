@@ -172,10 +172,25 @@
     <Compile Include="IO_BOARD\io_board.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="joystick\joystick.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="joystick\joystick.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="menu\menu.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="menu\menu.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="OLED\fonts.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="OLED\fonts_extern.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="OLED\oled.c">
@@ -188,6 +203,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SPI\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="tests\tests.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="tests\tests.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="UART\uart.c">
@@ -207,6 +228,9 @@
     <Folder Include="ADC" />
     <Folder Include="IO_BOARD" />
     <Folder Include="CAN" />
+    <Folder Include="joystick" />
+    <Folder Include="menu" />
+    <Folder Include="tests" />
     <Folder Include="OLED" />
     <Folder Include="SPI" />
     <Folder Include="XMEM" />

@@ -54,21 +54,3 @@ io_inputs_t get_io_inputs(void) {
 
 	return inputs;
 }
-
-direction get_joystick_direction(io_inputs_t inputs) {
-	if (inputs.joy_y > 10 && inputs.joy_y > inputs.joy_x && inputs.joy_y > -inputs.joy_x) return UP;
-	else if (inputs.joy_y < -10 && inputs.joy_y < inputs.joy_x && inputs.joy_y < -inputs.joy_x) return DOWN;
-	else if (inputs.joy_x > 10 && inputs.joy_x >= inputs.joy_y && inputs.joy_x >= -inputs.joy_y) return RIGHT;
-	else if (inputs.joy_x < -10 && inputs.joy_x <= inputs.joy_y && inputs.joy_x <= -inputs.joy_y) return LEFT;
-	else return NEUTRAL;
-}
-
-
-void print_direction(direction dir) {
-	if (dir == LEFT) printf("LEFT\n");
-	else if (dir == RIGHT) printf("RIGHT\n");
-	else if (dir == UP) printf("UP\n");
-	else if (dir == DOWN) printf("DOWN\n");
-	else if (dir == NEUTRAL) printf("NEUTRAL\n");
-	else printf("ERROR: %d\n", dir);
-}

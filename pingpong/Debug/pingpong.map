@@ -5,19 +5,19 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega162/avr5/crtatmega162.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                              ADC/adc.o (__do_copy_data)
+                              CAN/can.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
                               ADC/adc.o (__do_clear_bss)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
-                              main.o (rand)
+                              tests/tests.o (rand)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
                               UART/uart.o (__iob)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o)
-                              ADC/adc.o (printf)
+                              CAN/can.o (printf)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(putchar.o)
                               UART/uart.o (putchar)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
-                              ADC/adc.o (puts)
+                              joystick/joystick.o (puts)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o) (vfprintf)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
@@ -46,7 +46,7 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 Allocating common symbols
 Common symbol       size              file
 
-main_menu           0x2               main.o
+main_menu           0x1               main.o
 can_rx_flag         0x1               CAN/can.o
 uart_rx_data        0x1               UART/uart.o
 __iob               0x6               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
@@ -60,15 +60,9 @@ Discarded input sections
  .bss           0x00000000        0x0 ADC/adc.o
  .text.inputs_calibrate
                 0x00000000       0x40 ADC/adc.o
- .rodata.str1.1
-                0x00000000       0x26 ADC/adc.o
- .text.print_direction
-                0x00000000       0x60 ADC/adc.o
  .text          0x00000000        0x0 CAN/can.o
  .data          0x00000000        0x0 CAN/can.o
  .bss           0x00000000        0x0 CAN/can.o
- .text.can_receive
-                0x00000000      0x10a CAN/can.o
  .text          0x00000000        0x0 CAN/can_controller.o
  .data          0x00000000        0x0 CAN/can_controller.o
  .bss           0x00000000        0x0 CAN/can_controller.o
@@ -76,41 +70,33 @@ Discarded input sections
                 0x00000000        0x6 CAN/can_controller.o
  .text.can_controller_read_status
                 0x00000000       0x2a CAN/can_controller.o
- .text.can_controller_bit_modify
-                0x00000000       0x48 CAN/can_controller.o
  .text          0x00000000        0x0 IO_BOARD/io_board.o
  .data          0x00000000        0x0 IO_BOARD/io_board.o
  .bss           0x00000000        0x0 IO_BOARD/io_board.o
+ .text          0x00000000        0x0 joystick/joystick.o
+ .data          0x00000000        0x0 joystick/joystick.o
+ .bss           0x00000000        0x0 joystick/joystick.o
+ .text.get_joystick_direction
+                0x00000000       0xc6 joystick/joystick.o
+ .rodata.str1.1
+                0x00000000       0x26 joystick/joystick.o
+ .text.print_direction
+                0x00000000       0x60 joystick/joystick.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.CAN_test
-                0x00000000      0x12a main.o
- .text.SRAM_test
-                0x00000000       0xf6 main.o
+ .text          0x00000000        0x0 menu/menu.o
+ .data          0x00000000        0x0 menu/menu.o
+ .bss           0x00000000        0x0 menu/menu.o
  .text          0x00000000        0x0 OLED/oled.o
  .data          0x00000000        0x0 OLED/oled.o
  .bss           0x00000000        0x0 OLED/oled.o
+ .rodata.str1.1
+                0x00000000        0x5 OLED/oled.o
  .text.clear_backbuffer
-                0x00000000       0x48 OLED/oled.o
+                0x00000000       0x40 OLED/oled.o
  .text.oled_draw_pixel_buffer
-                0x00000000       0x84 OLED/oled.o
- .text.oled_draw_pixel
-                0x00000000       0x58 OLED/oled.o
- .text.oled_clear
-                0x00000000       0x3e OLED/oled.o
- .text.oled_print_char_normal
-                0x00000000       0x4e OLED/oled.o
- .text.oled_print_string_normal
-                0x00000000       0x40 OLED/oled.o
- .text.oled_print_char_large
-                0x00000000       0x4c OLED/oled.o
- .text.oled_print_string_large
-                0x00000000       0x40 OLED/oled.o
- .text.oled_print_raquette
-                0x00000000       0xca OLED/oled.o
- .text.oled_print_menu
-                0x00000000       0x68 OLED/oled.o
+                0x00000000       0x80 OLED/oled.o
  .bss.transfer_col
                 0x00000000        0x1 OLED/oled.o
  .bss.transfer_page
@@ -122,6 +108,25 @@ Discarded input sections
  .bss           0x00000000        0x0 SPI/spi.o
  .text.spi_read_write_bytes
                 0x00000000       0x4a SPI/spi.o
+ .text          0x00000000        0x0 tests/tests.o
+ .data          0x00000000        0x0 tests/tests.o
+ .bss           0x00000000        0x0 tests/tests.o
+ .rodata.str1.1
+                0x00000000      0x115 tests/tests.o
+ .text.CAN_test
+                0x00000000      0x12a tests/tests.o
+ .text.SRAM_test
+                0x00000000       0xf6 tests/tests.o
+ .debug_info    0x00000000      0x311 tests/tests.o
+ .debug_abbrev  0x00000000      0x1a9 tests/tests.o
+ .debug_loc     0x00000000      0x309 tests/tests.o
+ .debug_aranges
+                0x00000000       0x28 tests/tests.o
+ .debug_ranges  0x00000000       0x90 tests/tests.o
+ .debug_line    0x00000000      0x2a6 tests/tests.o
+ .debug_str     0x00000000      0x257 tests/tests.o
+ .comment       0x00000000       0x31 tests/tests.o
+ .debug_frame   0x00000000       0xd0 tests/tests.o
  .text          0x00000000        0x0 UART/uart.o
  .data          0x00000000        0x0 UART/uart.o
  .bss           0x00000000        0x0 UART/uart.o
@@ -212,9 +217,6 @@ Discarded input sections
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
- .text.avr-libc
-                0x00000000       0x60 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
- .comment       0x00000000       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
@@ -359,9 +361,12 @@ LOAD ADC/adc.o
 LOAD CAN/can.o
 LOAD CAN/can_controller.o
 LOAD IO_BOARD/io_board.o
+LOAD joystick/joystick.o
 LOAD main.o
+LOAD menu/menu.o
 LOAD OLED/oled.o
 LOAD SPI/spi.o
+LOAD tests/tests.o
 LOAD UART/uart.o
 LOAD XMEM/xmem.o
 START GROUP
@@ -473,7 +478,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1860
+.text           0x00000000     0x1a52
  *(.vectors)
  .vectors       0x00000000       0x70 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega162/avr5/crtatmega162.o
                 0x00000000                __vector_default
@@ -574,160 +579,181 @@ END GROUP
  .text.get_io_inputs
                 0x000005ea       0x62 ADC/adc.o
                 0x000005ea                get_io_inputs
- .text.get_joystick_direction
-                0x0000064c       0xc6 ADC/adc.o
-                0x0000064c                get_joystick_direction
  .text.can_init
-                0x00000712       0x6c CAN/can.o
-                0x00000712                can_init
+                0x0000064c       0x6c CAN/can.o
+                0x0000064c                can_init
  .text.can_transmit
-                0x0000077e       0x6a CAN/can.o
-                0x0000077e                can_transmit
+                0x000006b8       0x6a CAN/can.o
+                0x000006b8                can_transmit
  .text.__vector_1
-                0x000007e8       0x4e CAN/can.o
-                0x000007e8                __vector_1
+                0x00000722       0x4e CAN/can.o
+                0x00000722                __vector_1
+ .text.can_receive
+                0x00000770      0x156 CAN/can.o
+                0x00000770                can_receive
  .text.can_controller_read
-                0x00000836       0x36 CAN/can_controller.o
-                0x00000836                can_controller_read
+                0x000008c6       0x36 CAN/can_controller.o
+                0x000008c6                can_controller_read
  .text.can_controller_write
-                0x0000086c       0x38 CAN/can_controller.o
-                0x0000086c                can_controller_write
+                0x000008fc       0x38 CAN/can_controller.o
+                0x000008fc                can_controller_write
  .text.can_controller_request_send
-                0x000008a4       0x22 CAN/can_controller.o
-                0x000008a4                can_controller_request_send
+                0x00000934       0x22 CAN/can_controller.o
+                0x00000934                can_controller_request_send
+ .text.can_controller_bit_modify
+                0x00000956       0x48 CAN/can_controller.o
+                0x00000956                can_controller_bit_modify
  .text.can_controller_reset
-                0x000008c6       0x18 CAN/can_controller.o
-                0x000008c6                can_controller_reset
+                0x0000099e       0x18 CAN/can_controller.o
+                0x0000099e                can_controller_reset
  .text.io_board_init
-                0x000008de        0x6 IO_BOARD/io_board.o
-                0x000008de                io_board_init
+                0x000009b6        0x6 IO_BOARD/io_board.o
+                0x000009b6                io_board_init
  .text.io_board_read_buttons
-                0x000008e4       0xa4 IO_BOARD/io_board.o
-                0x000008e4                io_board_read_buttons
+                0x000009bc       0xa4 IO_BOARD/io_board.o
+                0x000009bc                io_board_read_buttons
  .text.io_board_set_led
-                0x00000988       0x38 IO_BOARD/io_board.o
-                0x00000988                io_board_set_led
+                0x00000a60       0x38 IO_BOARD/io_board.o
+                0x00000a60                io_board_set_led
+ .text.get_nav_direction
+                0x00000a98       0x40 joystick/joystick.o
+                0x00000a98                get_nav_direction
+ .text.get_nav_pressed
+                0x00000ad8       0x22 joystick/joystick.o
+                0x00000ad8                get_nav_pressed
  .text.send_joystick_data
-                0x000009c0       0x4a main.o
-                0x000009c0                send_joystick_data
- .text.main     0x00000a0a      0x14c main.o
-                0x00000a0a                main
- .text.oled_init
-                0x00000b56       0xf0 OLED/oled.o
-                0x00000b56                oled_init
- .text.start_timer_transfer
-                0x00000c46       0x30 OLED/oled.o
-                0x00000c46                start_timer_transfer
- .text.__vector_7
-                0x00000c76       0x48 OLED/oled.o
-                0x00000c76                __vector_7
- .text.doublebuf_init
-                0x00000cbe       0x4e OLED/oled.o
-                0x00000cbe                doublebuf_init
- .text.clear_all_buffers
-                0x00000d0c       0x22 OLED/oled.o
-                0x00000d0c                clear_all_buffers
- .text.request_buffer_swap
-                0x00000d2e        0xc OLED/oled.o
-                0x00000d2e                request_buffer_swap
- .text.draw_char_normal_to_buffer
-                0x00000d3a       0x76 OLED/oled.o
-                0x00000d3a                draw_char_normal_to_buffer
- .text.draw_string_normal_to_buffer
-                0x00000db0       0x40 OLED/oled.o
-                0x00000db0                draw_string_normal_to_buffer
- .text.draw_char_big_to_buffer
-                0x00000df0       0x74 OLED/oled.o
-                0x00000df0                draw_char_big_to_buffer
- .text.draw_string_big_to_buffer
-                0x00000e64       0x40 OLED/oled.o
-                0x00000e64                draw_string_big_to_buffer
+                0x00000afa       0x4a joystick/joystick.o
+                0x00000afa                send_joystick_data
+ .text.main     0x00000b44      0x1ac main.o
+                0x00000b44                main
+ .text.menu_init
+                0x00000cf0        0x6 menu/menu.o
+                0x00000cf0                menu_init
  .text.draw_raquette_to_buffer
-                0x00000ea4      0x14a OLED/oled.o
-                0x00000ea4                draw_raquette_to_buffer
- .text.draw_menu_to_buffer
-                0x00000fee       0x6c OLED/oled.o
-                0x00000fee                draw_menu_to_buffer
+                0x00000cf6      0x13e menu/menu.o
+                0x00000cf6                draw_raquette_to_buffer
+ .text.draw_main_menu_to_buffer
+                0x00000e34       0x54 menu/menu.o
+                0x00000e34                draw_main_menu_to_buffer
+ .text.draw_leaderboard_to_buffer
+                0x00000e88       0x2a menu/menu.o
+                0x00000e88                draw_leaderboard_to_buffer
+ .text.oled_init
+                0x00000eb2       0xe6 OLED/oled.o
+                0x00000eb2                oled_init
+ .text.start_timer_transfer
+                0x00000f98       0x30 OLED/oled.o
+                0x00000f98                start_timer_transfer
+ .text.buf_base_of
+                0x00000fc8       0x10 OLED/oled.o
+                0x00000fc8                buf_base_of
+ .text.__vector_7
+                0x00000fd8       0x48 OLED/oled.o
+                0x00000fd8                __vector_7
+ .text.doublebuf_init
+                0x00001020       0x4e OLED/oled.o
+                0x00001020                doublebuf_init
+ .text.clear_all_buffers
+                0x0000106e       0x22 OLED/oled.o
+                0x0000106e                clear_all_buffers
+ .text.request_buffer_swap
+                0x00001090        0xc OLED/oled.o
+                0x00001090                request_buffer_swap
+ .text.draw_char_normal_to_buffer
+                0x0000109c       0x6e OLED/oled.o
+                0x0000109c                draw_char_normal_to_buffer
+ .text.draw_string_normal_to_buffer
+                0x0000110a       0x40 OLED/oled.o
+                0x0000110a                draw_string_normal_to_buffer
+ .text.draw_char_big_to_buffer
+                0x0000114a       0x6c OLED/oled.o
+                0x0000114a                draw_char_big_to_buffer
+ .text.draw_string_big_to_buffer
+                0x000011b6       0x40 OLED/oled.o
+                0x000011b6                draw_string_big_to_buffer
  .text.oled_goto
-                0x0000105a       0x4a OLED/oled.o
-                0x0000105a                oled_goto
+                0x000011f6       0x4a OLED/oled.o
+                0x000011f6                oled_goto
  .text.oled_set_val
-                0x000010a4       0x24 OLED/oled.o
-                0x000010a4                oled_set_val
+                0x00001240       0x24 OLED/oled.o
+                0x00001240                oled_set_val
  .text.update_screen
-                0x000010c8       0x66 OLED/oled.o
-                0x000010c8                update_screen
+                0x00001264       0x5c OLED/oled.o
+                0x00001264                update_screen
  .text.spi_init
-                0x0000112e       0x12 SPI/spi.o
-                0x0000112e                spi_init
+                0x000012c0       0x12 SPI/spi.o
+                0x000012c0                spi_init
  .text.spi_select_slave
-                0x00001140       0x5c SPI/spi.o
-                0x00001140                spi_select_slave
+                0x000012d2       0x5c SPI/spi.o
+                0x000012d2                spi_select_slave
  .text.spi_write_byte
-                0x0000119c        0x8 SPI/spi.o
-                0x0000119c                spi_write_byte
+                0x0000132e        0x8 SPI/spi.o
+                0x0000132e                spi_write_byte
  .text.spi_read_byte
-                0x000011a4        0x8 SPI/spi.o
-                0x000011a4                spi_read_byte
+                0x00001336        0x8 SPI/spi.o
+                0x00001336                spi_read_byte
  .text.__vector_19
-                0x000011ac       0x24 UART/uart.o
-                0x000011ac                __vector_19
+                0x0000133e       0x24 UART/uart.o
+                0x0000133e                __vector_19
  .text.uart_send_byte
-                0x000011d0        0x8 UART/uart.o
-                0x000011d0                uart_send_byte
+                0x00001362        0x8 UART/uart.o
+                0x00001362                uart_send_byte
  .text.uart_putchar
-                0x000011d8       0x1c UART/uart.o
-                0x000011d8                uart_putchar
+                0x0000136a       0x1c UART/uart.o
+                0x0000136a                uart_putchar
  .text.uart_printf_init
-                0x000011f4        0xe UART/uart.o
-                0x000011f4                uart_printf_init
+                0x00001386        0xe UART/uart.o
+                0x00001386                uart_printf_init
  .text.uart_init
-                0x00001202       0x2e UART/uart.o
-                0x00001202                uart_init
+                0x00001394       0x2e UART/uart.o
+                0x00001394                uart_init
  .text.xmem_init
-                0x00001230        0xe XMEM/xmem.o
-                0x00001230                xmem_init
+                0x000013c2        0xe XMEM/xmem.o
+                0x000013c2                xmem_init
  .text.xmem_write
-                0x0000123e        0x8 XMEM/xmem.o
-                0x0000123e                xmem_write
+                0x000013d0        0x8 XMEM/xmem.o
+                0x000013d0                xmem_write
  .text.xmem_read
-                0x00001246        0x8 XMEM/xmem.o
-                0x00001246                xmem_read
+                0x000013d8        0x8 XMEM/xmem.o
+                0x000013d8                xmem_read
  .text.libgcc.div
-                0x0000124e       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x0000124e                __udivmodsi4
+                0x000013e0       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000013e0                __udivmodsi4
  .text.avr-libc
-                0x00001292       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o)
-                0x00001292                printf
+                0x00001424       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o)
+                0x00001424                printf
  .text.avr-libc
-                0x000012be        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(putchar.o)
-                0x000012be                putchar
+                0x00001450        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(putchar.o)
+                0x00001450                putchar
  .text.avr-libc
-                0x000012cc      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
-                0x000012cc                vfprintf
+                0x0000145e       0x60 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
+                0x0000145e                puts
  .text.avr-libc
-                0x0000168e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
-                0x0000168e                strnlen_P
+                0x000014be      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x000014be                vfprintf
  .text.avr-libc
-                0x000016a4       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
-                0x000016a4                strnlen
+                0x00001880       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00001880                strnlen_P
  .text.avr-libc
-                0x000016ba       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x000016ba                fputc
+                0x00001896       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x00001896                strnlen
  .text.avr-libc
-                0x00001732       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
-                0x00001732                __ultoa_invert
+                0x000018ac       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x000018ac                fputc
+ .text.avr-libc
+                0x00001924       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00001924                __ultoa_invert
  .text.libgcc.prologue
-                0x000017ee       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
-                0x000017ee                __prologue_saves__
+                0x000019e0       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+                0x000019e0                __prologue_saves__
  .text.libgcc.prologue
-                0x00001826       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
-                0x00001826                __epilogue_restores__
-                0x0000185c                . = ALIGN (0x2)
+                0x00001a18       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+                0x00001a18                __epilogue_restores__
+                0x00001a4e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000185c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000185c                _exit
-                0x0000185c                exit
+ .fini9         0x00001a4e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001a4e                _exit
+                0x00001a4e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -746,11 +772,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000185c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001a4e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001860                _etext = .
+                0x00001a52                _etext = .
 
-.data           0x00800100      0x160 load address 0x00001860
+.data           0x00800100       0xae load address 0x00001a52
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -764,63 +790,67 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080010f      0x125 main.o
+                0x0080010f        0x8 CAN/can.o
+                                  0xc (size before relaxing)
  .rodata.str1.1
-                0x00800234       0x2b OLED/oled.o
+                0x00800117       0x46 main.o
+ .rodata.str1.1
+                0x0080015d       0x50 menu/menu.o
+                                 0x5c (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x00800260                . = ALIGN (0x2)
- *fill*         0x0080025f        0x1 
-                0x00800260                _edata = .
-                0x00800260                PROVIDE (__data_end, .)
+                0x008001ae                . = ALIGN (0x2)
+ *fill*         0x008001ad        0x1 
+                0x008001ae                _edata = .
+                0x008001ae                PROVIDE (__data_end, .)
 
-.bss            0x00800260       0x27
-                0x00800260                PROVIDE (__bss_start, .)
+.bss            0x008001ae       0x26
+                0x008001ae                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.calibration
-                0x00800260        0xa ADC/adc.o
-                0x00800260                calibration
- .bss.msg_tx.2264
-                0x0080026a        0xb main.o
+                0x008001ae        0xa ADC/adc.o
+                0x008001ae                calibration
+ .bss.msg_tx.1876
+                0x008001b8        0xb joystick/joystick.o
  .bss.screen_update_needed
-                0x00800275        0x1 OLED/oled.o
-                0x00800275                screen_update_needed
+                0x008001c3        0x1 OLED/oled.o
+                0x008001c3                screen_update_needed
  .bss.transfer_in_progress
-                0x00800276        0x1 OLED/oled.o
-                0x00800276                transfer_in_progress
+                0x008001c4        0x1 OLED/oled.o
+                0x008001c4                transfer_in_progress
  .bss.transfer_pos
-                0x00800277        0x2 OLED/oled.o
-                0x00800277                transfer_pos
+                0x008001c5        0x2 OLED/oled.o
+                0x008001c5                transfer_pos
  .bss.swap_pending
-                0x00800279        0x1 OLED/oled.o
-                0x00800279                swap_pending
+                0x008001c7        0x1 OLED/oled.o
+                0x008001c7                swap_pending
  .bss.swap_requested
-                0x0080027a        0x1 OLED/oled.o
-                0x0080027a                swap_requested
+                0x008001c8        0x1 OLED/oled.o
+                0x008001c8                swap_requested
  .bss.front_buf
-                0x0080027b        0x1 OLED/oled.o
-                0x0080027b                front_buf
+                0x008001c9        0x1 OLED/oled.o
+                0x008001c9                front_buf
  .bss.uart_rx_flag
-                0x0080027c        0x1 UART/uart.o
-                0x0080027c                uart_rx_flag
+                0x008001ca        0x1 UART/uart.o
+                0x008001ca                uart_rx_flag
  *(COMMON)
- COMMON         0x0080027d        0x1 CAN/can.o
-                0x0080027d                can_rx_flag
- COMMON         0x0080027e        0x2 main.o
-                0x0080027e                main_menu
- COMMON         0x00800280        0x1 UART/uart.o
-                0x00800280                uart_rx_data
- COMMON         0x00800281        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
-                0x00800281                __iob
-                0x00800287                PROVIDE (__bss_end, .)
-                0x00001860                __data_load_start = LOADADDR (.data)
-                0x000019c0                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008001cb        0x1 CAN/can.o
+                0x008001cb                can_rx_flag
+ COMMON         0x008001cc        0x1 main.o
+                0x008001cc                main_menu
+ COMMON         0x008001cd        0x1 UART/uart.o
+                0x008001cd                uart_rx_data
+ COMMON         0x008001ce        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
+                0x008001ce                __iob
+                0x008001d4                PROVIDE (__bss_end, .)
+                0x00001a52                __data_load_start = LOADADDR (.data)
+                0x00001b00                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800287        0x0
+.noinit         0x008001d4        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800287                _end = .
+                0x008001d4                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -867,7 +897,9 @@ END GROUP
  .comment       0x00000030       0x31 CAN/can.o
  .comment       0x00000030       0x31 CAN/can_controller.o
  .comment       0x00000030       0x31 IO_BOARD/io_board.o
+ .comment       0x00000030       0x31 joystick/joystick.o
  .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 menu/menu.o
  .comment       0x00000030       0x31 OLED/oled.o
  .comment       0x00000030       0x31 SPI/spi.o
  .comment       0x00000030       0x31 UART/uart.o
@@ -875,6 +907,7 @@ END GROUP
  .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
  .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o)
  .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(putchar.o)
+ .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
  .comment       0x00000030       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
                                  0x2d (size before relaxing)
  .comment       0x0000005c       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
@@ -899,114 +932,132 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x2d0
+.debug_aranges  0x00000000      0x2d8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x40 ADC/adc.o
+                0x00000000       0x30 ADC/adc.o
  .debug_aranges
-                0x00000040       0x38 CAN/can.o
+                0x00000030       0x38 CAN/can.o
  .debug_aranges
-                0x00000078       0x50 CAN/can_controller.o
+                0x00000068       0x50 CAN/can_controller.o
  .debug_aranges
-                0x000000c8       0x30 IO_BOARD/io_board.o
+                0x000000b8       0x30 IO_BOARD/io_board.o
  .debug_aranges
-                0x000000f8       0x38 main.o
+                0x000000e8       0x40 joystick/joystick.o
  .debug_aranges
-                0x00000130       0xe0 OLED/oled.o
+                0x00000128       0x20 main.o
  .debug_aranges
-                0x00000210       0x40 SPI/spi.o
+                0x00000148       0x38 menu/menu.o
  .debug_aranges
-                0x00000250       0x50 UART/uart.o
+                0x00000180       0x98 OLED/oled.o
  .debug_aranges
-                0x000002a0       0x30 XMEM/xmem.o
+                0x00000218       0x40 SPI/spi.o
+ .debug_aranges
+                0x00000258       0x50 UART/uart.o
+ .debug_aranges
+                0x000002a8       0x30 XMEM/xmem.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3a3c
+.debug_info     0x00000000     0x36ee
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5d0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega162/avr5/crtatmega162.o
- .debug_info    0x000005d0      0x35d ADC/adc.o
- .debug_info    0x0000092d      0x531 CAN/can.o
- .debug_info    0x00000e5e      0x48c CAN/can_controller.o
- .debug_info    0x000012ea      0x33b IO_BOARD/io_board.o
- .debug_info    0x00001625      0x741 main.o
- .debug_info    0x00001d66     0x16d6 OLED/oled.o
- .debug_info    0x0000343c      0x19a SPI/spi.o
- .debug_info    0x000035d6      0x33b UART/uart.o
- .debug_info    0x00003911      0x12b XMEM/xmem.o
+ .debug_info    0x000005d0      0x219 ADC/adc.o
+ .debug_info    0x000007e9      0x583 CAN/can.o
+ .debug_info    0x00000d6c      0x48c CAN/can_controller.o
+ .debug_info    0x000011f8      0x33b IO_BOARD/io_board.o
+ .debug_info    0x00001533      0x38f joystick/joystick.o
+ .debug_info    0x000018c2      0x6bf main.o
+ .debug_info    0x00001f81      0x522 menu/menu.o
+ .debug_info    0x000024a3      0xc4b OLED/oled.o
+ .debug_info    0x000030ee      0x19a SPI/spi.o
+ .debug_info    0x00003288      0x33b UART/uart.o
+ .debug_info    0x000035c3      0x12b XMEM/xmem.o
 
-.debug_abbrev   0x00000000     0x14a6
+.debug_abbrev   0x00000000     0x1629
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x580 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega162/avr5/crtatmega162.o
- .debug_abbrev  0x00000580      0x20a ADC/adc.o
- .debug_abbrev  0x0000078a      0x1c3 CAN/can.o
- .debug_abbrev  0x0000094d      0x121 CAN/can_controller.o
- .debug_abbrev  0x00000a6e      0x143 IO_BOARD/io_board.o
- .debug_abbrev  0x00000bb1      0x212 main.o
- .debug_abbrev  0x00000dc3      0x2ec OLED/oled.o
- .debug_abbrev  0x000010af      0x11b SPI/spi.o
- .debug_abbrev  0x000011ca      0x20b UART/uart.o
- .debug_abbrev  0x000013d5       0xd1 XMEM/xmem.o
+ .debug_abbrev  0x00000580      0x18a ADC/adc.o
+ .debug_abbrev  0x0000070a      0x1d5 CAN/can.o
+ .debug_abbrev  0x000008df      0x121 CAN/can_controller.o
+ .debug_abbrev  0x00000a00      0x143 IO_BOARD/io_board.o
+ .debug_abbrev  0x00000b43      0x175 joystick/joystick.o
+ .debug_abbrev  0x00000cb8      0x1d7 main.o
+ .debug_abbrev  0x00000e8f      0x195 menu/menu.o
+ .debug_abbrev  0x00001024      0x20e OLED/oled.o
+ .debug_abbrev  0x00001232      0x11b SPI/spi.o
+ .debug_abbrev  0x0000134d      0x20b UART/uart.o
+ .debug_abbrev  0x00001558       0xd1 XMEM/xmem.o
 
-.debug_line     0x00000000     0x1cf6
+.debug_line     0x00000000     0x1b8f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x140 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega162/avr5/crtatmega162.o
- .debug_line    0x00000140      0x2cb ADC/adc.o
- .debug_line    0x0000040b      0x2c2 CAN/can.o
- .debug_line    0x000006cd      0x1eb CAN/can_controller.o
- .debug_line    0x000008b8      0x17a IO_BOARD/io_board.o
- .debug_line    0x00000a32      0x471 main.o
- .debug_line    0x00000ea3      0x997 OLED/oled.o
- .debug_line    0x0000183a      0x223 SPI/spi.o
- .debug_line    0x00001a5d      0x1bd UART/uart.o
- .debug_line    0x00001c1a       0xdc XMEM/xmem.o
+ .debug_line    0x00000140      0x197 ADC/adc.o
+ .debug_line    0x000002d7      0x2e5 CAN/can.o
+ .debug_line    0x000005bc      0x1eb CAN/can_controller.o
+ .debug_line    0x000007a7      0x17a IO_BOARD/io_board.o
+ .debug_line    0x00000921      0x2cb joystick/joystick.o
+ .debug_line    0x00000bec      0x33b main.o
+ .debug_line    0x00000f27      0x23c menu/menu.o
+ .debug_line    0x00001163      0x570 OLED/oled.o
+ .debug_line    0x000016d3      0x223 SPI/spi.o
+ .debug_line    0x000018f6      0x1bd UART/uart.o
+ .debug_line    0x00001ab3       0xdc XMEM/xmem.o
 
-.debug_frame    0x00000000      0x890
+.debug_frame    0x00000000      0x764
  *(.debug_frame)
- .debug_frame   0x00000000       0xac ADC/adc.o
- .debug_frame   0x000000ac       0xc8 CAN/can.o
- .debug_frame   0x00000174       0xb8 CAN/can_controller.o
- .debug_frame   0x0000022c       0x60 IO_BOARD/io_board.o
- .debug_frame   0x0000028c      0x11c main.o
- .debug_frame   0x000003a8      0x370 OLED/oled.o
- .debug_frame   0x00000718       0x8c SPI/spi.o
- .debug_frame   0x000007a4       0xa8 UART/uart.o
- .debug_frame   0x0000084c       0x44 XMEM/xmem.o
+ .debug_frame   0x00000000       0x60 ADC/adc.o
+ .debug_frame   0x00000060       0xe4 CAN/can.o
+ .debug_frame   0x00000144       0xb8 CAN/can_controller.o
+ .debug_frame   0x000001fc       0x60 IO_BOARD/io_board.o
+ .debug_frame   0x0000025c       0xcc joystick/joystick.o
+ .debug_frame   0x00000328       0x34 main.o
+ .debug_frame   0x0000035c       0x84 menu/menu.o
+ .debug_frame   0x000003e0      0x20c OLED/oled.o
+ .debug_frame   0x000005ec       0x8c SPI/spi.o
+ .debug_frame   0x00000678       0xa8 UART/uart.o
+ .debug_frame   0x00000720       0x44 XMEM/xmem.o
 
-.debug_str      0x00000000      0xb7e
+.debug_str      0x00000000      0xb29
  *(.debug_str)
  .debug_str     0x00000000      0x1f6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega162/avr5/crtatmega162.o
- .debug_str     0x000001f6      0x255 ADC/adc.o
-                                0x2a4 (size before relaxing)
- .debug_str     0x0000044b      0x131 CAN/can.o
-                                0x29a (size before relaxing)
- .debug_str     0x0000057c       0x92 CAN/can_controller.o
+ .debug_str     0x000001f6      0x200 ADC/adc.o
+                                0x240 (size before relaxing)
+ .debug_str     0x000003f6      0x106 CAN/can.o
+                                0x2a1 (size before relaxing)
+ .debug_str     0x000004fc       0xc4 CAN/can_controller.o
                                 0x262 (size before relaxing)
- .debug_str     0x0000060e       0x84 IO_BOARD/io_board.o
+ .debug_str     0x000005c0       0x7e IO_BOARD/io_board.o
                                 0x224 (size before relaxing)
- .debug_str     0x00000692      0x152 main.o
-                                0x426 (size before relaxing)
- .debug_str     0x000007e4      0x27e OLED/oled.o
-                                0x4fc (size before relaxing)
- .debug_str     0x00000a62       0x29 SPI/spi.o
+ .debug_str     0x0000063e       0xa1 joystick/joystick.o
+                                0x2be (size before relaxing)
+ .debug_str     0x000006df      0x107 main.o
+                                0x431 (size before relaxing)
+ .debug_str     0x000007e6       0xd6 menu/menu.o
+                                0x2a0 (size before relaxing)
+ .debug_str     0x000008bc      0x151 OLED/oled.o
+                                0x414 (size before relaxing)
+ .debug_str     0x00000a0d       0x29 SPI/spi.o
                                 0x1cb (size before relaxing)
- .debug_str     0x00000a8b       0xdc UART/uart.o
+ .debug_str     0x00000a36       0xdc UART/uart.o
                                 0x25b (size before relaxing)
- .debug_str     0x00000b67       0x17 XMEM/xmem.o
+ .debug_str     0x00000b12       0x17 XMEM/xmem.o
                                 0x1a2 (size before relaxing)
 
-.debug_loc      0x00000000     0x23b8
+.debug_loc      0x00000000     0x1ab8
  *(.debug_loc)
- .debug_loc     0x00000000      0x204 ADC/adc.o
- .debug_loc     0x00000204      0x33a CAN/can.o
- .debug_loc     0x0000053e      0x257 CAN/can_controller.o
- .debug_loc     0x00000795       0xce IO_BOARD/io_board.o
- .debug_loc     0x00000863      0x3db main.o
- .debug_loc     0x00000c3e     0x1444 OLED/oled.o
- .debug_loc     0x00002082      0x179 SPI/spi.o
- .debug_loc     0x000021fb      0x189 UART/uart.o
- .debug_loc     0x00002384       0x34 XMEM/xmem.o
+ .debug_loc     0x00000000       0x96 ADC/adc.o
+ .debug_loc     0x00000096      0x3bc CAN/can.o
+ .debug_loc     0x00000452      0x257 CAN/can_controller.o
+ .debug_loc     0x000006a9       0xce IO_BOARD/io_board.o
+ .debug_loc     0x00000777      0x25f joystick/joystick.o
+ .debug_loc     0x000009d6      0x165 main.o
+ .debug_loc     0x00000b3b      0x29c menu/menu.o
+ .debug_loc     0x00000dd7      0x9ab OLED/oled.o
+ .debug_loc     0x00001782      0x179 SPI/spi.o
+ .debug_loc     0x000018fb      0x189 UART/uart.o
+ .debug_loc     0x00001a84       0x34 XMEM/xmem.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1026,17 +1077,19 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x318
+.debug_ranges   0x00000000      0x270
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x30 ADC/adc.o
- .debug_ranges  0x00000030       0x28 CAN/can.o
- .debug_ranges  0x00000058       0x40 CAN/can_controller.o
- .debug_ranges  0x00000098       0x20 IO_BOARD/io_board.o
- .debug_ranges  0x000000b8       0xa0 main.o
- .debug_ranges  0x00000158      0x130 OLED/oled.o
- .debug_ranges  0x00000288       0x30 SPI/spi.o
- .debug_ranges  0x000002b8       0x40 UART/uart.o
- .debug_ranges  0x000002f8       0x20 XMEM/xmem.o
+ .debug_ranges  0x00000000       0x20 ADC/adc.o
+ .debug_ranges  0x00000020       0x28 CAN/can.o
+ .debug_ranges  0x00000048       0x40 CAN/can_controller.o
+ .debug_ranges  0x00000088       0x20 IO_BOARD/io_board.o
+ .debug_ranges  0x000000a8       0x30 joystick/joystick.o
+ .debug_ranges  0x000000d8       0x10 main.o
+ .debug_ranges  0x000000e8       0x58 menu/menu.o
+ .debug_ranges  0x00000140       0xa0 OLED/oled.o
+ .debug_ranges  0x000001e0       0x30 SPI/spi.o
+ .debug_ranges  0x00000210       0x40 UART/uart.o
+ .debug_ranges  0x00000250       0x20 XMEM/xmem.o
 
 .debug_macro
  *(.debug_macro)

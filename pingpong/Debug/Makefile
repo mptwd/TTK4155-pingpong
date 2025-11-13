@@ -36,6 +36,9 @@ SUBDIRS :=  \
 ../ADC \
 ../IO_BOARD \
 ../CAN \
+../joystick \
+../menu \
+../tests \
 ../OLED \
 ../SPI \
 ../XMEM \
@@ -48,9 +51,12 @@ C_SRCS +=  \
 ../CAN/can.c \
 ../CAN/can_controller.c \
 ../IO_BOARD/io_board.c \
+../joystick/joystick.c \
 ../main.c \
+../menu/menu.c \
 ../OLED/oled.c \
 ../SPI/spi.c \
+../tests/tests.c \
 ../UART/uart.c \
 ../XMEM/xmem.c
 
@@ -66,9 +72,12 @@ ADC/adc.o \
 CAN/can.o \
 CAN/can_controller.o \
 IO_BOARD/io_board.o \
+joystick/joystick.o \
 main.o \
+menu/menu.o \
 OLED/oled.o \
 SPI/spi.o \
+tests/tests.o \
 UART/uart.o \
 XMEM/xmem.o
 
@@ -77,9 +86,12 @@ ADC/adc.o \
 CAN/can.o \
 CAN/can_controller.o \
 IO_BOARD/io_board.o \
+joystick/joystick.o \
 main.o \
+menu/menu.o \
 OLED/oled.o \
 SPI/spi.o \
+tests/tests.o \
 UART/uart.o \
 XMEM/xmem.o
 
@@ -88,9 +100,12 @@ ADC/adc.d \
 CAN/can.d \
 CAN/can_controller.d \
 IO_BOARD/io_board.d \
+joystick/joystick.d \
 main.d \
+menu/menu.d \
 OLED/oled.d \
 SPI/spi.d \
+tests/tests.d \
 UART/uart.d \
 XMEM/xmem.d
 
@@ -99,9 +114,12 @@ ADC/adc.d \
 CAN/can.d \
 CAN/can_controller.d \
 IO_BOARD/io_board.d \
+joystick/joystick.d \
 main.d \
+menu/menu.d \
 OLED/oled.d \
 SPI/spi.d \
+tests/tests.d \
 UART/uart.d \
 XMEM/xmem.d
 
@@ -147,7 +165,21 @@ IO_BOARD/io_board.o: ../IO_BOARD/io_board.c
 	@echo Finished building: $<
 	
 
+joystick/joystick.o: ../joystick/joystick.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+menu/menu.o: ../menu/menu.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -162,6 +194,13 @@ OLED/oled.o: ../OLED/oled.c
 	
 
 SPI/spi.o: ../SPI/spi.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+tests/tests.o: ../tests/tests.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

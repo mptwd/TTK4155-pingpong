@@ -17,6 +17,8 @@
 #include "can/can.h"
 #include "IO_BOARD/io_board.h"
 #include "can/can_controller.h"
+#include "joystick/joystick.h"
+#include "menu/menu.h"
 
 
 int main(void) {
@@ -29,142 +31,89 @@ int main(void) {
 	io_board_init(); 	
 	doublebuf_init();
 	can_init();
+	menu_init();
 	
+	/*
 	draw_string_big_to_buffer(0, 0, "Starting...");
 	request_buffer_swap();
 	while(!update_screen()) {}
-
-	//inputs_calibrate();
-
-	//CAN_test();
-	//SRAM_test();
-	
+	*/
+	 
 	clear_all_buffers();
-	draw_menu_to_buffer();
+	draw_main_menu_to_buffer();
 	
 	io_board_set_led(2, ON);
 	io_board_set_led(4, ON);
 	
+	enum state {
+		HOME,
+		GAME,
+		SAVE,
+		LEADERBOARD,
+	} typedef state;
+	
+	state global_state = HOME;
 	direction prev_dir = NEUTRAL;
+	can_message_t game_over_sig;
+	
 	while (1) {
-		const io_inputs_t in = get_io_inputs();
-		//printf("getting directions\n");
-		const direction dir = get_joystick_direction(in);
-		if (dir != prev_dir) {
-			if (dir == UP && main_menu.selected > 0) {
-				main_menu.selected--;
-				draw_menu_to_buffer();
-				} else if (dir == DOWN && main_menu.selected < main_menu.max) {
-				main_menu.selected++;
-				draw_menu_to_buffer();
-				} else if (dir == RIGHT && main_menu.selected < main_menu.max - 1) {
-				main_menu.selected += 2;
-				draw_menu_to_buffer();
-				} else if (dir == LEFT && main_menu.selected > 1) {
-				main_menu.selected -= 2;
-				draw_menu_to_buffer();
-			}
-		}
-		
-		send_joystick_data(in);
-		printf("%d\n", can_controller_read(0x2D));
-		//_delay_ms(5);
-
-		prev_dir = dir;
-		
-		const buttons_t buttons = io_board_read_buttons();
-		//printf("L1:%d,L2:%d,L3:%d,L4:%d,L5:%d,L6:%d,L7:%d,R1:%d,R2:%d,R3:%d,R4:%d,R5:%d,R6:%d,nav=%d\n",
-		//buttons.left&1, buttons.left&(1<<1), buttons.left&(1<<2), buttons.left&(1<<3), buttons.left&(1<<4), buttons.left&(1<<5), buttons.left&(1<<6),
-		//buttons.right&1, buttons.right&(1<<1), buttons.right&(1<<2), buttons.right&(1<<3),buttons.right&(1<<4),buttons.right&(1<<5), buttons.nav);
-		update_screen();
-	}
-
-}
-
-void send_joystick_data(io_inputs_t in) {
-	//const direction dir = get_joystick_direction(in);
-	static can_message_t msg_tx;
-	msg_tx.id = 10;
-	msg_tx.length = 3;
-
-	//msg_tx.data[0] = in.pad_x;
-	//msg_tx.data[1] = in.joy_x;
-	msg_tx.data[0] = in.joy_x;
-	msg_tx.data[1] = in.joy_y;
-	msg_tx.data[2] = in.joy_b;
-	can_transmit(&msg_tx);
-}
-
-void CAN_test(void) {
-	printf("Testing CAN...\n");
-	can_message_t msg_tx;
-	can_message_t msg_rx;
-	
-	int num_err = 0;
-	
-	for (int l = 0; l < 8; l++) {
-		for (int i = 0; i < 0b0000000001111111; i++) {
-			msg_tx.id = i;
-			msg_rx.id = 0;
-			msg_tx.length = l;
-			msg_rx.length = 0;
-			msg_tx.data[0] = msg_rx.data[0] = 0;
-			msg_tx.data[1] = msg_rx.data[0] = 0;
-			msg_tx.data[2] = msg_rx.data[0] = 0;
-			msg_tx.data[3] = msg_rx.data[0] = 0;
-			msg_tx.data[4] = msg_rx.data[0] = 0;
-			msg_tx.data[5] = msg_rx.data[0] = 0;
-			msg_tx.data[6] = msg_rx.data[0] = 0;
-			msg_tx.data[7] = msg_rx.data[0] = 0;
-			for (int d = 0; d < l; d++) {
-				msg_tx.data[d] = d;
-			}
-			
-			can_transmit(&msg_tx);
-			while (!can_receive(&msg_rx)) {}
-			
-			if (msg_tx.id != msg_rx.id|| msg_tx.length != msg_rx.length) {
-				num_err++;
-			} else {
-				for (int d = 0; d < l; d++) {
-					if (msg_tx.data[d] != msg_rx.data[d]) {
-						num_err++;
-						break;
-					}
+		if (global_state == HOME) {
+			printf("in home\r\n");
+			const buttons_t buttons = io_board_read_buttons();
+			//printf("getting directions\n");
+			const direction dir = get_nav_direction(buttons);
+			const uint8_t pressed = get_nav_pressed(buttons);
+			if (dir != prev_dir) {
+				if (dir == UP && main_menu.selected == 1) {
+					main_menu.selected = 0;
+					draw_main_menu_to_buffer();
+				} else if (dir == DOWN && main_menu.selected == 0) {
+					main_menu.selected = 1;
+					draw_main_menu_to_buffer();
 				}
 			}
+			if (pressed) {
+				if (main_menu.selected == 0) {
+					global_state = GAME;
+					clear_all_buffers();
+					_delay_ms(100);
+					can_message_t start_playing_sig;
+					start_playing_sig.id = 4;
+					start_playing_sig.length = 1;
+					can_transmit(&start_playing_sig);
+				} else if (main_menu.selected == 1) {
+					global_state = LEADERBOARD;
+					clear_all_buffers();		
+				}
+
+			}
+			prev_dir = dir;
+			update_screen();
+			printf("screen updated\r\n");
+		} else if (global_state == GAME) {
+			printf("playing\r\n");
+			const io_inputs_t in = get_io_inputs();
+			send_joystick_data(in);
+			//_delay_ms(10); // Slow down can messaging
+			if (can_receive(&game_over_sig)) {
+				printf("message received\n");
+				if (game_over_sig.id == 5) {
+					printf("game over\r\n");
+					global_state = SAVE;
+					clear_all_buffers();
+				}
+			}
+			// TODO: Recevoir score
+			// TODO: Recevoir fin de partie
+		} else if (global_state == SAVE) {
+			printf("saving\r\n");
+			global_state = HOME;
+			draw_main_menu_to_buffer();
+			// TODO: do TODO
+		} else if (global_state == LEADERBOARD) {
+			draw_leaderboard_to_buffer();
+			update_screen();
 		}
 	}
 
-	printf("finished testing CAN: %d errors\n", num_err);
-}
-
-
-void SRAM_test(void) {
-	volatile char *ext_ram = (char *) 0x1400;
-	uint16_t ext_ram_size = 0xBFF;
-	uint16_t write_errors = 0;
-	uint16_t retrieval_errors = 0;
-	printf("Starting SRAM test...\n");
-	uint16_t seed = rand();
-	srand(seed);
-	for (uint16_t i = 0; i < ext_ram_size; i++) {
-		uint8_t some_value = rand();
-		ext_ram[i] = some_value;
-		uint8_t retrieved_value = ext_ram[i];
-		if (retrieved_value != some_value) {
-			printf("Write phase error: ext_ram[%4d] = %02X (should be %02X)\n", i, retrieved_value, some_value);
-			write_errors++;
-		}
-	}
-	srand(seed);
-	for (uint16_t i = 0; i < ext_ram_size; i++) {
-		uint8_t some_value = rand();
-		uint8_t retrieved_value = ext_ram[i];
-		if (retrieved_value != some_value) {
-			printf("Retrieval phase error: ext_ram[%4d] = %02X (should be %02X)\n", i, retrieved_value, some_value);
-			retrieval_errors++;
-		}
-	}
-	printf("SRAM test completed with \n%4d errors in write phase and \n%4d errors in retreival phase\n\n", write_errors, retrieval_errors);
 }

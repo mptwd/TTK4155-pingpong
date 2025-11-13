@@ -7,34 +7,56 @@
 
 #include "score.h"
 #include "../timer/timer.h"
+#include "../time/time.h"
 #include "../ir/ir.h"
+#include "../can/can.h"
 #include <sam.h>
 
-uint8_t score;
-uint32_t lockout_end;
-uint8_t timer_active;
-uint32_t pause_duration;
+uint8_t score_initialized = 0;
 
-void score_init(uint32_t duration) {
-	ir_init();
-	timer_init();
-	score = 0;
-	lockout_end = 0;
-	timer_active = 0;
-	pause_duration = duration;
+uint8_t score;
+uint64_t last_time;
+
+void score_init(void) {
+	if (!score_initialized) {
+		ir_init();
+		timer_init();
+		//time_init();
+		score = 0;
+		last_time = totalSeconds(time_now());
+		score_initialized = 1;
+	}
+
 }
 
-void score_handle() {
-	uint32_t now = timer_get(0);
-	if (timer_active) {
-		if ((int32_t)(now - lockout_end) >= 0) timer_active = 0;
-		else return;
-	}
-	if (!timer_active && ir_get_state()) {
+void score_reset() {
+	score = 0;
+}
+
+uint8_t score_handle() {
+	double now = totalSeconds(time_now());
+	if (now > last_time + 1.) {
 		score++;
-		timer_active = 1;
-		lockout_end = now + pause_duration;
+		printf("score=%d\r\n", score);
+		//TODO: Send the score to Node 1
+		last_time = now;
 	}
+	if (ir_get_state()) {
+		if (ir_get_state()) {
+			const CanMsg game_over_sig = (CanMsg){
+				.id = 5,
+				.length = 1,
+				.byte[0] = score,
+			};
+			printf("s\r\n");
+			can_tx(game_over_sig);
+			pwm_set_pulse_width(0, 1200);
+			score_reset();
+			return 0; // stop playing
+		}
+
+	}
+	return 1; // keep playing
 }
 
 uint8_t get_score() {

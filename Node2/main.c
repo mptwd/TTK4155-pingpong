@@ -25,50 +25,48 @@ int main(void)
 {
     /* Initialize the SAM system */
     SystemInit();
-	// Disable Watchdog Timer
+	
+	// Disable Watchdog Timer (automatic restart)
 	WDT->WDT_MR = WDT_MR_WDDIS;
+	
 	uart_init(F_CPU, 9600);
-
 	motor_init(); 
 	servo_init(); 
 	solenoid_init();
-	
-	printf("coucou\r\n");
+	can_init((CanInit){.brp = 41, .phase1 = 6, .phase2 = 5, .propag = 0}, 0); // brp = 41 --> TQ = 0.5 us --> bit time = 7.5 us
+	score_init();
 	
 	//can_init((CanInit){.brp = 83, .phase1 = 5, .phase2 = 5, .propag = 2}, 0); // brp = 83 --> TQ = 1 us --> bit time = 16 us
-	can_init((CanInit){.brp = 41, .phase1 = 6, .phase2 = 5, .propag = 0}, 0); // brp = 41 --> TQ = 0.5 us --> bit time = 7.5 us
-	score_init(300000);
+	
+	printf("started\r\n");
 
 	joystick joy;
+	uint8_t playing = 0;
 		
     while (1) 
     {
-		printf("1\r\n");
-		if (get_joystick(&joy)) {
-			printf("2\r\n");
-			//print_joystick(joy);
-			//printf("joy.y=%d\r\n", joy.y);
-			servo_from_joy_y(joy.y);
-			printf("3\r\n");
-			motor_from_joy_x(joy.x);
-			printf("4\r\n");
-			if (joy.pressed) {
-			printf("5\r\n");
-				//printf("pressed\r\n");
-				solenoid_push();
-			} else {
-				printf("6\r\n");
-				solenoid_pull();
+		if (playing) {
+			if (get_joystick(&joy)) {
+				servo_from_input(joy.y);
+				motor_from_input(joy.x);
+				if (joy.pressed) {
+					solenoid_push();
+					} else {
+					solenoid_pull();
+				}
+			}
+			print_can_error();
+			//printf("coucou\r\n");
+
+			playing = score_handle();
+			//printf("score=%d\r\n", get_score());
+		} else {
+			CanMsg start_playing_sig;
+			if (can_rx(&start_playing_sig)) {
+				if (start_playing_sig.id == 4) {
+					playing = 1;
+				}
 			}
 		}
-		printf("7\r\n");
-		print_can_error();		
-		printf("8\r\n");
-		//printf("pos=%d\r\n", timer_get(2));
-		//printf("dir=%d\r\n", timer_get_dir());
-		
-		score_handle();
-		printf("9\r\n");
-		//printf("%d\r\n", get_score());
     }
 }

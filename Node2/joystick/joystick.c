@@ -20,13 +20,13 @@ void print_direction(direction dir) {
 	else printf("ERROR: %d\r\n", dir);
 }
 
+
 uint8_t get_joystick(joystick *joy) {
 	CanMsg m;
 	if (can_rx(&m)) {
 		if (m.id != 10 || m.length != 3) return 0; // not a message for joystick or problem in size
- 		//joy->dir = m.byte[0];
  		joy->x = m.byte[0];
-		 joy->y = m.byte[1];
+		joy->y = m.byte[1];
 		joy->pressed = m.byte[2];
 		return 1; // joystick data updated
 	}
@@ -35,5 +35,4 @@ uint8_t get_joystick(joystick *joy) {
 
 void print_joystick(joystick joy) {
 	printf("pressed=%d  direction=", joy.pressed);
-	//print_direction(joy.dir);
 }
