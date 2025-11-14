@@ -77,7 +77,7 @@ ISR (INT0_vect) {
 
 uint8_t can_receive(can_message_t *rx)
 {	
-	printf("%d\n", can_rx_flag);
+	//printf("%d\n", can_rx_flag);
 	if(can_rx_flag & 1) {
 		uint8_t sidh = can_controller_read(MCP_RXB0SIDH);
 		uint8_t sidl = can_controller_read(0x62); //MCP_RXB0SIDL
@@ -112,7 +112,7 @@ uint8_t can_receive(can_message_t *rx)
 	if (can_rx_flag > 2) {
 		printf("err=%d\n", can_controller_read(0x2D));
 	}
-	can_controller_bit_modify(MCP_CANINTF, 0x03, 0x00);
+	can_controller_write(MCP_CANINTF, 0x00);
 
 
 	return 0; // No message

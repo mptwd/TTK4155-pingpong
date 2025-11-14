@@ -16,12 +16,17 @@ struct menu_s {
 } typedef menu;
 
 menu main_menu;
+menu save; 
 
 void menu_init(void);
 
 void draw_main_menu_to_buffer(void);
 
 void draw_leaderboard_to_buffer();
+
+void draw_in_game(uint8_t score);
+
+void draw_save(char l1, char l2, char l3, uint8_t score);
 
 
 #endif /* MENU_H_ */

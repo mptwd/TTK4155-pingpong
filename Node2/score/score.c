@@ -38,7 +38,12 @@ uint8_t score_handle() {
 	if (now > last_time + 1.) {
 		score++;
 		printf("score=%d\r\n", score);
-		//TODO: Send the score to Node 1
+		const CanMsg score_msg = (CanMsg){
+			.id = 15,
+			.length = 1,
+			.byte[0] = score,
+		};
+		can_tx(score_msg);
 		last_time = now;
 	}
 	if (ir_get_state()) {
@@ -52,6 +57,12 @@ uint8_t score_handle() {
 			can_tx(game_over_sig);
 			pwm_set_pulse_width(0, 1200);
 			score_reset();
+			CanMsg end_ack_sig; 
+			while(!can_rx(&end_ack_sig) && end_ack_sig.id == 3) {
+				printf("resend\r\n");
+				for (volatile uint32_t i = 0; i < 10000; i++);
+				can_tx(game_over_sig);
+			}
 			return 0; // stop playing
 		}
 

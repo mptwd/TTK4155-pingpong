@@ -40,11 +40,14 @@ void spi_select_slave(slave s) {
 
 void spi_write_byte(uint8_t byte) {
 	SPDR = byte; 
-	while(!(SPSR & (1<<SPIF))); 
+	uint32_t limiter = 0;
+	while(!(SPSR & (1<<SPIF)) && limiter < 100000000) { limiter++; }
 }
 
 uint8_t spi_read_byte(void) {
-	while(!(SPSR & (1<<SPIF))); 
+	uint32_t limiter = 0;
+	while(!(SPSR & (1<<SPIF)) && limiter < 100000000) { limiter++; }; 
+	if (limiter >= 1000000) return 0;
 	return SPDR; 
 }
 

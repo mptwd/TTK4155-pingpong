@@ -56,9 +56,13 @@ int main(void) {
 	direction prev_dir = NEUTRAL;
 	can_message_t game_over_sig;
 	
+	uint8_t prev_pressed = 0; 
+	
+	uint8_t final_score; 
+	char letters[3] = {'A', 'A', 'A'}; 
+	
 	while (1) {
 		if (global_state == HOME) {
-			printf("in home\r\n");
 			const buttons_t buttons = io_board_read_buttons();
 			//printf("getting directions\n");
 			const direction dir = get_nav_direction(buttons);
@@ -72,11 +76,11 @@ int main(void) {
 					draw_main_menu_to_buffer();
 				}
 			}
-			if (pressed) {
+			if (pressed && pressed != prev_pressed) {
 				if (main_menu.selected == 0) {
 					global_state = GAME;
 					clear_all_buffers();
-					_delay_ms(100);
+					//_delay_ms(100);
 					can_message_t start_playing_sig;
 					start_playing_sig.id = 4;
 					start_playing_sig.length = 1;
@@ -87,32 +91,79 @@ int main(void) {
 				}
 
 			}
+			prev_pressed = pressed; 
 			prev_dir = dir;
 			update_screen();
-			printf("screen updated\r\n");
 		} else if (global_state == GAME) {
-			printf("playing\r\n");
 			const io_inputs_t in = get_io_inputs();
 			send_joystick_data(in);
-			//_delay_ms(10); // Slow down can messaging
+			_delay_ms(20); // Slow down can messaging
 			if (can_receive(&game_over_sig)) {
-				printf("message received\n");
 				if (game_over_sig.id == 5) {
 					printf("game over\r\n");
+					final_score = game_over_sig.data[0];
 					global_state = SAVE;
 					clear_all_buffers();
+					draw_save('A', 'A', 'A', final_score);
+					can_message_t end_ack_sig;
+					end_ack_sig.id = 3;
+					end_ack_sig.length = 1;
+					can_transmit(&end_ack_sig);
+				} else if (game_over_sig.id == 15) {
+					//printf("score: %d \n", game_over_sig.data[0]);
+					draw_in_game(game_over_sig.data[0]);
+					update_screen();
 				}
 			}
 			// TODO: Recevoir score
 			// TODO: Recevoir fin de partie
 		} else if (global_state == SAVE) {
-			printf("saving\r\n");
-			global_state = HOME;
-			draw_main_menu_to_buffer();
-			// TODO: do TODO
+			const buttons_t buttons = io_board_read_buttons();
+			const direction dir = get_nav_direction(buttons);
+			const uint8_t pressed = get_nav_pressed(buttons);
+			if(pressed && pressed != prev_pressed) {
+				save.selected++; 
+				draw_save(letters[0], letters[1], letters[2], final_score);
+				if(save.selected > 2) {
+					// TODO save pour de vrai
+					global_state = HOME;
+					clear_all_buffers();
+					draw_main_menu_to_buffer();
+					save.selected = 0; 
+				}
+			}
+			prev_pressed = pressed; 
+			if (dir != prev_dir) {
+				if (dir == UP) {
+					letters[save.selected]--;
+					if(letters[save.selected] < 'A') {
+						letters[save.selected] = 'Z';
+					}
+					draw_save(letters[0], letters[1], letters[2], final_score);
+				} else if (dir == DOWN) {
+					letters[save.selected]++;
+					if(letters[save.selected] > 'Z') {
+						letters[save.selected] = 'A';
+					}
+					draw_save(letters[0], letters[1], letters[2], final_score);
+				}
+			}
+			prev_dir = dir;
+			update_screen(); 
 		} else if (global_state == LEADERBOARD) {
 			draw_leaderboard_to_buffer();
-			update_screen();
+			while(!update_screen()) {}
+			while (1) {
+				const buttons_t buttons = io_board_read_buttons();
+				const uint8_t pressed = get_nav_pressed(buttons);
+				if (pressed && pressed != prev_pressed) {
+					global_state = HOME; 
+					clear_all_buffers();
+					draw_main_menu_to_buffer();
+					break; 
+				}
+				prev_pressed = pressed; 
+			}
 		}
 	}
 
