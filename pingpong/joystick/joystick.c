@@ -10,6 +10,7 @@
 #include "../can/can.h"
 
 direction get_joystick_direction(io_inputs_t inputs) {
+	// Dead zone around 10. 
 	if (inputs.joy_y > 10 && inputs.joy_y > inputs.joy_x && inputs.joy_y > -inputs.joy_x) return UP;
 	else if (inputs.joy_y < -10 && inputs.joy_y < inputs.joy_x && inputs.joy_y < -inputs.joy_x) return DOWN;
 	else if (inputs.joy_x > 10 && inputs.joy_x >= inputs.joy_y && inputs.joy_x >= -inputs.joy_y) return RIGHT;
@@ -39,7 +40,6 @@ void print_direction(direction dir) {
 }
 
 void send_joystick_data(io_inputs_t in) {
-	//const direction dir = get_joystick_direction(in);
 	static can_message_t msg_tx;
 	msg_tx.id = 10;
 	msg_tx.length = 3;

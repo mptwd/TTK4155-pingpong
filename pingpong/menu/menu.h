@@ -52,14 +52,44 @@ void draw_in_game(uint8_t score);
  */
 void draw_save(char l1, char l2, char l3, uint8_t score);
 
+/** 
+ * Function to get the leaderboard size. 
+ * @return The leaderboard size. 
+ */
 uint8_t leaderboard_get_size();
 
+/** 
+ * Function to set the leaderboard size. 
+ * @param size The leaderboard size. 
+ */
 void leaderboard_set_size(uint8_t size);
 
+/** 
+ * Function to get the name of a specific user. 
+ * @param name The user's name. 
+ * @param i The user index in the leaderboard.
+ */
 void leaderboard_get_user_name(uint8_t i, char *name);
 
+/** 
+ * Function to get the score a specific user. 
+ * @return The user's score. 
+ * @param i User at the index i knowing that the user's highest score is at index 0. 
+ */
 uint8_t leaderboard_get_user_score(uint8_t i);
 
+/** 
+ * Function to propagate the saved scores and names in the leaderboard. 
+ * It is used to insert a new user. 
+ * The last user of the leaderboard (lowest score) is deleted. 
+ * @return The new leaderboard size. 
+ * @param l1 First letter of the user's name. 
+ * @param l2 Second letter of the user's name. 
+ * @param l3 Third letter of the user's name. 
+ * @param score The user's score. 
+ * @param start Index of where we want to insert the new user. 
+ * @param leaderboard_size The leaderboard size. 
+ */
 uint8_t propag_users(char l1, char l2, char l3, uint8_t score, uint8_t start, uint8_t leaderboard_size);
 
 #endif /* MENU_H_ */
