@@ -44,10 +44,14 @@ void send_joystick_data(io_inputs_t in) {
 	msg_tx.id = 10;
 	msg_tx.length = 3;
 
+	// Better control: using the track pad to move the motors
 	msg_tx.data[0] = in.pad_x;
 	msg_tx.data[1] = in.joy_x;
+	
+	// Default control: using the joystick to move the motors
 	//msg_tx.data[0] = in.joy_x;
 	//msg_tx.data[1] = in.joy_y;
+	
 	msg_tx.data[2] = in.joy_b;
 	can_transmit(&msg_tx);
 }

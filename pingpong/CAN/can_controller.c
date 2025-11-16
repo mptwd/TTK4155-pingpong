@@ -28,7 +28,7 @@ uint8_t can_controller_read(uint8_t addr) {
 
 void can_controller_write(uint8_t addr, uint8_t data) {
 	spi_select_slave(CAN);
-	
+		
 	spi_write_byte(0x02); spi_read_byte();
 	spi_write_byte(addr); spi_read_byte();
 	spi_write_byte(data); spi_read_byte();

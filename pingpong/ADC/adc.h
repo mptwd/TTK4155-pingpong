@@ -19,8 +19,6 @@ struct io_inputs_s {
 
 void adc_init(void);
 
-void inputs_calibrate(void);
-
 io_inputs_t get_io_inputs(void);
 
 

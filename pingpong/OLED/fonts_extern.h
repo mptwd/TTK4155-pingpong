@@ -11,6 +11,10 @@
 
 #include <avr/pgmspace.h>
 
+/************************************************************************/
+/* To fix some double imports                                           */
+/************************************************************************/
+
 extern const unsigned char PROGMEM font8[95][8];
 
 extern const unsigned char PROGMEM font5[95][5];

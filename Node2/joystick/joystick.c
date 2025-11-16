@@ -32,7 +32,3 @@ uint8_t get_joystick(joystick *joy) {
 	}
 	return 0; // Did not receive input
 }
-
-void print_joystick(joystick joy) {
-	printf("pressed=%d  direction=", joy.pressed);
-}

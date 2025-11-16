@@ -28,8 +28,13 @@ void motor_calibrate(void);
  *
  * @param input User input is between 70 and 250, if value outside this range is given, it will be brought back to nearest limit.
  */
-void motor_from_input(uint8_t input); 
+void motor_from_input(uint8_t input);
 
+int16_t input_to_pos(uint8_t input); 
+
+float get_pos_from_pid(int16_t wanted_pos);
+
+void set_motor(float speed);
 
 
 #endif /* MOTOR_H_ */

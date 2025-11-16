@@ -52,15 +52,17 @@ void can_transmit(can_message_t *tx)
 	// load ID (standard 11 bits)
 	uint8_t sidh = (uint8_t)(tx->id >> 3);
 	uint8_t sidl = (uint8_t)((tx->id & 0x07) << 5);
-
+	
+	_delay_ms(1);
 	can_controller_write(0x31, sidh); // TXB0SIDH
+	_delay_ms(1);
 	can_controller_write(0x32, sidl); // TXB0SIDL
 
 	// Load the length
 	can_controller_write(0x35, tx->length & 0x0F); // TXB0DLC
 
 	// Load the data
-	for (uint8_t i = 0; i < tx->length & 0x0F; i++) {
+	for (uint8_t i = 0; i < (tx->length & 0x0F); i++) {
 		can_controller_write(0x36 + i, tx->data[i]);
 	}
 
@@ -110,7 +112,7 @@ uint8_t can_receive(can_message_t *rx)
 
 	}
 	if (can_rx_flag > 2) {
-		printf("err=%d\n", can_controller_read(0x2D));
+		//printf("err=%d\n", can_controller_read(0x2D));
 	}
 	can_controller_write(MCP_CANINTF, 0x00);
 

@@ -35,20 +35,18 @@ int main(void)
 	solenoid_init();
 	can_init((CanInit){.brp = 41, .phase1 = 6, .phase2 = 5, .propag = 0}, 0); // brp = 41 --> TQ = 0.5 us --> bit time = 7.5 us
 	score_init();
-	
-	//can_init((CanInit){.brp = 83, .phase1 = 5, .phase2 = 5, .propag = 2}, 0); // brp = 83 --> TQ = 1 us --> bit time = 16 us
-	
-	printf("started\r\n");
 
 	joystick joy;
 	uint8_t playing = 0;
+	
+	uint16_t wanted_pos;
 		
     while (1) 
     {
 		if (playing) {
 			if (get_joystick(&joy)) {
 				servo_from_input(joy.y);
-				motor_from_input(joy.x);
+				wanted_pos = input_to_pos(joy.x);
 				if (joy.pressed) {
 					solenoid_push();
 					} else {
@@ -56,15 +54,17 @@ int main(void)
 				}
 			}
 			print_can_error();
-			//printf("coucou\r\n");
-
+		
+			set_motor(get_pos_from_pid(wanted_pos));
 			playing = score_handle();
-			//printf("score=%d\r\n", get_score());
 		} else {
 			CanMsg start_playing_sig;
 			if (can_rx(&start_playing_sig)) {
 				if (start_playing_sig.id == 4) {
 					playing = 1;
+				} else {
+					printf("received weird message, sending error\r\n");
+					can_tx((CanMsg) {.id = 1, .length = 1, .byte[0] = 1});
 				}
 			}
 		}

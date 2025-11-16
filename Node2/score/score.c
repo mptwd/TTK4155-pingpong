@@ -21,7 +21,6 @@ void score_init(void) {
 	if (!score_initialized) {
 		ir_init();
 		timer_init();
-		//time_init();
 		score = 0;
 		last_time = totalSeconds(time_now());
 		score_initialized = 1;
@@ -37,7 +36,6 @@ uint8_t score_handle() {
 	double now = totalSeconds(time_now());
 	if (now > last_time + 1.) {
 		score++;
-		printf("score=%d\r\n", score);
 		const CanMsg score_msg = (CanMsg){
 			.id = 15,
 			.length = 1,
@@ -46,26 +44,23 @@ uint8_t score_handle() {
 		can_tx(score_msg);
 		last_time = now;
 	}
-	if (ir_get_state()) {
-		if (ir_get_state()) {
-			const CanMsg game_over_sig = (CanMsg){
-				.id = 5,
-				.length = 1,
-				.byte[0] = score,
-			};
-			printf("s\r\n");
+	if (ir_get_state() && ir_get_state()) { // Double check of IR because of noise.
+		const CanMsg game_over_sig = (CanMsg){
+			.id = 5,
+			.length = 1,
+			.byte[0] = score,
+		};
+		can_tx(game_over_sig);
+		pwm_set_pulse_width(0, 1200);
+		score_reset();
+		CanMsg end_ack_sig; 
+		while(!can_rx(&end_ack_sig) && end_ack_sig.id == 3) {
+			for (volatile uint32_t i = 0; i < 10000; i++);
 			can_tx(game_over_sig);
-			pwm_set_pulse_width(0, 1200);
-			score_reset();
-			CanMsg end_ack_sig; 
-			while(!can_rx(&end_ack_sig) && end_ack_sig.id == 3) {
-				printf("resend\r\n");
-				for (volatile uint32_t i = 0; i < 10000; i++);
-				can_tx(game_over_sig);
-			}
-			return 0; // stop playing
 		}
-
+		time_spinFor(msecs(500));
+		can_rx(NULL); // clean CAN communication
+		return 0; // stop playing
 	}
 	return 1; // keep playing
 }

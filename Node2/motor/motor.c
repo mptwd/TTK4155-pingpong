@@ -55,9 +55,7 @@ void motor_calibrate() {
 	pwm_set_pulse_width(0, 1200);
 	
 	 
-	
-	/* ===> calibration motor <=== */
-	
+	// Better calibration, but doesn't work
 	/*
 	PIOC->PIO_CODR = (1 << 23);
 	pwm_set_pulse_width(0, 0);
@@ -73,51 +71,43 @@ void motor_calibrate() {
 	printf("pos max = %d\r\n", pos_max);
 	joy_to_pos_step = (float)pos_max / 180;
 	*/
-	// Reset
-	//for (volatile uint32_t i = 0; i < 5000000; i++);
-
-
-	
-	/* =========================== */
-	
 }
 
-void motor_from_input(uint8_t input) {
-	if (input < 70) input = 70;
-	if (input > 250) input = 250;
-	//printf("%d,", input);
-	const int16_t wanted_pos = (input - 70) * (-31.23); // <- -5623 // (-25.6) <- -4 608;
+
+float get_pos_from_pid(int16_t wanted_pos) {
 	const int16_t pos = timer_get(2);
-	//printf("%d,\n", wanted_pos);
-	//printf("%d\r\n", pos);
 	const int16_t error = wanted_pos - pos;
-	//printf("%d,", error);
-	integral += error; 
+	integral += error;
 	uint64_t now = time_now();
-	// 80 -> 80 * -24
-	float P = Kp * error; 
-	float I = Ki * integral; 
+	float P = Kp * error;
+	float I = Ki * integral;
 	float D = Kd * (error - prev_err) / (now - prev_time);
-	float PI = P + I + D;
+	float PID = P + I + D;
 	prev_time = now;
 	prev_err = error;
-	//printf("%e,%e,%e,%e", P, I, D, PI); 
-	
-	//pwm_set_pulse_width(0, 840);
+	if (PID < -1200) PID = -1200;
+	else if (PID > 1200) PID = 1200;
+	return PID;
+}
 
-	if (PI < 0) {
-		if (PI < -1200) PI = -1200;
+void set_motor(float speed) {
+	if (speed < 0) {
 		PIOC->PIO_SODR = (1 << 23);
-		uint32_t pulse_width = PI + 1200;
+		uint32_t pulse_width = speed + 1200;
 		pwm_set_pulse_width(0, pulse_width);
 	}
 	else {
-		if (PI > 1200) PI = 1200;
 		PIOC->PIO_CODR = (1 << 23);
-		uint32_t pulse_width = 1200 - PI;
+		uint32_t pulse_width = 1200 - speed;
 		pwm_set_pulse_width(0, pulse_width);
 	}
 }
 
+int16_t input_to_pos(uint8_t input) {
+	if (input < 70) input = 70;
+	if (input > 250) input = 250;
+	const int16_t wanted_pos = (input - 70) * (-31.23);
+	return wanted_pos;
+}
 
 

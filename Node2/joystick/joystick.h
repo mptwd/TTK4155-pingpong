@@ -35,13 +35,4 @@ struct joystick {
  */
 uint8_t get_joystick(joystick *joy);
 
-/** 
- * Prints the joystick structure
- *
- * @param joy The variable to be printed.
- */
-void print_joystick(joystick joy);
-
-
-
 #endif /* JOYSTICK_H_ */

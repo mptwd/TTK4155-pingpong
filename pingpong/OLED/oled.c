@@ -38,8 +38,6 @@ void oled_init(void) {
 	spi_write_byte(0x02); spi_read_byte();
 	spi_write_byte(0xdb); spi_read_byte();
 	spi_write_byte(0x34); spi_read_byte();
-	//spi_write_byte(0xad); spi_read_byte();
-	//spi_write_byte(0x00); spi_read_byte();
 	spi_write_byte(0xa4); spi_read_byte();
 	spi_write_byte(0xa6); spi_read_byte();
 	spi_write_byte(0xAF); spi_read_byte();
@@ -142,7 +140,6 @@ void doublebuf_init(void) {
 void clear_backbuffer(void) {
 	const uint16_t base = buf_base_of(active_buf);
 	for (uint16_t i = 0; i < BUFFER_SIZE; i++) xmem_write(0x00, base + i);
-	printf("done\n");
 }
 
 void clear_all_buffers(void) {

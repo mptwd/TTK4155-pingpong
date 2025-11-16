@@ -26,13 +26,11 @@ enum state{
 	ON,
 } typedef state_t; 
 	
-void io_board_init();
+void io_board_init(void);
 
-buttons_t io_board_read_buttons();
+buttons_t io_board_read_buttons(void);
 
 void io_board_set_led(uint8_t led, state_t state); 
-
-//TODO : LED PWM
 
 
 #endif /* IO_BOARD_H_ */

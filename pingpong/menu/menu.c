@@ -17,21 +17,16 @@ void menu_init(void) {
 	main_menu.selected = 0;
 	save.selected = 0; 
 	
-	xmem_write(2, LEADERBOARD_BASE); 
+	xmem_write(1, LEADERBOARD_BASE); 
 	xmem_write('A', LEADERBOARD_BASE + 1); 
 	xmem_write('B', LEADERBOARD_BASE + 2);
 	xmem_write('C', LEADERBOARD_BASE + 3);
-	xmem_write(22, LEADERBOARD_BASE + 4);
-
-	xmem_write('D', LEADERBOARD_BASE + 5);
-	xmem_write('E', LEADERBOARD_BASE + 6);
-	xmem_write('F', LEADERBOARD_BASE + 7);
-	xmem_write(99, LEADERBOARD_BASE + 8);
+	xmem_write(0, LEADERBOARD_BASE + 4);
 }
 
 void draw_raquette_to_buffer(uint8_t page, uint8_t col) {
 	uint16_t base = buf_base_of(active_buf);
-	// Draw the first raquette
+	// Draw the first racket
 	for(int i = 0; i < 3; i++) {
 		for(int j =0; j < 23; j++) {
 			const uint8_t data = pgm_read_byte(&(raquette[i][22 - j]));
@@ -74,11 +69,9 @@ void draw_leaderboard_to_buffer() {
 	draw_string_big_to_buffer(0, 0, "Leaderboard");
 	
 	uint8_t leaderboard_size = xmem_read(LEADERBOARD_BASE);
-	printf("size: %d\n", leaderboard_size); 
 	if (leaderboard_size > 6) {
 		leaderboard_size = 6;
 	}
-	printf("size: %d\n", leaderboard_size); 
 	for (uint8_t i = 0; i < leaderboard_size; i++) {
 		uint16_t offset = LEADERBOARD_BASE + 1 + i * 4;
 		draw_char_normal_to_buffer(2 + i, 0, xmem_read(offset)); 
@@ -117,4 +110,58 @@ void draw_save(char l1, char l2, char l3, uint8_t score) {
 		draw_string_normal_to_buffer(3, 0, "  ^");
 	}
 	request_buffer_swap(); 
+}
+
+uint8_t leaderboard_get_size() {
+	return xmem_read(LEADERBOARD_BASE);
+}
+
+void leaderboard_set_size(uint8_t size) {
+	uint8_t local_size = size;
+	if (local_size > 6) {
+		local_size = 6;
+	}
+	xmem_write(local_size, LEADERBOARD_BASE); 
+}
+
+
+void leaderboard_get_user_name(uint8_t i, char *name) {
+	uint16_t offset = LEADERBOARD_BASE + 1 + i * 4;
+	name[0] = xmem_read(offset);
+	name[1] = xmem_read(offset + 1);
+	name[2] = xmem_read(offset + 2);
+}
+
+uint8_t leaderboard_get_user_score(uint8_t i) {
+	uint16_t offset = LEADERBOARD_BASE + 1 + i * 4;
+	return xmem_read(offset + 3);
+}
+
+uint8_t propag_users(char l1, char l2, char l3, uint8_t score, uint8_t start, uint8_t leaderboard_size) {
+	char tmp_l1 = l1;
+	char tmp_l2 = l2;
+	char tmp_l3 = l3;
+	char tmp_score = score;
+	char to_write_l1;
+	char to_write_l2;
+	char to_write_l3;
+	char to_write_score;
+	for (uint8_t i = start; i < leaderboard_size + 1; i++) {
+		uint16_t offset = LEADERBOARD_BASE + 1 + i * 4;
+		to_write_l1 = tmp_l1;
+		to_write_l2 = tmp_l2;
+		to_write_l3 = tmp_l3;
+		to_write_score = tmp_score;
+		
+		tmp_l1 = xmem_read(offset);
+		tmp_l2 = xmem_read(offset + 1);
+		tmp_l3 = xmem_read(offset + 2);
+		tmp_score = xmem_read(offset + 3);
+
+		xmem_write(to_write_l1, offset);
+		xmem_write(to_write_l2, offset + 1);
+		xmem_write(to_write_l3, offset + 2);
+		xmem_write(to_write_score, offset + 3);
+	}
+	return leaderboard_size + 1;
 }
