@@ -17,8 +17,14 @@ struct io_inputs_s {
 	int joy_b;
 } typedef io_inputs_t; 
 
+/**
+ * Function to be called on start of the program if adc is to be used.
+ */
 void adc_init(void);
 
+/**
+ * Gets inputs from the io board.
+ */
 io_inputs_t get_io_inputs(void);
 
 

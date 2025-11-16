@@ -45,24 +45,20 @@ void oled_init(void) {
 	spi_select_slave(NONE);
 }
 
-#define CHUNK_SIZE 64
-
-#define BUFFER_SIZE 128 * 8 // 128 bytes per page
+#define BUFFER_SIZE 128 * 8 // 128 bytes per page, 8 pages, 1024 bytes in total.
 #define BUF0_BASE 0
 #define BUF1_BASE (BUFFER_SIZE)
 
 #define F_CPU 4915200UL
-#define FRAME_RATE 1 // Hz
+#define FRAME_RATE 1 // Hz | It seems slow, but seems sufficiant in testing.
 
-volatile uint8_t active_buf = 1;
+volatile uint8_t active_buf = 1; // which buffer is being drawned on.
 volatile uint8_t front_buf = 0; // which buffer is being streamed.
 volatile bool swap_requested = false; // set when user request swap
-volatile bool swap_pending = false; // set when ISR notices swap (to avoid mid-transfer swap)
-volatile uint16_t transfer_pos = 0; // state machine index for streaming
-volatile uint8_t transfer_page = 0;
-volatile uint8_t transfer_col  = 0;
-volatile bool transfer_in_progress = false;
 
+/**
+ * Start a timer to limit the updates to the screen.
+ */
 void start_timer_transfer(void) {
 	const uint32_t interrupts_per_sec = (uint32_t)FRAME_RATE;
 	uint16_t prescaler = 64;
@@ -105,14 +101,14 @@ ISR(TIMER3_COMPA_vect) {
 		cli();
 
 		swap_requested = false;
-			
+
 		front_buf = active_buf;
 		active_buf = (active_buf == 0) ? 1 : 0;
-			
+
 		// Reseting buffer (optional)
 		//uint16_t base = buf_base_of(active_buf);
 		//for (uint16_t i = 0; i < BUFFER_SIZE; ++i) xmem_write(0x00, base + i);
-			
+
 		sei();
 	}
 }
@@ -127,15 +123,10 @@ void doublebuf_init(void) {
 	front_buf = 0;
 	active_buf = 1;
 	swap_requested = false;
-	swap_pending = false;
-	transfer_pos = 0;
-	transfer_in_progress = false;
 	
 	start_timer_transfer();
 	sei();
 }
-
-
 
 void clear_backbuffer(void) {
 	const uint16_t base = buf_base_of(active_buf);

@@ -29,7 +29,7 @@ uint8_t can_controller_read(uint8_t addr) {
 void can_controller_write(uint8_t addr, uint8_t data) {
 	spi_select_slave(CAN);
 		
-	spi_write_byte(0x02); spi_read_byte();
+	spi_write_byte(0x02); spi_read_byte(); // Write instruction
 	spi_write_byte(addr); spi_read_byte();
 	spi_write_byte(data); spi_read_byte();
 	
@@ -47,7 +47,7 @@ void can_controller_request_send(uint8_t rts) {
 uint8_t can_controller_read_status(void) {
 	spi_select_slave(CAN);
 	
-	spi_write_byte(0xA0); spi_read_byte();
+	spi_write_byte(0xA0); spi_read_byte(); // Status instruction
 	spi_write_byte(0x00); // Don't care
 	const uint8_t data = spi_read_byte();
 	
@@ -59,7 +59,7 @@ uint8_t can_controller_read_status(void) {
 void can_controller_bit_modify(uint8_t addr, uint8_t mask, uint8_t data) {
 	spi_select_slave(CAN);
 	
-	spi_write_byte(0x05); spi_read_byte();
+	spi_write_byte(0x05); spi_read_byte(); // Bit modify instruction
 	spi_write_byte(addr); spi_read_byte();
 	spi_write_byte(mask); spi_read_byte();
 	spi_write_byte(data); spi_read_byte();
@@ -70,7 +70,7 @@ void can_controller_bit_modify(uint8_t addr, uint8_t mask, uint8_t data) {
 void can_controller_reset(void) {
 	spi_select_slave(CAN);
 	
-	spi_write_byte(0xC0); spi_read_byte();
+	spi_write_byte(0xC0); spi_read_byte(); // Reset instruction
 	
 	spi_select_slave(NONE);
 }

@@ -1,0 +1,77 @@
+\doxysection{Node2/can/can.c File Reference}
+\hypertarget{Node2_2can_2can_8c}{}\label{Node2_2can_2can_8c}\index{Node2/can/can.c@{Node2/can/can.c}}
+{\ttfamily \#include "{}sam.\+h"{}}\newline
+{\ttfamily \#include "{}can.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Node2_2can_2can_8c_a123fbfa5d7085a69b65ff6eaa925fb8b}{tx\+Mailbox}}~0
+\item 
+\#define \mbox{\hyperlink{Node2_2can_2can_8c_a976ce909a19175897c68177fe593e72b}{rx\+Mailbox}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Node2_2can_2can_8c_aabcdcd665e7d981aaedd3ba9e17aaca6}{can\+\_\+printmsg}} (\mbox{\hyperlink{structCanMsg}{Can\+Msg}} m)
+\item 
+void \mbox{\hyperlink{Node2_2can_2can_8c_a57e3d346f8ad0013c8aa2fa5df7cdec3}{can\+\_\+init}} (\mbox{\hyperlink{Node2_2can_2can_8h_a56381b86c0338719f1279aac5ff5d47b}{Can\+Init}} init, uint8\+\_\+t rx\+Interrupt)
+\item 
+void \mbox{\hyperlink{Node2_2can_2can_8c_ae568954e77ce3fb11c7ef471688dca6b}{can\+\_\+tx}} (\mbox{\hyperlink{structCanMsg}{Can\+Msg}} m)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{Node2_2can_2can_8c_a7f8a1b2bf5b7ffef9b246a229bfb1f4e}{can\+\_\+rx}} (\mbox{\hyperlink{structCanMsg}{Can\+Msg}} \texorpdfstring{$\ast$}{*}m)
+\item 
+void \mbox{\hyperlink{Node2_2can_2can_8c_a6f181c8dbd636490638bf5a81524db51}{print\+\_\+can\+\_\+error}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{Node2_2can_2can_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{Node2_2can_2can_8c_a976ce909a19175897c68177fe593e72b}\index{can.c@{can.c}!rxMailbox@{rxMailbox}}
+\index{rxMailbox@{rxMailbox}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{rxMailbox}{rxMailbox}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_a976ce909a19175897c68177fe593e72b} 
+\#define rx\+Mailbox~1}
+
+\Hypertarget{Node2_2can_2can_8c_a123fbfa5d7085a69b65ff6eaa925fb8b}\index{can.c@{can.c}!txMailbox@{txMailbox}}
+\index{txMailbox@{txMailbox}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{txMailbox}{txMailbox}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_a123fbfa5d7085a69b65ff6eaa925fb8b} 
+\#define tx\+Mailbox~0}
+
+
+
+\label{doc-func-members}
+\Hypertarget{Node2_2can_2can_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{Node2_2can_2can_8c_a57e3d346f8ad0013c8aa2fa5df7cdec3}\index{can.c@{can.c}!can\_init@{can\_init}}
+\index{can\_init@{can\_init}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{can\_init()}{can\_init()}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_a57e3d346f8ad0013c8aa2fa5df7cdec3} 
+void can\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Node2_2can_2can_8h_a56381b86c0338719f1279aac5ff5d47b}{Can\+Init}}}]{init}{, }\item[{uint8\+\_\+t}]{rx\+Interrupt}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2can_2can_8c_aabcdcd665e7d981aaedd3ba9e17aaca6}\index{can.c@{can.c}!can\_printmsg@{can\_printmsg}}
+\index{can\_printmsg@{can\_printmsg}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{can\_printmsg()}{can\_printmsg()}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_aabcdcd665e7d981aaedd3ba9e17aaca6} 
+void can\+\_\+printmsg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCanMsg}{Can\+Msg}}}]{m}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2can_2can_8c_a7f8a1b2bf5b7ffef9b246a229bfb1f4e}\index{can.c@{can.c}!can\_rx@{can\_rx}}
+\index{can\_rx@{can\_rx}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{can\_rx()}{can\_rx()}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_a7f8a1b2bf5b7ffef9b246a229bfb1f4e} 
+uint8\+\_\+t can\+\_\+rx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCanMsg}{Can\+Msg}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2can_2can_8c_ae568954e77ce3fb11c7ef471688dca6b}\index{can.c@{can.c}!can\_tx@{can\_tx}}
+\index{can\_tx@{can\_tx}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{can\_tx()}{can\_tx()}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_ae568954e77ce3fb11c7ef471688dca6b} 
+void can\+\_\+tx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCanMsg}{Can\+Msg}}}]{m}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2can_2can_8c_a6f181c8dbd636490638bf5a81524db51}\index{can.c@{can.c}!print\_can\_error@{print\_can\_error}}
+\index{print\_can\_error@{print\_can\_error}!can.c@{can.c}}
+\doxysubsubsection{\texorpdfstring{print\_can\_error()}{print\_can\_error()}}
+{\footnotesize\ttfamily \label{Node2_2can_2can_8c_a6f181c8dbd636490638bf5a81524db51} 
+void print\+\_\+can\+\_\+error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+

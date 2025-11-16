@@ -1,0 +1,124 @@
+\doxysection{Node2/timer/timer.c File Reference}
+\hypertarget{timer_8c}{}\label{timer_8c}\index{Node2/timer/timer.c@{Node2/timer/timer.c}}
+{\ttfamily \#include "{}timer.\+h"{}}\newline
+{\ttfamily \#include "{}sam.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{timer_8c_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+CPU}}~84000000
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{timer_8c_a896a4c37c6ecf8868ef0dc758e5a598c}{timer\+\_\+init}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{timer_8c_a65c43888b4d527f7dd9ca7835b97a38e}{timer\+\_\+get}} (uint8\+\_\+t timer)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{timer_8c_a35a1b5bf0725f7c5b622fd45274ee63a}{timer\+\_\+get\+\_\+dir}} ()
+\item 
+void \mbox{\hyperlink{timer_8c_abdd48bd90e414cc0d9879dab61c937e6}{pwm\+\_\+init}} (uint32\+\_\+t channel, uint32\+\_\+t freq)
+\item 
+void \mbox{\hyperlink{timer_8c_a3dbc96563c4f0aa092c035a20b7a0569}{pwm\+\_\+start}} (uint32\+\_\+t channel)
+\item 
+void \mbox{\hyperlink{timer_8c_a0c0a0966caf141a4de56014189b680a4}{pwm\+\_\+stop}} (uint32\+\_\+t channel)
+\item 
+void \mbox{\hyperlink{timer_8c_a664ae034c2f3e3f4400f67367b699020}{pwm\+\_\+set\+\_\+pulse\+\_\+width}} (uint32\+\_\+t channel, uint32\+\_\+t pulse\+\_\+width)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{timer_8c_aeb1d50c899dcd595ebb681ef8ca27ff0}{timer\+\_\+initialized}} = 0
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{timer_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{timer_8c_a43bafb28b29491ec7f871319b5a3b2f8}\index{timer.c@{timer.c}!F\_CPU@{F\_CPU}}
+\index{F\_CPU@{F\_CPU}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{F\_CPU}{F\_CPU}}
+{\footnotesize\ttfamily \label{timer_8c_a43bafb28b29491ec7f871319b5a3b2f8} 
+\#define F\+\_\+\+CPU~84000000}
+
+
+
+\label{doc-func-members}
+\Hypertarget{timer_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{timer_8c_abdd48bd90e414cc0d9879dab61c937e6}\index{timer.c@{timer.c}!pwm\_init@{pwm\_init}}
+\index{pwm\_init@{pwm\_init}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{pwm\_init()}{pwm\_init()}}
+{\footnotesize\ttfamily \label{timer_8c_abdd48bd90e414cc0d9879dab61c937e6} 
+void pwm\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel}{, }\item[{uint32\+\_\+t}]{freq}{}\end{DoxyParamCaption})}
+
+Function to be called on start of the program if PWMs are to be used.
+
+@params channel The PWM channel to initialize. Only channel 0 and 1 are supported. @params freq The PWM frequency. \Hypertarget{timer_8c_a664ae034c2f3e3f4400f67367b699020}\index{timer.c@{timer.c}!pwm\_set\_pulse\_width@{pwm\_set\_pulse\_width}}
+\index{pwm\_set\_pulse\_width@{pwm\_set\_pulse\_width}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{pwm\_set\_pulse\_width()}{pwm\_set\_pulse\_width()}}
+{\footnotesize\ttfamily \label{timer_8c_a664ae034c2f3e3f4400f67367b699020} 
+void pwm\+\_\+set\+\_\+pulse\+\_\+width (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel}{, }\item[{uint32\+\_\+t}]{pulse\+\_\+width}{}\end{DoxyParamCaption})}
+
+Sets the pulse width of a specific PWM channel.
+
+@params channel The PWM channel to modify. @params pulse\+\_\+width The pulse\+\_\+width value. For channel 0, valid values goes from 0 to 42\+\_\+000\+\_\+000 / PWM frequency. For channel 1, valid values goes from 0 to 2\+\_\+000\+\_\+000 / PWM frequency. \Hypertarget{timer_8c_a3dbc96563c4f0aa092c035a20b7a0569}\index{timer.c@{timer.c}!pwm\_start@{pwm\_start}}
+\index{pwm\_start@{pwm\_start}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{pwm\_start()}{pwm\_start()}}
+{\footnotesize\ttfamily \label{timer_8c_a3dbc96563c4f0aa092c035a20b7a0569} 
+void pwm\+\_\+start (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+Starts the PWM signal on a specific channel.
+
+@params channel The PWM channel to start. \Hypertarget{timer_8c_a0c0a0966caf141a4de56014189b680a4}\index{timer.c@{timer.c}!pwm\_stop@{pwm\_stop}}
+\index{pwm\_stop@{pwm\_stop}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{pwm\_stop()}{pwm\_stop()}}
+{\footnotesize\ttfamily \label{timer_8c_a0c0a0966caf141a4de56014189b680a4} 
+void pwm\+\_\+stop (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+Stops the PWM signal on a specific channel.
+
+@params channel The PWM channel to stop. \Hypertarget{timer_8c_a65c43888b4d527f7dd9ca7835b97a38e}\index{timer.c@{timer.c}!timer\_get@{timer\_get}}
+\index{timer\_get@{timer\_get}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{timer\_get()}{timer\_get()}}
+{\footnotesize\ttfamily \label{timer_8c_a65c43888b4d527f7dd9ca7835b97a38e} 
+uint32\+\_\+t timer\+\_\+get (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer}{}\end{DoxyParamCaption})}
+
+Get the current value of a timer
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & The timer to check the value of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the timer. 
+\end{DoxyReturn}
+\Hypertarget{timer_8c_a35a1b5bf0725f7c5b622fd45274ee63a}\index{timer.c@{timer.c}!timer\_get\_dir@{timer\_get\_dir}}
+\index{timer\_get\_dir@{timer\_get\_dir}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{timer\_get\_dir()}{timer\_get\_dir()}}
+{\footnotesize\ttfamily \label{timer_8c_a35a1b5bf0725f7c5b622fd45274ee63a} 
+uint8\+\_\+t timer\+\_\+get\+\_\+dir (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the direction of the quadrature encoder Timer 2.
+
+\begin{DoxyReturn}{Returns}
+The direction read by timer 2. 
+\end{DoxyReturn}
+\Hypertarget{timer_8c_a896a4c37c6ecf8868ef0dc758e5a598c}\index{timer.c@{timer.c}!timer\_init@{timer\_init}}
+\index{timer\_init@{timer\_init}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{timer\_init()}{timer\_init()}}
+{\footnotesize\ttfamily \label{timer_8c_a896a4c37c6ecf8868ef0dc758e5a598c} 
+void timer\+\_\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Function to be called on start of the program if timers are to be used. 
+
+\label{doc-var-members}
+\Hypertarget{timer_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{timer_8c_aeb1d50c899dcd595ebb681ef8ca27ff0}\index{timer.c@{timer.c}!timer\_initialized@{timer\_initialized}}
+\index{timer\_initialized@{timer\_initialized}!timer.c@{timer.c}}
+\doxysubsubsection{\texorpdfstring{timer\_initialized}{timer\_initialized}}
+{\footnotesize\ttfamily \label{timer_8c_aeb1d50c899dcd595ebb681ef8ca27ff0} 
+uint8\+\_\+t timer\+\_\+initialized = 0}
+

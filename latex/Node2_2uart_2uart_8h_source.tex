@@ -1,0 +1,40 @@
+\doxysection{uart.\+h}
+\hypertarget{Node2_2uart_2uart_8h_source}{}\label{Node2_2uart_2uart_8h_source}\index{Node2/uart/uart.h@{Node2/uart/uart.h}}
+\mbox{\hyperlink{Node2_2uart_2uart_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ UART\ is\ connected\ to\ the\ ATmega16U2\ on\ the\ Arduino,\ which\ acts\ as\ a\ USB\ serial\ device.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ module\ hooks\ into\ the\ stdio\ functions,\ by\ spoofing\ several\ system\ calls}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Unfortunately,\ for\ some\ unknown\ reason\ \`{}scanf`\ does\ not\ work\ as\ expected.\ Use}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \`{}uart\_flush`\ and\ \`{}sscanf`\ instead\ (see\ example\ below)}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Internally,\ receiving\ is\ handled\ with\ interrupts\ and\ a\ ring\ buffer,\ so\ no\ characters}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ are\ lost,\ until\ the\ buffer\ is\ full.\ If\ necessary,\ you\ can\ change\ this\ buffer\ size\ in}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ uart.c}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Initialize.\ Hooks\ stdio\ functions\ (like\ \`{}printf`)}}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Node2_2uart_2uart_8h_a28b0391fcb29316879c6d74de0aee664}{uart\_init}}(uint32\_t\ cpufreq,\ uint32\_t\ baudrate);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Send\ a\ single\ character}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Prefer\ using\ \`{}printf`\ instead}}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Node2_2uart_2uart_8h_a5bfa16babdd9cca35d928c962ecc5258}{uart\_tx}}(uint8\_t\ val);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Read\ a\ single\ character}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Prefer\ using\ \`{}uart\_flush`\ and\ \`{}sscanf`\ instead\ (see\ below)}}
+\DoxyCodeLine{00021\ uint8\_t\ \mbox{\hyperlink{Node2_2uart_2uart_8h_ab70dc10a5438535b700f0fdfd9480980}{uart\_rx}}(uint8\_t*\ val);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Flush\ the\ internal\ ring\ buffer\ into\ your\ own\ buffer}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Example\ (`scanf`\ workaround):}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ int\ result;}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ char\ buf[80]\ =\ \{0\};}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ uart\_flush(buf,\ sizeof(buf)/sizeof(buf[0]));}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ int\ numFilled\ =\ sscanf(buf,\ "{}\%d"{},\ \&result);}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ if(numFilled\ ==\ 1)\{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ printf("{}\%d\(\backslash\)n"{},\ result);}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ \}}}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Node2_2uart_2uart_8h_ac0b7b6b16d423c7dbc6fa983839216e9}{uart\_flush}}(\textcolor{keywordtype}{char}*\ buf,\ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{00034\ }
+
+\end{DoxyCode}

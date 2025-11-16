@@ -1,0 +1,68 @@
+\doxysection{Node2/motor/motor.h File Reference}
+\hypertarget{motor_8h}{}\label{motor_8h}\index{Node2/motor/motor.h@{Node2/motor/motor.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{motor_8h_aa2a5af0fb9c1fa2047a5ca0af110f806}{motor\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{motor_8h_a496e55be03461ae66c00869a3205f62c}{motor\+\_\+calibrate}} (void)
+\item 
+void \mbox{\hyperlink{motor_8h_ab5dec3dfb46b1bc1313cb01866d2dc81}{motor\+\_\+from\+\_\+input}} (uint8\+\_\+t input)
+\item 
+int16\+\_\+t \mbox{\hyperlink{motor_8h_ad4f412cb2023ef2ef980f7abec3c6a92}{input\+\_\+to\+\_\+pos}} (uint8\+\_\+t input)
+\item 
+float \mbox{\hyperlink{motor_8h_a55afb3c55036cfa3ade3acf1114ade60}{get\+\_\+pos\+\_\+from\+\_\+pid}} (int16\+\_\+t wanted\+\_\+pos)
+\item 
+void \mbox{\hyperlink{motor_8h_afbccac979b330f646d51a11befe97026}{set\+\_\+motor}} (float speed)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{motor_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{motor_8h_a55afb3c55036cfa3ade3acf1114ade60}\index{motor.h@{motor.h}!get\_pos\_from\_pid@{get\_pos\_from\_pid}}
+\index{get\_pos\_from\_pid@{get\_pos\_from\_pid}!motor.h@{motor.h}}
+\doxysubsubsection{\texorpdfstring{get\_pos\_from\_pid()}{get\_pos\_from\_pid()}}
+{\footnotesize\ttfamily \label{motor_8h_a55afb3c55036cfa3ade3acf1114ade60} 
+float get\+\_\+pos\+\_\+from\+\_\+pid (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{wanted\+\_\+pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{motor_8h_ad4f412cb2023ef2ef980f7abec3c6a92}\index{motor.h@{motor.h}!input\_to\_pos@{input\_to\_pos}}
+\index{input\_to\_pos@{input\_to\_pos}!motor.h@{motor.h}}
+\doxysubsubsection{\texorpdfstring{input\_to\_pos()}{input\_to\_pos()}}
+{\footnotesize\ttfamily \label{motor_8h_ad4f412cb2023ef2ef980f7abec3c6a92} 
+int16\+\_\+t input\+\_\+to\+\_\+pos (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{input}{}\end{DoxyParamCaption})}
+
+\Hypertarget{motor_8h_a496e55be03461ae66c00869a3205f62c}\index{motor.h@{motor.h}!motor\_calibrate@{motor\_calibrate}}
+\index{motor\_calibrate@{motor\_calibrate}!motor.h@{motor.h}}
+\doxysubsubsection{\texorpdfstring{motor\_calibrate()}{motor\_calibrate()}}
+{\footnotesize\ttfamily \label{motor_8h_a496e55be03461ae66c00869a3205f62c} 
+void motor\+\_\+calibrate (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Does a calibration routine with the motor. \Hypertarget{motor_8h_ab5dec3dfb46b1bc1313cb01866d2dc81}\index{motor.h@{motor.h}!motor\_from\_input@{motor\_from\_input}}
+\index{motor\_from\_input@{motor\_from\_input}!motor.h@{motor.h}}
+\doxysubsubsection{\texorpdfstring{motor\_from\_input()}{motor\_from\_input()}}
+{\footnotesize\ttfamily \label{motor_8h_ab5dec3dfb46b1bc1313cb01866d2dc81} 
+void motor\+\_\+from\+\_\+input (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{input}{}\end{DoxyParamCaption})}
+
+Converts user input to motor output.
+
+The motor output is controlled by an internal PID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & User input is between 70 and 250, if value outside this range is given, it will be brought back to nearest limit. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{motor_8h_aa2a5af0fb9c1fa2047a5ca0af110f806}\index{motor.h@{motor.h}!motor\_init@{motor\_init}}
+\index{motor\_init@{motor\_init}!motor.h@{motor.h}}
+\doxysubsubsection{\texorpdfstring{motor\_init()}{motor\_init()}}
+{\footnotesize\ttfamily \label{motor_8h_aa2a5af0fb9c1fa2047a5ca0af110f806} 
+void motor\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to be called on start of the program if motors are to be used. \Hypertarget{motor_8h_afbccac979b330f646d51a11befe97026}\index{motor.h@{motor.h}!set\_motor@{set\_motor}}
+\index{set\_motor@{set\_motor}!motor.h@{motor.h}}
+\doxysubsubsection{\texorpdfstring{set\_motor()}{set\_motor()}}
+{\footnotesize\ttfamily \label{motor_8h_afbccac979b330f646d51a11befe97026} 
+void set\+\_\+motor (\begin{DoxyParamCaption}\item[{float}]{speed}{}\end{DoxyParamCaption})}
+

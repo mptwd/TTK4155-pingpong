@@ -1,0 +1,84 @@
+\doxysection{Node2/adc/adc.c File Reference}
+\hypertarget{Node2_2adc_2adc_8c}{}\label{Node2_2adc_2adc_8c}\index{Node2/adc/adc.c@{Node2/adc/adc.c}}
+{\ttfamily \#include "{}adc.\+h"{}}\newline
+{\ttfamily \#include $<$sam.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Node2_2adc_2adc_8c_a2b815e6730e8723a6d1d06d9ef8f31c0}{adc\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{Node2_2adc_2adc_8c_aed2bbb36ae1689c1fd91f318448556d7}{adc\+\_\+enable\+\_\+channel}} (uint8\+\_\+t channel)
+\item 
+void \mbox{\hyperlink{Node2_2adc_2adc_8c_ac93c08943932980bd4d10066c44d602d}{adc\+\_\+disable\+\_\+channel}} (uint8\+\_\+t channel)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{Node2_2adc_2adc_8c_aae4bcfe4f7a97c36d689d5e28a3666b6}{adc\+\_\+read}} (uint8\+\_\+t channel)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{Node2_2adc_2adc_8c_a57c4a7285c48a694470efbd15394c56c}{adc\+\_\+initialized}} = 0
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{Node2_2adc_2adc_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{Node2_2adc_2adc_8c_ac93c08943932980bd4d10066c44d602d}\index{adc.c@{adc.c}!adc\_disable\_channel@{adc\_disable\_channel}}
+\index{adc\_disable\_channel@{adc\_disable\_channel}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{adc\_disable\_channel()}{adc\_disable\_channel()}}
+{\footnotesize\ttfamily \label{Node2_2adc_2adc_8c_ac93c08943932980bd4d10066c44d602d} 
+void adc\+\_\+disable\+\_\+channel (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+Disable a specific channel of the ADC
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to read from, must be between 0 and 15. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Node2_2adc_2adc_8c_aed2bbb36ae1689c1fd91f318448556d7}\index{adc.c@{adc.c}!adc\_enable\_channel@{adc\_enable\_channel}}
+\index{adc\_enable\_channel@{adc\_enable\_channel}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{adc\_enable\_channel()}{adc\_enable\_channel()}}
+{\footnotesize\ttfamily \label{Node2_2adc_2adc_8c_aed2bbb36ae1689c1fd91f318448556d7} 
+void adc\+\_\+enable\+\_\+channel (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+Enables a specific channel of the ADC
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to read from, must be between 0 and 15. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Node2_2adc_2adc_8c_a2b815e6730e8723a6d1d06d9ef8f31c0}\index{adc.c@{adc.c}!adc\_init@{adc\_init}}
+\index{adc\_init@{adc\_init}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{adc\_init()}{adc\_init()}}
+{\footnotesize\ttfamily \label{Node2_2adc_2adc_8c_a2b815e6730e8723a6d1d06d9ef8f31c0} 
+void adc\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to be called on start of the program if adc is to be used. \Hypertarget{Node2_2adc_2adc_8c_aae4bcfe4f7a97c36d689d5e28a3666b6}\index{adc.c@{adc.c}!adc\_read@{adc\_read}}
+\index{adc\_read@{adc\_read}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{adc\_read()}{adc\_read()}}
+{\footnotesize\ttfamily \label{Node2_2adc_2adc_8c_aae4bcfe4f7a97c36d689d5e28a3666b6} 
+uint16\+\_\+t adc\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+Read from a specific ADC channel (0–15)
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to read from, must be between 0 and 15. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value read from the ADC. 
+\end{DoxyReturn}
+
+
+\label{doc-var-members}
+\Hypertarget{Node2_2adc_2adc_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{Node2_2adc_2adc_8c_a57c4a7285c48a694470efbd15394c56c}\index{adc.c@{adc.c}!adc\_initialized@{adc\_initialized}}
+\index{adc\_initialized@{adc\_initialized}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{adc\_initialized}{adc\_initialized}}
+{\footnotesize\ttfamily \label{Node2_2adc_2adc_8c_a57c4a7285c48a694470efbd15394c56c} 
+uint8\+\_\+t adc\+\_\+initialized = 0}
+

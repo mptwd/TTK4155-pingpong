@@ -1,0 +1,71 @@
+\doxysection{pingpong/\+XMEM/xmem.c File Reference}
+\hypertarget{xmem_8c}{}\label{xmem_8c}\index{pingpong/XMEM/xmem.c@{pingpong/XMEM/xmem.c}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include "{}xmem.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{xmem_8c_a78cf30a084548c226ac61d0f5c3f1981}{BASE\+\_\+\+ADDRESS}}~0x1400
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{xmem_8c_aa98b163510e84b9e79394397efdb8dde}{xmem\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{xmem_8c_a0ae7b7c6f442105685ca9f24b205ea52}{xmem\+\_\+write}} (uint8\+\_\+t data, uint16\+\_\+t addr)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{xmem_8c_a1b8b716b76ee1aa48db3847653ed0159}{xmem\+\_\+read}} (uint16\+\_\+t addr)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{xmem_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{xmem_8c_a78cf30a084548c226ac61d0f5c3f1981}\index{xmem.c@{xmem.c}!BASE\_ADDRESS@{BASE\_ADDRESS}}
+\index{BASE\_ADDRESS@{BASE\_ADDRESS}!xmem.c@{xmem.c}}
+\doxysubsubsection{\texorpdfstring{BASE\_ADDRESS}{BASE\_ADDRESS}}
+{\footnotesize\ttfamily \label{xmem_8c_a78cf30a084548c226ac61d0f5c3f1981} 
+\#define BASE\+\_\+\+ADDRESS~0x1400}
+
+
+
+\label{doc-func-members}
+\Hypertarget{xmem_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{xmem_8c_aa98b163510e84b9e79394397efdb8dde}\index{xmem.c@{xmem.c}!xmem\_init@{xmem\_init}}
+\index{xmem\_init@{xmem\_init}!xmem.c@{xmem.c}}
+\doxysubsubsection{\texorpdfstring{xmem\_init()}{xmem\_init()}}
+{\footnotesize\ttfamily \label{xmem_8c_aa98b163510e84b9e79394397efdb8dde} 
+void xmem\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to call at start of program if external memory is to be used. \Hypertarget{xmem_8c_a1b8b716b76ee1aa48db3847653ed0159}\index{xmem.c@{xmem.c}!xmem\_read@{xmem\_read}}
+\index{xmem\_read@{xmem\_read}!xmem.c@{xmem.c}}
+\doxysubsubsection{\texorpdfstring{xmem\_read()}{xmem\_read()}}
+{\footnotesize\ttfamily \label{xmem_8c_a1b8b716b76ee1aa48db3847653ed0159} 
+uint8\+\_\+t xmem\+\_\+read (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{}\end{DoxyParamCaption})}
+
+Read something from the external memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address of which to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value at addr. 
+\end{DoxyReturn}
+\Hypertarget{xmem_8c_a0ae7b7c6f442105685ca9f24b205ea52}\index{xmem.c@{xmem.c}!xmem\_write@{xmem\_write}}
+\index{xmem\_write@{xmem\_write}!xmem.c@{xmem.c}}
+\doxysubsubsection{\texorpdfstring{xmem\_write()}{xmem\_write()}}
+{\footnotesize\ttfamily \label{xmem_8c_a0ae7b7c6f442105685ca9f24b205ea52} 
+void xmem\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data}{, }\item[{uint16\+\_\+t}]{addr}{}\end{DoxyParamCaption})}
+
+Write something to the external memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to write. \\
+\hline
+{\em addr} & The address where to write the data. \\
+\hline
+\end{DoxyParams}

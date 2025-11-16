@@ -1,0 +1,53 @@
+\doxysection{pingpong/\+XMEM/xmem.h File Reference}
+\hypertarget{xmem_8h}{}\label{xmem_8h}\index{pingpong/XMEM/xmem.h@{pingpong/XMEM/xmem.h}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{xmem_8h_aa98b163510e84b9e79394397efdb8dde}{xmem\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{xmem_8h_a0ae7b7c6f442105685ca9f24b205ea52}{xmem\+\_\+write}} (uint8\+\_\+t data, uint16\+\_\+t addr)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{xmem_8h_a1b8b716b76ee1aa48db3847653ed0159}{xmem\+\_\+read}} (uint16\+\_\+t addr)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{xmem_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{xmem_8h_aa98b163510e84b9e79394397efdb8dde}\index{xmem.h@{xmem.h}!xmem\_init@{xmem\_init}}
+\index{xmem\_init@{xmem\_init}!xmem.h@{xmem.h}}
+\doxysubsubsection{\texorpdfstring{xmem\_init()}{xmem\_init()}}
+{\footnotesize\ttfamily \label{xmem_8h_aa98b163510e84b9e79394397efdb8dde} 
+void xmem\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to call at start of program if external memory is to be used. \Hypertarget{xmem_8h_a1b8b716b76ee1aa48db3847653ed0159}\index{xmem.h@{xmem.h}!xmem\_read@{xmem\_read}}
+\index{xmem\_read@{xmem\_read}!xmem.h@{xmem.h}}
+\doxysubsubsection{\texorpdfstring{xmem\_read()}{xmem\_read()}}
+{\footnotesize\ttfamily \label{xmem_8h_a1b8b716b76ee1aa48db3847653ed0159} 
+uint8\+\_\+t xmem\+\_\+read (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{}\end{DoxyParamCaption})}
+
+Read something from the external memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address of which to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value at addr. 
+\end{DoxyReturn}
+\Hypertarget{xmem_8h_a0ae7b7c6f442105685ca9f24b205ea52}\index{xmem.h@{xmem.h}!xmem\_write@{xmem\_write}}
+\index{xmem\_write@{xmem\_write}!xmem.h@{xmem.h}}
+\doxysubsubsection{\texorpdfstring{xmem\_write()}{xmem\_write()}}
+{\footnotesize\ttfamily \label{xmem_8h_a0ae7b7c6f442105685ca9f24b205ea52} 
+void xmem\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data}{, }\item[{uint16\+\_\+t}]{addr}{}\end{DoxyParamCaption})}
+
+Write something to the external memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to write. \\
+\hline
+{\em addr} & The address where to write the data. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,42 @@
+\doxysection{Node2/uart/uart.h File Reference}
+\hypertarget{Node2_2uart_2uart_8h}{}\label{Node2_2uart_2uart_8h}\index{Node2/uart/uart.h@{Node2/uart/uart.h}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Node2_2uart_2uart_8h_a28b0391fcb29316879c6d74de0aee664}{uart\+\_\+init}} (uint32\+\_\+t cpufreq, uint32\+\_\+t baudrate)
+\item 
+void \mbox{\hyperlink{Node2_2uart_2uart_8h_a5bfa16babdd9cca35d928c962ecc5258}{uart\+\_\+tx}} (uint8\+\_\+t val)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{Node2_2uart_2uart_8h_ab70dc10a5438535b700f0fdfd9480980}{uart\+\_\+rx}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}val)
+\item 
+int \mbox{\hyperlink{Node2_2uart_2uart_8h_ac0b7b6b16d423c7dbc6fa983839216e9}{uart\+\_\+flush}} (char \texorpdfstring{$\ast$}{*}buf, int len)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{Node2_2uart_2uart_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{Node2_2uart_2uart_8h_ac0b7b6b16d423c7dbc6fa983839216e9}\index{uart.h@{uart.h}!uart\_flush@{uart\_flush}}
+\index{uart\_flush@{uart\_flush}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_flush()}{uart\_flush()}}
+{\footnotesize\ttfamily \label{Node2_2uart_2uart_8h_ac0b7b6b16d423c7dbc6fa983839216e9} 
+int uart\+\_\+flush (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{int}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2uart_2uart_8h_a28b0391fcb29316879c6d74de0aee664}\index{uart.h@{uart.h}!uart\_init@{uart\_init}}
+\index{uart\_init@{uart\_init}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_init()}{uart\_init()}}
+{\footnotesize\ttfamily \label{Node2_2uart_2uart_8h_a28b0391fcb29316879c6d74de0aee664} 
+void uart\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{cpufreq}{, }\item[{uint32\+\_\+t}]{baudrate}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2uart_2uart_8h_ab70dc10a5438535b700f0fdfd9480980}\index{uart.h@{uart.h}!uart\_rx@{uart\_rx}}
+\index{uart\_rx@{uart\_rx}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_rx()}{uart\_rx()}}
+{\footnotesize\ttfamily \label{Node2_2uart_2uart_8h_ab70dc10a5438535b700f0fdfd9480980} 
+uint8\+\_\+t uart\+\_\+rx (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{val}{}\end{DoxyParamCaption})}
+
+\Hypertarget{Node2_2uart_2uart_8h_a5bfa16babdd9cca35d928c962ecc5258}\index{uart.h@{uart.h}!uart\_tx@{uart\_tx}}
+\index{uart\_tx@{uart\_tx}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_tx()}{uart\_tx()}}
+{\footnotesize\ttfamily \label{Node2_2uart_2uart_8h_a5bfa16babdd9cca35d928c962ecc5258} 
+void uart\+\_\+tx (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{val}{}\end{DoxyParamCaption})}
+

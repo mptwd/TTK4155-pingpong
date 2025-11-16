@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['score_5fhandle_0',['score_handle',['../score_8c.html#ad737574fd6486fbad183d3d24a387c51',1,'score_handle():&#160;score.c'],['../score_8h.html#ad737574fd6486fbad183d3d24a387c51',1,'score_handle():&#160;score.c']]],
+  ['score_5finit_1',['score_init',['../score_8c.html#aa5274ddeae381d4104fe1782e1c0788f',1,'score_init(void):&#160;score.c'],['../score_8h.html#aa5274ddeae381d4104fe1782e1c0788f',1,'score_init(void):&#160;score.c']]],
+  ['score_5freset_2',['score_reset',['../score_8c.html#adc02e2b93ec761571c498b7a535fbed5',1,'score_reset():&#160;score.c'],['../score_8h.html#adc02e2b93ec761571c498b7a535fbed5',1,'score_reset():&#160;score.c']]],
+  ['seconds_3',['seconds',['../time_8c.html#aee3c36104b02a19cfed301b6011e589b',1,'seconds(uint64_t s):&#160;time.c'],['../time_8h.html#aee3c36104b02a19cfed301b6011e589b',1,'seconds(uint64_t s):&#160;time.c']]],
+  ['send_5fjoystick_5fdata_4',['send_joystick_data',['../pingpong_2joystick_2joystick_8c.html#a5bc0ebbab02048f54b59e0e2762cdd73',1,'send_joystick_data(io_inputs_t in):&#160;joystick.c'],['../pingpong_2joystick_2joystick_8h.html#a5bc0ebbab02048f54b59e0e2762cdd73',1,'send_joystick_data(io_inputs_t in):&#160;joystick.c']]],
+  ['servo_5ffrom_5finput_5',['servo_from_input',['../servo_8c.html#aa395f8fef45c33f612b9c6444ad75934',1,'servo_from_input(uint8_t input):&#160;servo.c'],['../servo_8h.html#aa395f8fef45c33f612b9c6444ad75934',1,'servo_from_input(uint8_t input):&#160;servo.c']]],
+  ['servo_5finit_6',['servo_init',['../servo_8c.html#a9a6cca57e7cd20ae2ee6d92e289583ae',1,'servo_init():&#160;servo.c'],['../servo_8h.html#a32befddd5759ec16ab7964d78e2252c5',1,'servo_init(void):&#160;servo.c']]],
+  ['set_5fmotor_7',['set_motor',['../motor_8c.html#afbccac979b330f646d51a11befe97026',1,'set_motor(float speed):&#160;motor.c'],['../motor_8h.html#afbccac979b330f646d51a11befe97026',1,'set_motor(float speed):&#160;motor.c']]],
+  ['solenoid_5finit_8',['solenoid_init',['../solenoid_8c.html#af98c17d834da1909a44ed8d5c422a51e',1,'solenoid_init(void):&#160;solenoid.c'],['../solenoid_8h.html#af98c17d834da1909a44ed8d5c422a51e',1,'solenoid_init(void):&#160;solenoid.c']]],
+  ['solenoid_5fpull_9',['solenoid_pull',['../solenoid_8c.html#a76de6f9a3cd0e776070e7ed57676ad39',1,'solenoid_pull(void):&#160;solenoid.c'],['../solenoid_8h.html#a76de6f9a3cd0e776070e7ed57676ad39',1,'solenoid_pull(void):&#160;solenoid.c']]],
+  ['solenoid_5fpush_10',['solenoid_push',['../solenoid_8c.html#a23d32cca52b62a9e739ef250251adc2e',1,'solenoid_push(void):&#160;solenoid.c'],['../solenoid_8h.html#a23d32cca52b62a9e739ef250251adc2e',1,'solenoid_push(void):&#160;solenoid.c']]],
+  ['spi_5finit_11',['spi_init',['../spi_8c.html#ae909944aa85ae98323073c628be541aa',1,'spi_init(void):&#160;spi.c'],['../SPI_8h.html#ae909944aa85ae98323073c628be541aa',1,'spi_init(void):&#160;spi.c']]],
+  ['spi_5fread_5fbyte_12',['spi_read_byte',['../spi_8c.html#ac9e3606e9e7cbeaec69037e3bf48500c',1,'spi_read_byte(void):&#160;spi.c'],['../SPI_8h.html#ac9e3606e9e7cbeaec69037e3bf48500c',1,'spi_read_byte(void):&#160;spi.c']]],
+  ['spi_5fread_5fwrite_5fbytes_13',['spi_read_write_bytes',['../spi_8c.html#a175344eba780ecfe31d540e972ffad1a',1,'spi_read_write_bytes(uint8_t *byte, size_t size):&#160;spi.c'],['../SPI_8h.html#a175344eba780ecfe31d540e972ffad1a',1,'spi_read_write_bytes(uint8_t *byte, size_t size):&#160;spi.c']]],
+  ['spi_5fselect_5fslave_14',['spi_select_slave',['../spi_8c.html#ab727b35cde460159bfa3f05dbad8d7fc',1,'spi_select_slave(slave s):&#160;spi.c'],['../SPI_8h.html#ab727b35cde460159bfa3f05dbad8d7fc',1,'spi_select_slave(slave s):&#160;spi.c']]],
+  ['spi_5fwrite_5fbyte_15',['spi_write_byte',['../spi_8c.html#a6c051eb2e4d533296906a31b927d00b0',1,'spi_write_byte(uint8_t byte):&#160;spi.c'],['../SPI_8h.html#a6c051eb2e4d533296906a31b927d00b0',1,'spi_write_byte(uint8_t byte):&#160;spi.c']]],
+  ['sram_5ftest_16',['SRAM_test',['../tests_8c.html#a2e2934cf8f43363e11e4fd6c60db1666',1,'SRAM_test(void):&#160;tests.c'],['../tests_8h.html#a2e2934cf8f43363e11e4fd6c60db1666',1,'SRAM_test(void):&#160;tests.c']]],
+  ['start_5ftimer_5ftransfer_17',['start_timer_transfer',['../oled_8c.html#a5459a501c46b22c95797fb6573a7d3f0',1,'oled.c']]],
+  ['system_5finit_5fflash_18',['system_init_flash',['../system__sam3xa_8c.html#a38ee6d8de47653fc055f10322c050831',1,'system_sam3xa.c']]],
+  ['systemcoreclockupdate_19',['SystemCoreClockUpdate',['../system__sam3xa_8c.html#ae0c36a9591fe6e9c45ecb21a794f0f0f',1,'system_sam3xa.c']]],
+  ['systeminit_20',['SystemInit',['../system__sam3xa_8c.html#a93f514700ccf00d08dbdcff7f1224eb2',1,'system_sam3xa.c']]],
+  ['systick_5fhandler_21',['SysTick_Handler',['../time_8c.html#ab5e09814056d617c521549e542639b7e',1,'time.c']]]
+];

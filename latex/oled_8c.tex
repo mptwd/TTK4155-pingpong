@@ -1,0 +1,327 @@
+\doxysection{pingpong/\+OLED/oled.c File Reference}
+\hypertarget{oled_8c}{}\label{oled_8c}\index{pingpong/OLED/oled.c@{pingpong/OLED/oled.c}}
+{\ttfamily \#include "{}oled.\+h"{}}\newline
+{\ttfamily \#include "{}../spi/spi.\+h"{}}\newline
+{\ttfamily \#include "{}../\+XMEM/xmem.\+h"{}}\newline
+{\ttfamily \#include "{}fonts.\+h"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{oled_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~128 \texorpdfstring{$\ast$}{*} 8
+\item 
+\#define \mbox{\hyperlink{oled_8c_a3a8e4caf1e2437a803e0af51d8653f7b}{BUF0\+\_\+\+BASE}}~0
+\item 
+\#define \mbox{\hyperlink{oled_8c_a006bdadbf6971a673461be86a01da72e}{BUF1\+\_\+\+BASE}}~(\mbox{\hyperlink{oled_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}})
+\item 
+\#define \mbox{\hyperlink{oled_8c_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+CPU}}~4915200\+UL
+\item 
+\#define \mbox{\hyperlink{oled_8c_ae2f99e05f64d0383aee9bd75a52c4fbb}{FRAME\+\_\+\+RATE}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{oled_8c_ad95f850c4c6d949229270c8da88c02cb}{oled\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{oled_8c_a5459a501c46b22c95797fb6573a7d3f0}{start\+\_\+timer\+\_\+transfer}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{oled_8c_a360aaf5e1e4217e9158b30a499ab575e}{buf\+\_\+base\+\_\+of}} (uint8\+\_\+t bufnum)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{oled_8c_afc95e57214ba4b975e5324fc46b0c907}{update\+\_\+screen}} (void)
+\begin{DoxyCompactList}\small\item\em Function to update the screen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{oled_8c_a86953738188622410b88938da2bf8a63}{ISR}} (TIMER3\+\_\+\+COMPA\+\_\+vect)
+\item 
+void \mbox{\hyperlink{oled_8c_a253c7414d88cd1e038f0ce4ca0c3643a}{doublebuf\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em 0 or 1\+: where drawing functions write (back buffer) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{oled_8c_a4c1fc8996788885e61f85a8ec6fb6281}{clear\+\_\+backbuffer}} (void)
+\item 
+void \mbox{\hyperlink{oled_8c_a74835a48fa137799b8beb01ca9456c87}{clear\+\_\+all\+\_\+buffers}} (void)
+\item 
+void \mbox{\hyperlink{oled_8c_a3518422707fda4ed1eca6fdec5f53e49}{request\+\_\+buffer\+\_\+swap}} (void)
+\item 
+void \mbox{\hyperlink{oled_8c_a977c29b0b22a343a2080f7627f039550}{oled\+\_\+draw\+\_\+pixel\+\_\+buffer}} (uint8\+\_\+t x, uint8\+\_\+t y, uint8\+\_\+t on)
+\item 
+void \mbox{\hyperlink{oled_8c_ab5aaebffd2529c0fb9a79260d979c171}{draw\+\_\+char\+\_\+normal\+\_\+to\+\_\+buffer}} (uint8\+\_\+t page, uint8\+\_\+t col, char c)
+\item 
+void \mbox{\hyperlink{oled_8c_a655d58a5b9da620b4afbb74d5dbee87e}{draw\+\_\+string\+\_\+normal\+\_\+to\+\_\+buffer}} (uint8\+\_\+t page, uint8\+\_\+t col, char \texorpdfstring{$\ast$}{*}s)
+\item 
+void \mbox{\hyperlink{oled_8c_a8c689a8af2c2a13fd86c00810e77078c}{draw\+\_\+char\+\_\+big\+\_\+to\+\_\+buffer}} (uint8\+\_\+t page, uint8\+\_\+t col, char c)
+\item 
+void \mbox{\hyperlink{oled_8c_a74146c54c743af2648c94236126ab9fa}{draw\+\_\+string\+\_\+big\+\_\+to\+\_\+buffer}} (uint8\+\_\+t page, uint8\+\_\+t col, char \texorpdfstring{$\ast$}{*}s)
+\item 
+void \mbox{\hyperlink{oled_8c_a42b04908cff485ab4f65cca6e6c63fca}{oled\+\_\+goto}} (uint8\+\_\+t page, uint8\+\_\+t column)
+\item 
+void \mbox{\hyperlink{oled_8c_a4f1f1eeb426b9112011bd46d439ff649}{oled\+\_\+set\+\_\+val}} (uint8\+\_\+t val)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{oled_8c_a6aaf7f7e4ba9291e5d32f6ce8ed30606}{active\+\_\+buf}} = 1
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{oled_8c_a681d958ee65629391e19e2a645ca68fb}{front\+\_\+buf}} = 0
+\item 
+volatile bool \mbox{\hyperlink{oled_8c_a5ded628ed9a9f26f1198f256b5bdee17}{swap\+\_\+requested}} = false
+\item 
+uint8\+\_\+t \mbox{\hyperlink{oled_8c_a00f3da83c344c5c4507abfd656c44668}{screen\+\_\+update\+\_\+needed}} = 0
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{oled_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{oled_8c_a3a8e4caf1e2437a803e0af51d8653f7b}\index{oled.c@{oled.c}!BUF0\_BASE@{BUF0\_BASE}}
+\index{BUF0\_BASE@{BUF0\_BASE}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{BUF0\_BASE}{BUF0\_BASE}}
+{\footnotesize\ttfamily \label{oled_8c_a3a8e4caf1e2437a803e0af51d8653f7b} 
+\#define BUF0\+\_\+\+BASE~0}
+
+\Hypertarget{oled_8c_a006bdadbf6971a673461be86a01da72e}\index{oled.c@{oled.c}!BUF1\_BASE@{BUF1\_BASE}}
+\index{BUF1\_BASE@{BUF1\_BASE}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{BUF1\_BASE}{BUF1\_BASE}}
+{\footnotesize\ttfamily \label{oled_8c_a006bdadbf6971a673461be86a01da72e} 
+\#define BUF1\+\_\+\+BASE~(\mbox{\hyperlink{oled_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}})}
+
+\Hypertarget{oled_8c_a6b20d41d6252e9871430c242cb1a56e7}\index{oled.c@{oled.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{oled_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~128 \texorpdfstring{$\ast$}{*} 8}
+
+\Hypertarget{oled_8c_a43bafb28b29491ec7f871319b5a3b2f8}\index{oled.c@{oled.c}!F\_CPU@{F\_CPU}}
+\index{F\_CPU@{F\_CPU}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{F\_CPU}{F\_CPU}}
+{\footnotesize\ttfamily \label{oled_8c_a43bafb28b29491ec7f871319b5a3b2f8} 
+\#define F\+\_\+\+CPU~4915200\+UL}
+
+\Hypertarget{oled_8c_ae2f99e05f64d0383aee9bd75a52c4fbb}\index{oled.c@{oled.c}!FRAME\_RATE@{FRAME\_RATE}}
+\index{FRAME\_RATE@{FRAME\_RATE}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{FRAME\_RATE}{FRAME\_RATE}}
+{\footnotesize\ttfamily \label{oled_8c_ae2f99e05f64d0383aee9bd75a52c4fbb} 
+\#define FRAME\+\_\+\+RATE~1}
+
+
+
+\label{doc-func-members}
+\Hypertarget{oled_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{oled_8c_a360aaf5e1e4217e9158b30a499ab575e}\index{oled.c@{oled.c}!buf\_base\_of@{buf\_base\_of}}
+\index{buf\_base\_of@{buf\_base\_of}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{buf\_base\_of()}{buf\_base\_of()}}
+{\footnotesize\ttfamily \label{oled_8c_a360aaf5e1e4217e9158b30a499ab575e} 
+uint16\+\_\+t buf\+\_\+base\+\_\+of (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bufnum}{}\end{DoxyParamCaption})}
+
+Return the base address of a specific buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bufnum} & The buffer selector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The address of the selected buffer. 
+\end{DoxyReturn}
+\Hypertarget{oled_8c_a74835a48fa137799b8beb01ca9456c87}\index{oled.c@{oled.c}!clear\_all\_buffers@{clear\_all\_buffers}}
+\index{clear\_all\_buffers@{clear\_all\_buffers}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{clear\_all\_buffers()}{clear\_all\_buffers()}}
+{\footnotesize\ttfamily \label{oled_8c_a74835a48fa137799b8beb01ca9456c87} 
+void clear\+\_\+all\+\_\+buffers (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Clear both buffers. \Hypertarget{oled_8c_a4c1fc8996788885e61f85a8ec6fb6281}\index{oled.c@{oled.c}!clear\_backbuffer@{clear\_backbuffer}}
+\index{clear\_backbuffer@{clear\_backbuffer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{clear\_backbuffer()}{clear\_backbuffer()}}
+{\footnotesize\ttfamily \label{oled_8c_a4c1fc8996788885e61f85a8ec6fb6281} 
+void clear\+\_\+backbuffer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Clear the drawable buffer. \Hypertarget{oled_8c_a253c7414d88cd1e038f0ce4ca0c3643a}\index{oled.c@{oled.c}!doublebuf\_init@{doublebuf\_init}}
+\index{doublebuf\_init@{doublebuf\_init}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{doublebuf\_init()}{doublebuf\_init()}}
+{\footnotesize\ttfamily \label{oled_8c_a253c7414d88cd1e038f0ce4ca0c3643a} 
+void doublebuf\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+0 or 1\+: where drawing functions write (back buffer) 
+
+Should be called if screen is to be used. Function to be called on start of the program if double buffer is to be used. \Hypertarget{oled_8c_a8c689a8af2c2a13fd86c00810e77078c}\index{oled.c@{oled.c}!draw\_char\_big\_to\_buffer@{draw\_char\_big\_to\_buffer}}
+\index{draw\_char\_big\_to\_buffer@{draw\_char\_big\_to\_buffer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{draw\_char\_big\_to\_buffer()}{draw\_char\_big\_to\_buffer()}}
+{\footnotesize\ttfamily \label{oled_8c_a8c689a8af2c2a13fd86c00810e77078c} 
+void draw\+\_\+char\+\_\+big\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{page}{, }\item[{uint8\+\_\+t}]{col}{, }\item[{char}]{c}{}\end{DoxyParamCaption})}
+
+Draw a character of big size on the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & The page to put the character on. \\
+\hline
+{\em column} & The column to put the character on. \\
+\hline
+{\em c} & The character to write. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_ab5aaebffd2529c0fb9a79260d979c171}\index{oled.c@{oled.c}!draw\_char\_normal\_to\_buffer@{draw\_char\_normal\_to\_buffer}}
+\index{draw\_char\_normal\_to\_buffer@{draw\_char\_normal\_to\_buffer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{draw\_char\_normal\_to\_buffer()}{draw\_char\_normal\_to\_buffer()}}
+{\footnotesize\ttfamily \label{oled_8c_ab5aaebffd2529c0fb9a79260d979c171} 
+void draw\+\_\+char\+\_\+normal\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{page}{, }\item[{uint8\+\_\+t}]{col}{, }\item[{char}]{c}{}\end{DoxyParamCaption})}
+
+Draw a character of normal size on the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & The page to put the character on. \\
+\hline
+{\em column} & The column to put the character on. \\
+\hline
+{\em c} & The character to write. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_a74146c54c743af2648c94236126ab9fa}\index{oled.c@{oled.c}!draw\_string\_big\_to\_buffer@{draw\_string\_big\_to\_buffer}}
+\index{draw\_string\_big\_to\_buffer@{draw\_string\_big\_to\_buffer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{draw\_string\_big\_to\_buffer()}{draw\_string\_big\_to\_buffer()}}
+{\footnotesize\ttfamily \label{oled_8c_a74146c54c743af2648c94236126ab9fa} 
+void draw\+\_\+string\+\_\+big\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{page}{, }\item[{uint8\+\_\+t}]{col}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})}
+
+Draw a string of big size characters on the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & The page to put the string on. \\
+\hline
+{\em column} & The column where to start the string. \\
+\hline
+{\em s} & The string to write. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_a655d58a5b9da620b4afbb74d5dbee87e}\index{oled.c@{oled.c}!draw\_string\_normal\_to\_buffer@{draw\_string\_normal\_to\_buffer}}
+\index{draw\_string\_normal\_to\_buffer@{draw\_string\_normal\_to\_buffer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{draw\_string\_normal\_to\_buffer()}{draw\_string\_normal\_to\_buffer()}}
+{\footnotesize\ttfamily \label{oled_8c_a655d58a5b9da620b4afbb74d5dbee87e} 
+void draw\+\_\+string\+\_\+normal\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{page}{, }\item[{uint8\+\_\+t}]{col}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})}
+
+Draw a string of normal size characters on the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & The page to put the string on. \\
+\hline
+{\em column} & The column where to start the string. \\
+\hline
+{\em s} & The string to write. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_a86953738188622410b88938da2bf8a63}\index{oled.c@{oled.c}!ISR@{ISR}}
+\index{ISR@{ISR}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{ISR()}{ISR()}}
+{\footnotesize\ttfamily \label{oled_8c_a86953738188622410b88938da2bf8a63} 
+ISR (\begin{DoxyParamCaption}\item[{TIMER3\+\_\+\+COMPA\+\_\+vect}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{oled_8c_a977c29b0b22a343a2080f7627f039550}\index{oled.c@{oled.c}!oled\_draw\_pixel\_buffer@{oled\_draw\_pixel\_buffer}}
+\index{oled\_draw\_pixel\_buffer@{oled\_draw\_pixel\_buffer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{oled\_draw\_pixel\_buffer()}{oled\_draw\_pixel\_buffer()}}
+{\footnotesize\ttfamily \label{oled_8c_a977c29b0b22a343a2080f7627f039550} 
+void oled\+\_\+draw\+\_\+pixel\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y}{, }\item[{uint8\+\_\+t}]{on}{}\end{DoxyParamCaption})}
+
+Draw a pixel on given coordinates. This function abstracts the page/byte access of the oled screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/axis coordinate. \\
+\hline
+{\em y} & The y-\/axis coordinate. \\
+\hline
+{\em on} & The value of the pixel (either on (1) or off (0)). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_a42b04908cff485ab4f65cca6e6c63fca}\index{oled.c@{oled.c}!oled\_goto@{oled\_goto}}
+\index{oled\_goto@{oled\_goto}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{oled\_goto()}{oled\_goto()}}
+{\footnotesize\ttfamily \label{oled_8c_a42b04908cff485ab4f65cca6e6c63fca} 
+void oled\+\_\+goto (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{page}{, }\item[{uint8\+\_\+t}]{column}{}\end{DoxyParamCaption})}
+
+Puts the screen cursor to a specific page and column.
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & The page to go to. \\
+\hline
+{\em column} & The column to go to. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_ad95f850c4c6d949229270c8da88c02cb}\index{oled.c@{oled.c}!oled\_init@{oled\_init}}
+\index{oled\_init@{oled\_init}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{oled\_init()}{oled\_init()}}
+{\footnotesize\ttfamily \label{oled_8c_ad95f850c4c6d949229270c8da88c02cb} 
+void oled\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to be called on start of the program if oled is to be used. This function is called by doublebuf\+\_\+init, and should probably not be called on its own. \Hypertarget{oled_8c_a4f1f1eeb426b9112011bd46d439ff649}\index{oled.c@{oled.c}!oled\_set\_val@{oled\_set\_val}}
+\index{oled\_set\_val@{oled\_set\_val}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{oled\_set\_val()}{oled\_set\_val()}}
+{\footnotesize\ttfamily \label{oled_8c_a4f1f1eeb426b9112011bd46d439ff649} 
+void oled\+\_\+set\+\_\+val (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{val}{}\end{DoxyParamCaption})}
+
+Sets the byte at current cursor position on the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The value to write. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{oled_8c_a3518422707fda4ed1eca6fdec5f53e49}\index{oled.c@{oled.c}!request\_buffer\_swap@{request\_buffer\_swap}}
+\index{request\_buffer\_swap@{request\_buffer\_swap}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{request\_buffer\_swap()}{request\_buffer\_swap()}}
+{\footnotesize\ttfamily \label{oled_8c_a3518422707fda4ed1eca6fdec5f53e49} 
+void request\+\_\+buffer\+\_\+swap (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Request for two buffers to be swapped. This function is necessary to move the drawings done to the front buffer, and eventually get drawn on the screen. \Hypertarget{oled_8c_a5459a501c46b22c95797fb6573a7d3f0}\index{oled.c@{oled.c}!start\_timer\_transfer@{start\_timer\_transfer}}
+\index{start\_timer\_transfer@{start\_timer\_transfer}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{start\_timer\_transfer()}{start\_timer\_transfer()}}
+{\footnotesize\ttfamily \label{oled_8c_a5459a501c46b22c95797fb6573a7d3f0} 
+void start\+\_\+timer\+\_\+transfer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Start a timer to limit the updates to the screen. \Hypertarget{oled_8c_afc95e57214ba4b975e5324fc46b0c907}\index{oled.c@{oled.c}!update\_screen@{update\_screen}}
+\index{update\_screen@{update\_screen}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{update\_screen()}{update\_screen()}}
+{\footnotesize\ttfamily \label{oled_8c_afc95e57214ba4b975e5324fc46b0c907} 
+uint8\+\_\+t update\+\_\+screen (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Function to update the screen. 
+
+This function is non-\/blocking. The screen updating is limited by a timer, this function updates the screen only if the timer allows it.
+
+\begin{DoxyReturn}{Returns}
+1 if screen was updated, 0 if it was not. 
+\end{DoxyReturn}
+
+
+\label{doc-var-members}
+\Hypertarget{oled_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{oled_8c_a6aaf7f7e4ba9291e5d32f6ce8ed30606}\index{oled.c@{oled.c}!active\_buf@{active\_buf}}
+\index{active\_buf@{active\_buf}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{active\_buf}{active\_buf}}
+{\footnotesize\ttfamily \label{oled_8c_a6aaf7f7e4ba9291e5d32f6ce8ed30606} 
+volatile uint8\+\_\+t active\+\_\+buf = 1}
+
+\Hypertarget{oled_8c_a681d958ee65629391e19e2a645ca68fb}\index{oled.c@{oled.c}!front\_buf@{front\_buf}}
+\index{front\_buf@{front\_buf}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{front\_buf}{front\_buf}}
+{\footnotesize\ttfamily \label{oled_8c_a681d958ee65629391e19e2a645ca68fb} 
+volatile uint8\+\_\+t front\+\_\+buf = 0}
+
+\Hypertarget{oled_8c_a00f3da83c344c5c4507abfd656c44668}\index{oled.c@{oled.c}!screen\_update\_needed@{screen\_update\_needed}}
+\index{screen\_update\_needed@{screen\_update\_needed}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{screen\_update\_needed}{screen\_update\_needed}}
+{\footnotesize\ttfamily \label{oled_8c_a00f3da83c344c5c4507abfd656c44668} 
+uint8\+\_\+t screen\+\_\+update\+\_\+needed = 0}
+
+\Hypertarget{oled_8c_a5ded628ed9a9f26f1198f256b5bdee17}\index{oled.c@{oled.c}!swap\_requested@{swap\_requested}}
+\index{swap\_requested@{swap\_requested}!oled.c@{oled.c}}
+\doxysubsubsection{\texorpdfstring{swap\_requested}{swap\_requested}}
+{\footnotesize\ttfamily \label{oled_8c_a5ded628ed9a9f26f1198f256b5bdee17} 
+volatile bool swap\+\_\+requested = false}
+

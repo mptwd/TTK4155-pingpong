@@ -1,0 +1,52 @@
+\doxysection{oled.\+h}
+\hypertarget{oled_8h_source}{}\label{oled_8h_source}\index{pingpong/OLED/oled.h@{pingpong/OLED/oled.h}}
+\mbox{\hyperlink{oled_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ oled.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Created:\ 25.09.2025\ 15:38:36}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Author:\ marcjpo}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ OLED\_H\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ OLED\_H\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ WIDTH\ 128}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{oled_8c_a6aaf7f7e4ba9291e5d32f6ce8ed30606}{active\_buf}};\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a253c7414d88cd1e038f0ce4ca0c3643a}{doublebuf\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_ad95f850c4c6d949229270c8da88c02cb}{oled\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00037\ uint8\_t\ \mbox{\hyperlink{oled_8h_afc95e57214ba4b975e5324fc46b0c907}{update\_screen}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a42b04908cff485ab4f65cca6e6c63fca}{oled\_goto}}(uint8\_t\ page,\ uint8\_t\ column);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a4f1f1eeb426b9112011bd46d439ff649}{oled\_set\_val}}(uint8\_t\ val);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_ab5aaebffd2529c0fb9a79260d979c171}{draw\_char\_normal\_to\_buffer}}(uint8\_t\ page,\ uint8\_t\ col,\ \textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a977c29b0b22a343a2080f7627f039550}{oled\_draw\_pixel\_buffer}}(uint8\_t\ x,\ uint8\_t\ y,\ uint8\_t\ on);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a3518422707fda4ed1eca6fdec5f53e49}{request\_buffer\_swap}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a4c1fc8996788885e61f85a8ec6fb6281}{clear\_backbuffer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a74835a48fa137799b8beb01ca9456c87}{clear\_all\_buffers}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a655d58a5b9da620b4afbb74d5dbee87e}{draw\_string\_normal\_to\_buffer}}(uint8\_t\ page,\ uint8\_t\ col,\ \textcolor{keywordtype}{char}\ *s);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a8c689a8af2c2a13fd86c00810e77078c}{draw\_char\_big\_to\_buffer}}(uint8\_t\ page,\ uint8\_t\ col,\ \textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{oled_8h_a74146c54c743af2648c94236126ab9fa}{draw\_string\_big\_to\_buffer}}(uint8\_t\ page,\ uint8\_t\ col,\ \textcolor{keywordtype}{char}\ *s);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00123\ uint16\_t\ \mbox{\hyperlink{oled_8h_a360aaf5e1e4217e9158b30a499ab575e}{buf\_base\_of}}(uint8\_t\ bufnum);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ OLED\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

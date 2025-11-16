@@ -1,0 +1,97 @@
+\doxysection{pingpong/joystick/joystick.h File Reference}
+\hypertarget{pingpong_2joystick_2joystick_8h}{}\label{pingpong_2joystick_2joystick_8h}\index{pingpong/joystick/joystick.h@{pingpong/joystick/joystick.h}}
+{\ttfamily \#include "{}../\+ADC/adc.\+h"{}}\newline
+{\ttfamily \#include "{}../\+IO\+\_\+\+BOARD/io\+\_\+board.\+h"{}}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \{ \newline
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098adb45120aafd37a973140edee24708065}{LEFT}}
+, \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aec8379af7490bb9eaaf579cf17876f38}{RIGHT}}
+, \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aba595d8bca8bc5e67c37c0a9d89becfa}{UP}}
+, \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098a9b0b4a95b99523966e0e34ffdadac9da}{DOWN}}
+, \newline
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098af46d14eb9d5d71afc9f6e747689fcb56}{NEUTRAL}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_ae3e3fe15fdd3e259fc34aa2b27750820}{get\+\_\+joystick\+\_\+direction}} (\mbox{\hyperlink{structio__inputs__t}{io\+\_\+inputs\+\_\+t}} inputs)
+\item 
+void \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_ae21d39d9fee92877a4e944f8bcc3c3c0}{print\+\_\+direction}} (\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} dir)
+\item 
+void \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a5bc0ebbab02048f54b59e0e2762cdd73}{send\+\_\+joystick\+\_\+data}} (\mbox{\hyperlink{structio__inputs__t}{io\+\_\+inputs\+\_\+t}} in)
+\item 
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a5659f36e4cf8b4ccb1a6b9f1337a9f91}{get\+\_\+nav\+\_\+direction}} (\mbox{\hyperlink{structbuttons__t}{buttons\+\_\+t}} inputs)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a9ccdbf600489b9d9f2cfddf0422b401c}{get\+\_\+nav\+\_\+pressed}} (\mbox{\hyperlink{structbuttons__t}{buttons\+\_\+t}} inputs)
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{pingpong_2joystick_2joystick_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}\index{joystick.h@{joystick.h}!direction@{direction}}
+\index{direction@{direction}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily \label{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098} 
+enum \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!joystick.h@{joystick.h}}\index{joystick.h@{joystick.h}!LEFT@{LEFT}}}\Hypertarget{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098adb45120aafd37a973140edee24708065}\label{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098adb45120aafd37a973140edee24708065} 
+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!joystick.h@{joystick.h}}\index{joystick.h@{joystick.h}!RIGHT@{RIGHT}}}\Hypertarget{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aec8379af7490bb9eaaf579cf17876f38}\label{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aec8379af7490bb9eaaf579cf17876f38} 
+RIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!joystick.h@{joystick.h}}\index{joystick.h@{joystick.h}!UP@{UP}}}\Hypertarget{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aba595d8bca8bc5e67c37c0a9d89becfa}\label{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aba595d8bca8bc5e67c37c0a9d89becfa} 
+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!joystick.h@{joystick.h}}\index{joystick.h@{joystick.h}!DOWN@{DOWN}}}\Hypertarget{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098a9b0b4a95b99523966e0e34ffdadac9da}\label{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098a9b0b4a95b99523966e0e34ffdadac9da} 
+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEUTRAL@{NEUTRAL}!joystick.h@{joystick.h}}\index{joystick.h@{joystick.h}!NEUTRAL@{NEUTRAL}}}\Hypertarget{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098af46d14eb9d5d71afc9f6e747689fcb56}\label{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098af46d14eb9d5d71afc9f6e747689fcb56} 
+NEUTRAL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{pingpong_2joystick_2joystick_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pingpong_2joystick_2joystick_8h_ae3e3fe15fdd3e259fc34aa2b27750820}\index{joystick.h@{joystick.h}!get\_joystick\_direction@{get\_joystick\_direction}}
+\index{get\_joystick\_direction@{get\_joystick\_direction}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{get\_joystick\_direction()}{get\_joystick\_direction()}}
+{\footnotesize\ttfamily \label{pingpong_2joystick_2joystick_8h_ae3e3fe15fdd3e259fc34aa2b27750820} 
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} get\+\_\+joystick\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structio__inputs__t}{io\+\_\+inputs\+\_\+t}}}]{inputs}{}\end{DoxyParamCaption})}
+
+\Hypertarget{pingpong_2joystick_2joystick_8h_a5659f36e4cf8b4ccb1a6b9f1337a9f91}\index{joystick.h@{joystick.h}!get\_nav\_direction@{get\_nav\_direction}}
+\index{get\_nav\_direction@{get\_nav\_direction}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{get\_nav\_direction()}{get\_nav\_direction()}}
+{\footnotesize\ttfamily \label{pingpong_2joystick_2joystick_8h_a5659f36e4cf8b4ccb1a6b9f1337a9f91} 
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} get\+\_\+nav\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuttons__t}{buttons\+\_\+t}}}]{inputs}{}\end{DoxyParamCaption})}
+
+\Hypertarget{pingpong_2joystick_2joystick_8h_a9ccdbf600489b9d9f2cfddf0422b401c}\index{joystick.h@{joystick.h}!get\_nav\_pressed@{get\_nav\_pressed}}
+\index{get\_nav\_pressed@{get\_nav\_pressed}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{get\_nav\_pressed()}{get\_nav\_pressed()}}
+{\footnotesize\ttfamily \label{pingpong_2joystick_2joystick_8h_a9ccdbf600489b9d9f2cfddf0422b401c} 
+uint8\+\_\+t get\+\_\+nav\+\_\+pressed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbuttons__t}{buttons\+\_\+t}}}]{inputs}{}\end{DoxyParamCaption})}
+
+\Hypertarget{pingpong_2joystick_2joystick_8h_ae21d39d9fee92877a4e944f8bcc3c3c0}\index{joystick.h@{joystick.h}!print\_direction@{print\_direction}}
+\index{print\_direction@{print\_direction}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{print\_direction()}{print\_direction()}}
+{\footnotesize\ttfamily \label{pingpong_2joystick_2joystick_8h_ae21d39d9fee92877a4e944f8bcc3c3c0} 
+void print\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}}]{dir}{}\end{DoxyParamCaption})}
+
+\Hypertarget{pingpong_2joystick_2joystick_8h_a5bc0ebbab02048f54b59e0e2762cdd73}\index{joystick.h@{joystick.h}!send\_joystick\_data@{send\_joystick\_data}}
+\index{send\_joystick\_data@{send\_joystick\_data}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{send\_joystick\_data()}{send\_joystick\_data()}}
+{\footnotesize\ttfamily \label{pingpong_2joystick_2joystick_8h_a5bc0ebbab02048f54b59e0e2762cdd73} 
+void send\+\_\+joystick\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structio__inputs__t}{io\+\_\+inputs\+\_\+t}}}]{in}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,135 @@
+\doxysection{pingpong/menu/menu.c File Reference}
+\hypertarget{menu_8c}{}\label{menu_8c}\index{pingpong/menu/menu.c@{pingpong/menu/menu.c}}
+{\ttfamily \#include "{}menu.\+h"{}}\newline
+{\ttfamily \#include "{}../\+OLED/oled.\+h"{}}\newline
+{\ttfamily \#include "{}../\+XMEM/xmem.\+h"{}}\newline
+{\ttfamily \#include "{}../\+OLED/fonts\+\_\+extern.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{menu_8c_a0fd0d30fc1a406a73a33d76c1415a317}{LEADERBOARD\+\_\+\+BASE}}~2048
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{menu_8c_a06928afa5c7f6b2572306f21cd7d2d31}{menu\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{menu_8c_a0e4b1063501ed45ef002ff4adb843878}{draw\+\_\+raquette\+\_\+to\+\_\+buffer}} (uint8\+\_\+t page, uint8\+\_\+t col)
+\item 
+void \mbox{\hyperlink{menu_8c_a59217fb871506ec634b5f9f0cceb0ec8}{draw\+\_\+main\+\_\+menu\+\_\+to\+\_\+buffer}} ()
+\item 
+void \mbox{\hyperlink{menu_8c_ab44b3c3bb7567e3020da5a6b554cb90c}{draw\+\_\+leaderboard\+\_\+to\+\_\+buffer}} ()
+\item 
+void \mbox{\hyperlink{menu_8c_a83078450f3a3998e51a2f87f9cba8c1c}{draw\+\_\+in\+\_\+game}} (uint8\+\_\+t \mbox{\hyperlink{score_8c_ad89903731d7f7be95b5d969211e27c26}{score}})
+\item 
+void \mbox{\hyperlink{menu_8c_a23d8b044f90e8611ac30a81faaac36b6}{draw\+\_\+save}} (char l1, char l2, char l3, uint8\+\_\+t \mbox{\hyperlink{score_8c_ad89903731d7f7be95b5d969211e27c26}{score}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{menu_8c_af8cc85a71075b7ce0e8d3b5b33843ded}{leaderboard\+\_\+get\+\_\+size}} ()
+\item 
+void \mbox{\hyperlink{menu_8c_aa3d0867d300f20386f1079f1abfc9137}{leaderboard\+\_\+set\+\_\+size}} (uint8\+\_\+t size)
+\item 
+void \mbox{\hyperlink{menu_8c_acea9f0a46d3e99694d67ad5abd17cab3}{leaderboard\+\_\+get\+\_\+user\+\_\+name}} (uint8\+\_\+t i, char \texorpdfstring{$\ast$}{*}name)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{menu_8c_a1348c0eaf36fe78f253f260b09c3bd44}{leaderboard\+\_\+get\+\_\+user\+\_\+score}} (uint8\+\_\+t i)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{menu_8c_a695225022595f38716f0eec24c6339ab}{propag\+\_\+users}} (char l1, char l2, char l3, uint8\+\_\+t \mbox{\hyperlink{score_8c_ad89903731d7f7be95b5d969211e27c26}{score}}, uint8\+\_\+t start, uint8\+\_\+t leaderboard\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{menu_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{menu_8c_a0fd0d30fc1a406a73a33d76c1415a317}\index{menu.c@{menu.c}!LEADERBOARD\_BASE@{LEADERBOARD\_BASE}}
+\index{LEADERBOARD\_BASE@{LEADERBOARD\_BASE}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{LEADERBOARD\_BASE}{LEADERBOARD\_BASE}}
+{\footnotesize\ttfamily \label{menu_8c_a0fd0d30fc1a406a73a33d76c1415a317} 
+\#define LEADERBOARD\+\_\+\+BASE~2048}
+
+
+
+\label{doc-func-members}
+\Hypertarget{menu_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{menu_8c_a83078450f3a3998e51a2f87f9cba8c1c}\index{menu.c@{menu.c}!draw\_in\_game@{draw\_in\_game}}
+\index{draw\_in\_game@{draw\_in\_game}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_in\_game()}{draw\_in\_game()}}
+{\footnotesize\ttfamily \label{menu_8c_a83078450f3a3998e51a2f87f9cba8c1c} 
+void draw\+\_\+in\+\_\+game (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{score}{}\end{DoxyParamCaption})}
+
+Function to draw the game menu to buffers. \doxylink{oled_8c_afc95e57214ba4b975e5324fc46b0c907}{update\+\_\+screen()} needs to be called for the drawing to be displayed. 
+\begin{DoxyParams}{Parameters}
+{\em score} & The user\textquotesingle{}s score. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_8c_ab44b3c3bb7567e3020da5a6b554cb90c}\index{menu.c@{menu.c}!draw\_leaderboard\_to\_buffer@{draw\_leaderboard\_to\_buffer}}
+\index{draw\_leaderboard\_to\_buffer@{draw\_leaderboard\_to\_buffer}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_leaderboard\_to\_buffer()}{draw\_leaderboard\_to\_buffer()}}
+{\footnotesize\ttfamily \label{menu_8c_ab44b3c3bb7567e3020da5a6b554cb90c} 
+void draw\+\_\+leaderboard\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Function to draw the leaderboard menu to buffers. \doxylink{oled_8c_afc95e57214ba4b975e5324fc46b0c907}{update\+\_\+screen()} needs to be called for the drawing to be displayed. \Hypertarget{menu_8c_a59217fb871506ec634b5f9f0cceb0ec8}\index{menu.c@{menu.c}!draw\_main\_menu\_to\_buffer@{draw\_main\_menu\_to\_buffer}}
+\index{draw\_main\_menu\_to\_buffer@{draw\_main\_menu\_to\_buffer}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_main\_menu\_to\_buffer()}{draw\_main\_menu\_to\_buffer()}}
+{\footnotesize\ttfamily \label{menu_8c_a59217fb871506ec634b5f9f0cceb0ec8} 
+void draw\+\_\+main\+\_\+menu\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to draw the home menu to buffers. \doxylink{oled_8c_afc95e57214ba4b975e5324fc46b0c907}{update\+\_\+screen()} needs to be called for the drawing to be displayed. \Hypertarget{menu_8c_a0e4b1063501ed45ef002ff4adb843878}\index{menu.c@{menu.c}!draw\_raquette\_to\_buffer@{draw\_raquette\_to\_buffer}}
+\index{draw\_raquette\_to\_buffer@{draw\_raquette\_to\_buffer}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_raquette\_to\_buffer()}{draw\_raquette\_to\_buffer()}}
+{\footnotesize\ttfamily \label{menu_8c_a0e4b1063501ed45ef002ff4adb843878} 
+void draw\+\_\+raquette\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{page}{, }\item[{uint8\+\_\+t}]{col}{}\end{DoxyParamCaption})}
+
+\Hypertarget{menu_8c_a23d8b044f90e8611ac30a81faaac36b6}\index{menu.c@{menu.c}!draw\_save@{draw\_save}}
+\index{draw\_save@{draw\_save}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_save()}{draw\_save()}}
+{\footnotesize\ttfamily \label{menu_8c_a23d8b044f90e8611ac30a81faaac36b6} 
+void draw\+\_\+save (\begin{DoxyParamCaption}\item[{char}]{l1}{, }\item[{char}]{l2}{, }\item[{char}]{l3}{, }\item[{uint8\+\_\+t}]{score}{}\end{DoxyParamCaption})}
+
+Function to draw the save your name and score menu to buffers. \doxylink{oled_8c_afc95e57214ba4b975e5324fc46b0c907}{update\+\_\+screen()} needs to be called for the drawing to be displayed. 
+\begin{DoxyParams}{Parameters}
+{\em l1} & The first letter of the user\textquotesingle{}s name. \\
+\hline
+{\em l2} & The second letter of the user\textquotesingle{}s name. \\
+\hline
+{\em l3} & The third letter of the user\textquotesingle{}s name. \\
+\hline
+{\em score} & The actual user\textquotesingle{}s score. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_8c_af8cc85a71075b7ce0e8d3b5b33843ded}\index{menu.c@{menu.c}!leaderboard\_get\_size@{leaderboard\_get\_size}}
+\index{leaderboard\_get\_size@{leaderboard\_get\_size}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{leaderboard\_get\_size()}{leaderboard\_get\_size()}}
+{\footnotesize\ttfamily \label{menu_8c_af8cc85a71075b7ce0e8d3b5b33843ded} 
+uint8\+\_\+t leaderboard\+\_\+get\+\_\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{menu_8c_acea9f0a46d3e99694d67ad5abd17cab3}\index{menu.c@{menu.c}!leaderboard\_get\_user\_name@{leaderboard\_get\_user\_name}}
+\index{leaderboard\_get\_user\_name@{leaderboard\_get\_user\_name}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{leaderboard\_get\_user\_name()}{leaderboard\_get\_user\_name()}}
+{\footnotesize\ttfamily \label{menu_8c_acea9f0a46d3e99694d67ad5abd17cab3} 
+void leaderboard\+\_\+get\+\_\+user\+\_\+name (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{i}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{menu_8c_a1348c0eaf36fe78f253f260b09c3bd44}\index{menu.c@{menu.c}!leaderboard\_get\_user\_score@{leaderboard\_get\_user\_score}}
+\index{leaderboard\_get\_user\_score@{leaderboard\_get\_user\_score}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{leaderboard\_get\_user\_score()}{leaderboard\_get\_user\_score()}}
+{\footnotesize\ttfamily \label{menu_8c_a1348c0eaf36fe78f253f260b09c3bd44} 
+uint8\+\_\+t leaderboard\+\_\+get\+\_\+user\+\_\+score (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{i}{}\end{DoxyParamCaption})}
+
+\Hypertarget{menu_8c_aa3d0867d300f20386f1079f1abfc9137}\index{menu.c@{menu.c}!leaderboard\_set\_size@{leaderboard\_set\_size}}
+\index{leaderboard\_set\_size@{leaderboard\_set\_size}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{leaderboard\_set\_size()}{leaderboard\_set\_size()}}
+{\footnotesize\ttfamily \label{menu_8c_aa3d0867d300f20386f1079f1abfc9137} 
+void leaderboard\+\_\+set\+\_\+size (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+\Hypertarget{menu_8c_a06928afa5c7f6b2572306f21cd7d2d31}\index{menu.c@{menu.c}!menu\_init@{menu\_init}}
+\index{menu\_init@{menu\_init}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{menu\_init()}{menu\_init()}}
+{\footnotesize\ttfamily \label{menu_8c_a06928afa5c7f6b2572306f21cd7d2d31} 
+void menu\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Function to be called on start of the program if menu is to be used. \Hypertarget{menu_8c_a695225022595f38716f0eec24c6339ab}\index{menu.c@{menu.c}!propag\_users@{propag\_users}}
+\index{propag\_users@{propag\_users}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{propag\_users()}{propag\_users()}}
+{\footnotesize\ttfamily \label{menu_8c_a695225022595f38716f0eec24c6339ab} 
+uint8\+\_\+t propag\+\_\+users (\begin{DoxyParamCaption}\item[{char}]{l1}{, }\item[{char}]{l2}{, }\item[{char}]{l3}{, }\item[{uint8\+\_\+t}]{score}{, }\item[{uint8\+\_\+t}]{start}{, }\item[{uint8\+\_\+t}]{leaderboard\+\_\+size}{}\end{DoxyParamCaption})}
+

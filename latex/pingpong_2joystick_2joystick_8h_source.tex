@@ -1,0 +1,40 @@
+\doxysection{joystick.\+h}
+\hypertarget{pingpong_2joystick_2joystick_8h_source}{}\label{pingpong_2joystick_2joystick_8h_source}\index{pingpong/joystick/joystick.h@{pingpong/joystick/joystick.h}}
+\mbox{\hyperlink{pingpong_2joystick_2joystick_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ joystick.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Created:\ 13.11.2025\ 11:37:46}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Author:\ marcjpo}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ JOYSTICK\_H\_}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ JOYSTICK\_H\_}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pingpong_2ADC_2adc_8h}{../ADC/adc.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{io__board_8h}{../IO\_BOARD/io\_board.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098adb45120aafd37a973140edee24708065}{LEFT}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aec8379af7490bb9eaaf579cf17876f38}{RIGHT}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aba595d8bca8bc5e67c37c0a9d89becfa}{UP}},}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098a9b0b4a95b99523966e0e34ffdadac9da}{DOWN}},}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098af46d14eb9d5d71afc9f6e747689fcb56}{NEUTRAL}}}
+\DoxyCodeLine{00021\ \}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_ae3e3fe15fdd3e259fc34aa2b27750820}{get\_joystick\_direction}}(\mbox{\hyperlink{structio__inputs__t}{io\_inputs\_t}}\ inputs);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_ae21d39d9fee92877a4e944f8bcc3c3c0}{print\_direction}}(\mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}\ dir);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a5bc0ebbab02048f54b59e0e2762cdd73}{send\_joystick\_data}}(\mbox{\hyperlink{structio__inputs__t}{io\_inputs\_t}}\ in);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a5659f36e4cf8b4ccb1a6b9f1337a9f91}{get\_nav\_direction}}(\mbox{\hyperlink{structbuttons__t}{buttons\_t}}\ inputs);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ uint8\_t\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a9ccdbf600489b9d9f2cfddf0422b401c}{get\_nav\_pressed}}(\mbox{\hyperlink{structbuttons__t}{buttons\_t}}\ inputs);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ JOYSTICK\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

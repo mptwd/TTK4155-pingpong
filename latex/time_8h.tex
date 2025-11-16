@@ -1,0 +1,194 @@
+\doxysection{Node2/time/time.h File Reference}
+\hypertarget{time_8h}{}\label{time_8h}\index{Node2/time/time.h@{Node2/time/time.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTime}{Time}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{time_8h_a04b7c909ea74abb32a1aa6a4ad64c0b9}{time\+\_\+do\+Periodic}}(period)
+\item 
+\#define \mbox{\hyperlink{time_8h_aaea579fd0c6cf9c352e89ed355e2b2db}{time\+\_\+fmt\+Str}}~"{}Time(\%uh, \%um, \%us, \%ums, \%ut)"{}
+\item 
+\#define \mbox{\hyperlink{time_8h_a8d37c04d0d5b2ab22e2594ea93c3a57c}{time\+\_\+fmt\+Param}}(t)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct Time \mbox{\hyperlink{time_8h_a5eb01cbf6c27b503f39613676def571a}{Time}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_a22e2c9fb8d43dacb991ed09186338320}{time\+\_\+now}} (void)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_af09a0713831389e1498c379eac5f312f}{usecs}} (uint64\+\_\+t s)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_adeb6e83d0b8835f5cd60bfc03f5e5074}{msecs}} (uint64\+\_\+t s)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_aee3c36104b02a19cfed301b6011e589b}{seconds}} (uint64\+\_\+t s)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_a71721e1ea1ecb855bb01f2e17e47b0f0}{minutes}} (uint64\+\_\+t s)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_a54c15945d9eac856fd8a70c7cc67db65}{hours}} (uint64\+\_\+t s)
+\item 
+float \mbox{\hyperlink{time_8h_ad01d142df934576ec4959ab2b046576c}{total\+Usecs}} (uint64\+\_\+t t)
+\item 
+float \mbox{\hyperlink{time_8h_a36d2584e2df9b7a4bb07dbcf3bd230a0}{total\+Msecs}} (uint64\+\_\+t t)
+\item 
+float \mbox{\hyperlink{time_8h_a1ea4d43d2446ce5ad6929df690422fb7}{total\+Seconds}} (uint64\+\_\+t t)
+\item 
+float \mbox{\hyperlink{time_8h_a863d505e9a69908d87b008d3234e7130}{total\+Minutes}} (uint64\+\_\+t t)
+\item 
+float \mbox{\hyperlink{time_8h_a40959e304328d23fd2222719daedecdb}{total\+Hours}} (uint64\+\_\+t t)
+\item 
+void \mbox{\hyperlink{time_8h_aeb702e2f0f90467bbe2525db80d3b96e}{time\+\_\+spin\+For}} (uint64\+\_\+t duration)
+\item 
+void \mbox{\hyperlink{time_8h_a4bc1f6857d0925ac5f37d2ac548ff06f}{time\+\_\+spin\+Until}} (uint64\+\_\+t then)
+\item 
+\mbox{\hyperlink{structTime}{Time}} \mbox{\hyperlink{time_8h_a7bebf0fce1908a64cc55d19431a592e2}{time\+\_\+split}} (uint64\+\_\+t t)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{time_8h_a9de57442d9848deb2f7414234ca62f76}{time\+\_\+combine}} (\mbox{\hyperlink{structTime}{Time}} t)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{time_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{time_8h_a04b7c909ea74abb32a1aa6a4ad64c0b9}\index{time.h@{time.h}!time\_doPeriodic@{time\_doPeriodic}}
+\index{time\_doPeriodic@{time\_doPeriodic}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_doPeriodic}{time\_doPeriodic}}
+{\footnotesize\ttfamily \label{time_8h_a04b7c909ea74abb32a1aa6a4ad64c0b9} 
+\#define time\+\_\+do\+Periodic(\begin{DoxyParamCaption}\item[{}]{period}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(uint64\_t\ then\ =\ \mbox{\hyperlink{time_8c_a22e2c9fb8d43dacb991ed09186338320}{time\_now}}()\ +\ (period);\ 1;\ then\ +=\ (period),\ \mbox{\hyperlink{time_8c_a4bc1f6857d0925ac5f37d2ac548ff06f}{time\_spinUntil}}(then))}
+
+\end{DoxyCode}
+\Hypertarget{time_8h_a8d37c04d0d5b2ab22e2594ea93c3a57c}\index{time.h@{time.h}!time\_fmtParam@{time\_fmtParam}}
+\index{time\_fmtParam@{time\_fmtParam}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_fmtParam}{time\_fmtParam}}
+{\footnotesize\ttfamily \label{time_8h_a8d37c04d0d5b2ab22e2594ea93c3a57c} 
+\#define time\+\_\+fmt\+Param(\begin{DoxyParamCaption}\item[{}]{t}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{t.hours,\ t.minutes,\ t.seconds,\ t.msecs,\ t.ticks}
+
+\end{DoxyCode}
+\Hypertarget{time_8h_aaea579fd0c6cf9c352e89ed355e2b2db}\index{time.h@{time.h}!time\_fmtStr@{time\_fmtStr}}
+\index{time\_fmtStr@{time\_fmtStr}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_fmtStr}{time\_fmtStr}}
+{\footnotesize\ttfamily \label{time_8h_aaea579fd0c6cf9c352e89ed355e2b2db} 
+\#define time\+\_\+fmt\+Str~"{}Time(\%uh, \%um, \%us, \%ums, \%ut)"{}}
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{time_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{time_8h_a5eb01cbf6c27b503f39613676def571a}\index{time.h@{time.h}!Time@{Time}}
+\index{Time@{Time}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{Time}{Time}}
+{\footnotesize\ttfamily \label{time_8h_a5eb01cbf6c27b503f39613676def571a} 
+typedef struct Time Time}
+
+
+
+\label{doc-func-members}
+\Hypertarget{time_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{time_8h_a54c15945d9eac856fd8a70c7cc67db65}\index{time.h@{time.h}!hours@{hours}}
+\index{hours@{hours}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{hours()}{hours()}}
+{\footnotesize\ttfamily \label{time_8h_a54c15945d9eac856fd8a70c7cc67db65} 
+uint64\+\_\+t hours (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{s}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a71721e1ea1ecb855bb01f2e17e47b0f0}\index{time.h@{time.h}!minutes@{minutes}}
+\index{minutes@{minutes}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{minutes()}{minutes()}}
+{\footnotesize\ttfamily \label{time_8h_a71721e1ea1ecb855bb01f2e17e47b0f0} 
+uint64\+\_\+t minutes (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{s}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_adeb6e83d0b8835f5cd60bfc03f5e5074}\index{time.h@{time.h}!msecs@{msecs}}
+\index{msecs@{msecs}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{msecs()}{msecs()}}
+{\footnotesize\ttfamily \label{time_8h_adeb6e83d0b8835f5cd60bfc03f5e5074} 
+uint64\+\_\+t msecs (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{s}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_aee3c36104b02a19cfed301b6011e589b}\index{time.h@{time.h}!seconds@{seconds}}
+\index{seconds@{seconds}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{seconds()}{seconds()}}
+{\footnotesize\ttfamily \label{time_8h_aee3c36104b02a19cfed301b6011e589b} 
+uint64\+\_\+t seconds (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{s}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a9de57442d9848deb2f7414234ca62f76}\index{time.h@{time.h}!time\_combine@{time\_combine}}
+\index{time\_combine@{time\_combine}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_combine()}{time\_combine()}}
+{\footnotesize\ttfamily \label{time_8h_a9de57442d9848deb2f7414234ca62f76} 
+uint64\+\_\+t time\+\_\+combine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTime}{Time}}}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a22e2c9fb8d43dacb991ed09186338320}\index{time.h@{time.h}!time\_now@{time\_now}}
+\index{time\_now@{time\_now}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_now()}{time\_now()}}
+{\footnotesize\ttfamily \label{time_8h_a22e2c9fb8d43dacb991ed09186338320} 
+uint64\+\_\+t time\+\_\+now (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_aeb702e2f0f90467bbe2525db80d3b96e}\index{time.h@{time.h}!time\_spinFor@{time\_spinFor}}
+\index{time\_spinFor@{time\_spinFor}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_spinFor()}{time\_spinFor()}}
+{\footnotesize\ttfamily \label{time_8h_aeb702e2f0f90467bbe2525db80d3b96e} 
+void time\+\_\+spin\+For (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{duration}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a4bc1f6857d0925ac5f37d2ac548ff06f}\index{time.h@{time.h}!time\_spinUntil@{time\_spinUntil}}
+\index{time\_spinUntil@{time\_spinUntil}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_spinUntil()}{time\_spinUntil()}}
+{\footnotesize\ttfamily \label{time_8h_a4bc1f6857d0925ac5f37d2ac548ff06f} 
+void time\+\_\+spin\+Until (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{then}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a7bebf0fce1908a64cc55d19431a592e2}\index{time.h@{time.h}!time\_split@{time\_split}}
+\index{time\_split@{time\_split}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{time\_split()}{time\_split()}}
+{\footnotesize\ttfamily \label{time_8h_a7bebf0fce1908a64cc55d19431a592e2} 
+\mbox{\hyperlink{structTime}{Time}} time\+\_\+split (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a40959e304328d23fd2222719daedecdb}\index{time.h@{time.h}!totalHours@{totalHours}}
+\index{totalHours@{totalHours}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{totalHours()}{totalHours()}}
+{\footnotesize\ttfamily \label{time_8h_a40959e304328d23fd2222719daedecdb} 
+float total\+Hours (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a863d505e9a69908d87b008d3234e7130}\index{time.h@{time.h}!totalMinutes@{totalMinutes}}
+\index{totalMinutes@{totalMinutes}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{totalMinutes()}{totalMinutes()}}
+{\footnotesize\ttfamily \label{time_8h_a863d505e9a69908d87b008d3234e7130} 
+float total\+Minutes (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a36d2584e2df9b7a4bb07dbcf3bd230a0}\index{time.h@{time.h}!totalMsecs@{totalMsecs}}
+\index{totalMsecs@{totalMsecs}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{totalMsecs()}{totalMsecs()}}
+{\footnotesize\ttfamily \label{time_8h_a36d2584e2df9b7a4bb07dbcf3bd230a0} 
+float total\+Msecs (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_a1ea4d43d2446ce5ad6929df690422fb7}\index{time.h@{time.h}!totalSeconds@{totalSeconds}}
+\index{totalSeconds@{totalSeconds}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{totalSeconds()}{totalSeconds()}}
+{\footnotesize\ttfamily \label{time_8h_a1ea4d43d2446ce5ad6929df690422fb7} 
+float total\+Seconds (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_ad01d142df934576ec4959ab2b046576c}\index{time.h@{time.h}!totalUsecs@{totalUsecs}}
+\index{totalUsecs@{totalUsecs}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{totalUsecs()}{totalUsecs()}}
+{\footnotesize\ttfamily \label{time_8h_ad01d142df934576ec4959ab2b046576c} 
+float total\+Usecs (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{time_8h_af09a0713831389e1498c379eac5f312f}\index{time.h@{time.h}!usecs@{usecs}}
+\index{usecs@{usecs}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{usecs()}{usecs()}}
+{\footnotesize\ttfamily \label{time_8h_af09a0713831389e1498c379eac5f312f} 
+uint64\+\_\+t usecs (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{s}{}\end{DoxyParamCaption})}
+

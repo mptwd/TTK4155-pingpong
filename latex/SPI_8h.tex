@@ -1,0 +1,121 @@
+\doxysection{pingpong/\+SPI/\+SPI.h File Reference}
+\hypertarget{SPI_8h}{}\label{SPI_8h}\index{pingpong/SPI/SPI.h@{pingpong/SPI/SPI.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3c}{slave}} \{ \mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3ca1ecfa0998855a0963b5d298332dbd22c}{CAN}}
+, \mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3caedd9974ef2207e0a03e0717dcb9e2269}{IO}}
+, \mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3ca0285f38e6c7794eaf61cd27927495973}{DISP}}
+, \mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3cac157bdf0b85a40d2619cbc8bc1ae5fe2}{NONE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{SPI_8h_ae909944aa85ae98323073c628be541aa}{spi\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{SPI_8h_ab727b35cde460159bfa3f05dbad8d7fc}{spi\+\_\+select\+\_\+slave}} (\mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3c}{slave}} s)
+\item 
+void \mbox{\hyperlink{SPI_8h_a6c051eb2e4d533296906a31b927d00b0}{spi\+\_\+write\+\_\+byte}} (uint8\+\_\+t byte)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{SPI_8h_ac9e3606e9e7cbeaec69037e3bf48500c}{spi\+\_\+read\+\_\+byte}} (void)
+\item 
+void \mbox{\hyperlink{SPI_8h_a175344eba780ecfe31d540e972ffad1a}{spi\+\_\+read\+\_\+write\+\_\+bytes}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}byte, size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{SPI_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3c}\index{SPI.h@{SPI.h}!slave@{slave}}
+\index{slave@{slave}!SPI.h@{SPI.h}}
+\doxysubsubsection{\texorpdfstring{slave}{slave}}
+{\footnotesize\ttfamily \label{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3c} 
+enum \mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3c}{slave}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN@{CAN}!SPI.h@{SPI.h}}\index{SPI.h@{SPI.h}!CAN@{CAN}}}\Hypertarget{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3ca1ecfa0998855a0963b5d298332dbd22c}\label{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3ca1ecfa0998855a0963b5d298332dbd22c} 
+CAN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IO@{IO}!SPI.h@{SPI.h}}\index{SPI.h@{SPI.h}!IO@{IO}}}\Hypertarget{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3caedd9974ef2207e0a03e0717dcb9e2269}\label{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3caedd9974ef2207e0a03e0717dcb9e2269} 
+IO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISP@{DISP}!SPI.h@{SPI.h}}\index{SPI.h@{SPI.h}!DISP@{DISP}}}\Hypertarget{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3ca0285f38e6c7794eaf61cd27927495973}\label{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3ca0285f38e6c7794eaf61cd27927495973} 
+DISP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!SPI.h@{SPI.h}}\index{SPI.h@{SPI.h}!NONE@{NONE}}}\Hypertarget{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3cac157bdf0b85a40d2619cbc8bc1ae5fe2}\label{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3cac157bdf0b85a40d2619cbc8bc1ae5fe2} 
+NONE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{SPI_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{SPI_8h_ae909944aa85ae98323073c628be541aa}\index{SPI.h@{SPI.h}!spi\_init@{spi\_init}}
+\index{spi\_init@{spi\_init}!SPI.h@{SPI.h}}
+\doxysubsubsection{\texorpdfstring{spi\_init()}{spi\_init()}}
+{\footnotesize\ttfamily \label{SPI_8h_ae909944aa85ae98323073c628be541aa} 
+void spi\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Should be called if screen is to be used. \Hypertarget{SPI_8h_ac9e3606e9e7cbeaec69037e3bf48500c}\index{SPI.h@{SPI.h}!spi\_read\_byte@{spi\_read\_byte}}
+\index{spi\_read\_byte@{spi\_read\_byte}!SPI.h@{SPI.h}}
+\doxysubsubsection{\texorpdfstring{spi\_read\_byte()}{spi\_read\_byte()}}
+{\footnotesize\ttfamily \label{SPI_8h_ac9e3606e9e7cbeaec69037e3bf48500c} 
+uint8\+\_\+t spi\+\_\+read\+\_\+byte (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Read a byte from a slave. A slave should be selected beforehand using spi\+\_\+select\+\_\+slave.
+
+The SPI protocol is full-\/duplex, a read is done at the same time as a write.
+
+This function can timeout. If no input is received, then it returns 0
+
+@require Called after a call to spi\+\_\+write\+\_\+byte \begin{DoxyReturn}{Returns}
+the read byte, or 0 in case of timeout. 
+\end{DoxyReturn}
+\Hypertarget{SPI_8h_a175344eba780ecfe31d540e972ffad1a}\index{SPI.h@{SPI.h}!spi\_read\_write\_bytes@{spi\_read\_write\_bytes}}
+\index{spi\_read\_write\_bytes@{spi\_read\_write\_bytes}!SPI.h@{SPI.h}}
+\doxysubsubsection{\texorpdfstring{spi\_read\_write\_bytes()}{spi\_read\_write\_bytes()}}
+{\footnotesize\ttfamily \label{SPI_8h_a175344eba780ecfe31d540e972ffad1a} 
+void spi\+\_\+read\+\_\+write\+\_\+bytes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{byte}{, }\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+Write multiple bytes, and read each response from a slave. A slave should be selected beforehand using spi\+\_\+select\+\_\+slave.
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & the bytes to send. The read bytes are also placed in this array, in the order of them being received. \\
+\hline
+{\em size} & The number of bytes in byte. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{SPI_8h_ab727b35cde460159bfa3f05dbad8d7fc}\index{SPI.h@{SPI.h}!spi\_select\_slave@{spi\_select\_slave}}
+\index{spi\_select\_slave@{spi\_select\_slave}!SPI.h@{SPI.h}}
+\doxysubsubsection{\texorpdfstring{spi\_select\_slave()}{spi\_select\_slave()}}
+{\footnotesize\ttfamily \label{SPI_8h_ab727b35cde460159bfa3f05dbad8d7fc} 
+void spi\+\_\+select\+\_\+slave (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SPI_8h_ad4c0f7862ed1ff8df0e3421adb602a3c}{slave}}}]{s}{}\end{DoxyParamCaption})}
+
+Select a slave. Only one slave can be selected at once. This is enforce by that function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The slave to select. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{SPI_8h_a6c051eb2e4d533296906a31b927d00b0}\index{SPI.h@{SPI.h}!spi\_write\_byte@{spi\_write\_byte}}
+\index{spi\_write\_byte@{spi\_write\_byte}!SPI.h@{SPI.h}}
+\doxysubsubsection{\texorpdfstring{spi\_write\_byte()}{spi\_write\_byte()}}
+{\footnotesize\ttfamily \label{SPI_8h_a6c051eb2e4d533296906a31b927d00b0} 
+void spi\+\_\+write\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte}{}\end{DoxyParamCaption})}
+
+Send a byte to a slave. A slave should be selected beforehand using spi\+\_\+select\+\_\+slave.
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & the data to send. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,36 @@
+\doxysection{joystick.\+h}
+\hypertarget{Node2_2joystick_2joystick_8h_source}{}\label{Node2_2joystick_2joystick_8h_source}\index{Node2/joystick/joystick.h@{Node2/joystick/joystick.h}}
+\mbox{\hyperlink{Node2_2joystick_2joystick_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ joystick.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Created:\ 22.10.2025\ 15:49:04}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Author:\ marcjpo}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ JOYSTICK\_H\_}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ JOYSTICK\_H\_}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098adb45120aafd37a973140edee24708065}{LEFT}},}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aec8379af7490bb9eaaf579cf17876f38}{RIGHT}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098aba595d8bca8bc5e67c37c0a9d89becfa}{UP}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098a9b0b4a95b99523966e0e34ffdadac9da}{DOWN}},}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098af46d14eb9d5d71afc9f6e747689fcb56}{NEUTRAL}}}
+\DoxyCodeLine{00020\ \}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{pingpong_2joystick_2joystick_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structjoystick}{joystick}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structjoystick_afb1dba53d87fa9070d8753eada3f24e6}{x}};}
+\DoxyCodeLine{00024\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structjoystick_a490042549a8509f14971a505098f9249}{y}};}
+\DoxyCodeLine{00025\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structjoystick_ad82829aaa16d59811dc76f4dbb91519d}{pressed}};}
+\DoxyCodeLine{00026\ \}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structjoystick}{joystick}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00036\ uint8\_t\ \mbox{\hyperlink{Node2_2joystick_2joystick_8h_aa1672130b538b08eaada3b68c8b74c51}{get\_joystick}}(\mbox{\hyperlink{structjoystick}{joystick}}\ *joy);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ JOYSTICK\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

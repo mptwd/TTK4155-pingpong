@@ -1,0 +1,87 @@
+\doxysection{Node2/\+Device\+\_\+\+Startup/system\+\_\+sam3xa.c File Reference}
+\hypertarget{system__sam3xa_8c}{}\label{system__sam3xa_8c}\index{Node2/Device\_Startup/system\_sam3xa.c@{Node2/Device\_Startup/system\_sam3xa.c}}
+{\ttfamily \#include "{}sam3xa.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{system__sam3xa_8c_a0a22f8ffd78d8577790c0ccf7471e06d}{SYS\+\_\+\+BOARD\+\_\+\+OSCOUNT}}~(CKGR\+\_\+\+MOR\+\_\+\+MOSCXTST(0x8))
+\item 
+\#define \mbox{\hyperlink{system__sam3xa_8c_aed7d52452ed405bce522ac60f0a9526c}{SYS\+\_\+\+BOARD\+\_\+\+PLLAR}}~(CKGR\+\_\+\+PLLAR\+\_\+\+ONE \texorpdfstring{$\vert$}{|} CKGR\+\_\+\+PLLAR\+\_\+\+MULA(0xd\+UL) \texorpdfstring{$\vert$}{|} CKGR\+\_\+\+PLLAR\+\_\+\+PLLACOUNT(0x3f\+UL) \texorpdfstring{$\vert$}{|} CKGR\+\_\+\+PLLAR\+\_\+\+DIVA(0x1\+UL))
+\item 
+\#define \mbox{\hyperlink{system__sam3xa_8c_a5723ea67fd327e388188538ae2db2f66}{SYS\+\_\+\+BOARD\+\_\+\+MCKR}}~(PMC\+\_\+\+MCKR\+\_\+\+PRES\+\_\+\+CLK\+\_\+2 \texorpdfstring{$\vert$}{|} PMC\+\_\+\+MCKR\+\_\+\+CSS\+\_\+\+PLLA\+\_\+\+CLK)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{system__sam3xa_8c_a93f514700ccf00d08dbdcff7f1224eb2}{System\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Setup the microcontroller system. Initialize the System and update the System\+Frequency variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{system__sam3xa_8c_ae0c36a9591fe6e9c45ecb21a794f0f0f}{System\+Core\+Clock\+Update}} (void)
+\item 
+void \mbox{\hyperlink{system__sam3xa_8c_a38ee6d8de47653fc055f10322c050831}{system\+\_\+init\+\_\+flash}} (uint32\+\_\+t dw\+\_\+clk)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{system__sam3xa_8c_aa3cd3e43291e81e795d642b79b6088e6}{System\+Core\+Clock}} = CHIP\+\_\+\+FREQ\+\_\+\+MAINCK\+\_\+\+RC\+\_\+4\+MHZ
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{system__sam3xa_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{system__sam3xa_8c_a5723ea67fd327e388188538ae2db2f66}\index{system\_sam3xa.c@{system\_sam3xa.c}!SYS\_BOARD\_MCKR@{SYS\_BOARD\_MCKR}}
+\index{SYS\_BOARD\_MCKR@{SYS\_BOARD\_MCKR}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{SYS\_BOARD\_MCKR}{SYS\_BOARD\_MCKR}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_a5723ea67fd327e388188538ae2db2f66} 
+\#define SYS\+\_\+\+BOARD\+\_\+\+MCKR~(PMC\+\_\+\+MCKR\+\_\+\+PRES\+\_\+\+CLK\+\_\+2 \texorpdfstring{$\vert$}{|} PMC\+\_\+\+MCKR\+\_\+\+CSS\+\_\+\+PLLA\+\_\+\+CLK)}
+
+\Hypertarget{system__sam3xa_8c_a0a22f8ffd78d8577790c0ccf7471e06d}\index{system\_sam3xa.c@{system\_sam3xa.c}!SYS\_BOARD\_OSCOUNT@{SYS\_BOARD\_OSCOUNT}}
+\index{SYS\_BOARD\_OSCOUNT@{SYS\_BOARD\_OSCOUNT}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{SYS\_BOARD\_OSCOUNT}{SYS\_BOARD\_OSCOUNT}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_a0a22f8ffd78d8577790c0ccf7471e06d} 
+\#define SYS\+\_\+\+BOARD\+\_\+\+OSCOUNT~(CKGR\+\_\+\+MOR\+\_\+\+MOSCXTST(0x8))}
+
+\Hypertarget{system__sam3xa_8c_aed7d52452ed405bce522ac60f0a9526c}\index{system\_sam3xa.c@{system\_sam3xa.c}!SYS\_BOARD\_PLLAR@{SYS\_BOARD\_PLLAR}}
+\index{SYS\_BOARD\_PLLAR@{SYS\_BOARD\_PLLAR}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{SYS\_BOARD\_PLLAR}{SYS\_BOARD\_PLLAR}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_aed7d52452ed405bce522ac60f0a9526c} 
+\#define SYS\+\_\+\+BOARD\+\_\+\+PLLAR~(CKGR\+\_\+\+PLLAR\+\_\+\+ONE \texorpdfstring{$\vert$}{|} CKGR\+\_\+\+PLLAR\+\_\+\+MULA(0xd\+UL) \texorpdfstring{$\vert$}{|} CKGR\+\_\+\+PLLAR\+\_\+\+PLLACOUNT(0x3f\+UL) \texorpdfstring{$\vert$}{|} CKGR\+\_\+\+PLLAR\+\_\+\+DIVA(0x1\+UL))}
+
+
+
+\label{doc-func-members}
+\Hypertarget{system__sam3xa_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{system__sam3xa_8c_a38ee6d8de47653fc055f10322c050831}\index{system\_sam3xa.c@{system\_sam3xa.c}!system\_init\_flash@{system\_init\_flash}}
+\index{system\_init\_flash@{system\_init\_flash}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{system\_init\_flash()}{system\_init\_flash()}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_a38ee6d8de47653fc055f10322c050831} 
+void system\+\_\+init\+\_\+flash (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{dw\+\_\+clk}{}\end{DoxyParamCaption})}
+
+Initialize flash. \Hypertarget{system__sam3xa_8c_ae0c36a9591fe6e9c45ecb21a794f0f0f}\index{system\_sam3xa.c@{system\_sam3xa.c}!SystemCoreClockUpdate@{SystemCoreClockUpdate}}
+\index{SystemCoreClockUpdate@{SystemCoreClockUpdate}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{SystemCoreClockUpdate()}{SystemCoreClockUpdate()}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_ae0c36a9591fe6e9c45ecb21a794f0f0f} 
+void System\+Core\+Clock\+Update (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{system__sam3xa_8c_a93f514700ccf00d08dbdcff7f1224eb2}\index{system\_sam3xa.c@{system\_sam3xa.c}!SystemInit@{SystemInit}}
+\index{SystemInit@{SystemInit}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{SystemInit()}{SystemInit()}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_a93f514700ccf00d08dbdcff7f1224eb2} 
+void System\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Setup the microcontroller system. Initialize the System and update the System\+Frequency variable. 
+
+
+
+\label{doc-var-members}
+\Hypertarget{system__sam3xa_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{system__sam3xa_8c_aa3cd3e43291e81e795d642b79b6088e6}\index{system\_sam3xa.c@{system\_sam3xa.c}!SystemCoreClock@{SystemCoreClock}}
+\index{SystemCoreClock@{SystemCoreClock}!system\_sam3xa.c@{system\_sam3xa.c}}
+\doxysubsubsection{\texorpdfstring{SystemCoreClock}{SystemCoreClock}}
+{\footnotesize\ttfamily \label{system__sam3xa_8c_aa3cd3e43291e81e795d642b79b6088e6} 
+uint32\+\_\+t System\+Core\+Clock = CHIP\+\_\+\+FREQ\+\_\+\+MAINCK\+\_\+\+RC\+\_\+4\+MHZ}
+

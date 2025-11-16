@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['doublebuf_5finit_0',['doublebuf_init',['../oled_8c.html#a253c7414d88cd1e038f0ce4ca0c3643a',1,'doublebuf_init(void):&#160;oled.c'],['../oled_8h.html#a253c7414d88cd1e038f0ce4ca0c3643a',1,'doublebuf_init(void):&#160;oled.c']]],
+  ['draw_5fchar_5fbig_5fto_5fbuffer_1',['draw_char_big_to_buffer',['../oled_8c.html#a8c689a8af2c2a13fd86c00810e77078c',1,'draw_char_big_to_buffer(uint8_t page, uint8_t col, char c):&#160;oled.c'],['../oled_8h.html#a8c689a8af2c2a13fd86c00810e77078c',1,'draw_char_big_to_buffer(uint8_t page, uint8_t col, char c):&#160;oled.c']]],
+  ['draw_5fchar_5fnormal_5fto_5fbuffer_2',['draw_char_normal_to_buffer',['../oled_8c.html#ab5aaebffd2529c0fb9a79260d979c171',1,'draw_char_normal_to_buffer(uint8_t page, uint8_t col, char c):&#160;oled.c'],['../oled_8h.html#ab5aaebffd2529c0fb9a79260d979c171',1,'draw_char_normal_to_buffer(uint8_t page, uint8_t col, char c):&#160;oled.c']]],
+  ['draw_5fin_5fgame_3',['draw_in_game',['../menu_8c.html#a83078450f3a3998e51a2f87f9cba8c1c',1,'draw_in_game(uint8_t score):&#160;menu.c'],['../menu_8h.html#a83078450f3a3998e51a2f87f9cba8c1c',1,'draw_in_game(uint8_t score):&#160;menu.c']]],
+  ['draw_5fleaderboard_5fto_5fbuffer_4',['draw_leaderboard_to_buffer',['../menu_8c.html#ab44b3c3bb7567e3020da5a6b554cb90c',1,'draw_leaderboard_to_buffer():&#160;menu.c'],['../menu_8h.html#ab44b3c3bb7567e3020da5a6b554cb90c',1,'draw_leaderboard_to_buffer():&#160;menu.c']]],
+  ['draw_5fmain_5fmenu_5fto_5fbuffer_5',['draw_main_menu_to_buffer',['../menu_8c.html#a59217fb871506ec634b5f9f0cceb0ec8',1,'draw_main_menu_to_buffer():&#160;menu.c'],['../menu_8h.html#a14263d39de1c73c8ba94bef0dc8ff54c',1,'draw_main_menu_to_buffer(void):&#160;menu.c']]],
+  ['draw_5fraquette_5fto_5fbuffer_6',['draw_raquette_to_buffer',['../menu_8c.html#a0e4b1063501ed45ef002ff4adb843878',1,'menu.c']]],
+  ['draw_5fsave_7',['draw_save',['../menu_8c.html#a23d8b044f90e8611ac30a81faaac36b6',1,'draw_save(char l1, char l2, char l3, uint8_t score):&#160;menu.c'],['../menu_8h.html#a23d8b044f90e8611ac30a81faaac36b6',1,'draw_save(char l1, char l2, char l3, uint8_t score):&#160;menu.c']]],
+  ['draw_5fstring_5fbig_5fto_5fbuffer_8',['draw_string_big_to_buffer',['../oled_8c.html#a74146c54c743af2648c94236126ab9fa',1,'draw_string_big_to_buffer(uint8_t page, uint8_t col, char *s):&#160;oled.c'],['../oled_8h.html#a74146c54c743af2648c94236126ab9fa',1,'draw_string_big_to_buffer(uint8_t page, uint8_t col, char *s):&#160;oled.c']]],
+  ['draw_5fstring_5fnormal_5fto_5fbuffer_9',['draw_string_normal_to_buffer',['../oled_8c.html#a655d58a5b9da620b4afbb74d5dbee87e',1,'draw_string_normal_to_buffer(uint8_t page, uint8_t col, char *s):&#160;oled.c'],['../oled_8h.html#a655d58a5b9da620b4afbb74d5dbee87e',1,'draw_string_normal_to_buffer(uint8_t page, uint8_t col, char *s):&#160;oled.c']]],
+  ['dummy_5fhandler_10',['Dummy_Handler',['../startup__sam3xa_8c.html#a4ed9b32000d3b15c46ffd748f32ed44d',1,'startup_sam3xa.c']]]
+];

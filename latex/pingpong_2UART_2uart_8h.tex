@@ -1,0 +1,84 @@
+\doxysection{pingpong/\+UART/uart.h File Reference}
+\hypertarget{pingpong_2UART_2uart_8h}{}\label{pingpong_2UART_2uart_8h}\index{pingpong/UART/uart.h@{pingpong/UART/uart.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pingpong_2UART_2uart_8h_a89f3cacf601287f663b0f544104acb5e}{uart\+\_\+init}} (uint32\+\_\+t baudrate)
+\item 
+void \mbox{\hyperlink{pingpong_2UART_2uart_8h_a8c06afe2f1e393776650ebe7f0b336f2}{uart\+\_\+send\+\_\+byte}} (uint8\+\_\+t data)
+\item 
+void \mbox{\hyperlink{pingpong_2UART_2uart_8h_adc5ab09aa19841e18a039de4b3250da4}{uart\+\_\+send\+\_\+string}} (const char \texorpdfstring{$\ast$}{*}str)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{pingpong_2UART_2uart_8h_a6e9f940b0a99bf6186fb2c4da9a26349}{uart\+\_\+receive\+\_\+byte}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+int \mbox{\hyperlink{pingpong_2UART_2uart_8h_a985ba70f2a53d95f1fd11f70f1d8f4f6}{uart\+\_\+putchar}} (char c, FILE \texorpdfstring{$\ast$}{*}stream)
+\begin{DoxyCompactList}\small\item\em Function to bridge the uart with the printf function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pingpong_2UART_2uart_8h_a57da3459c748605f626f5c6f33ca3ed7}{uart\+\_\+printf\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em Function to call if printf is to be used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{pingpong_2UART_2uart_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pingpong_2UART_2uart_8h_a89f3cacf601287f663b0f544104acb5e}\index{uart.h@{uart.h}!uart\_init@{uart\_init}}
+\index{uart\_init@{uart\_init}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_init()}{uart\_init()}}
+{\footnotesize\ttfamily \label{pingpong_2UART_2uart_8h_a89f3cacf601287f663b0f544104acb5e} 
+void uart\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baudrate}{}\end{DoxyParamCaption})}
+
+Should be called if uart is to be used. \Hypertarget{pingpong_2UART_2uart_8h_a57da3459c748605f626f5c6f33ca3ed7}\index{uart.h@{uart.h}!uart\_printf\_init@{uart\_printf\_init}}
+\index{uart\_printf\_init@{uart\_printf\_init}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_printf\_init()}{uart\_printf\_init()}}
+{\footnotesize\ttfamily \label{pingpong_2UART_2uart_8h_a57da3459c748605f626f5c6f33ca3ed7} 
+void uart\+\_\+printf\+\_\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function to call if printf is to be used. 
+
+\Hypertarget{pingpong_2UART_2uart_8h_a985ba70f2a53d95f1fd11f70f1d8f4f6}\index{uart.h@{uart.h}!uart\_putchar@{uart\_putchar}}
+\index{uart\_putchar@{uart\_putchar}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_putchar()}{uart\_putchar()}}
+{\footnotesize\ttfamily \label{pingpong_2UART_2uart_8h_a985ba70f2a53d95f1fd11f70f1d8f4f6} 
+int uart\+\_\+putchar (\begin{DoxyParamCaption}\item[{char}]{c}{, }\item[{FILE \texorpdfstring{$\ast$}{*}}]{stream}{}\end{DoxyParamCaption})}
+
+
+
+Function to bridge the uart with the printf function. 
+
+\Hypertarget{pingpong_2UART_2uart_8h_a6e9f940b0a99bf6186fb2c4da9a26349}\index{uart.h@{uart.h}!uart\_receive\_byte@{uart\_receive\_byte}}
+\index{uart\_receive\_byte@{uart\_receive\_byte}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_receive\_byte()}{uart\_receive\_byte()}}
+{\footnotesize\ttfamily \label{pingpong_2UART_2uart_8h_a6e9f940b0a99bf6186fb2c4da9a26349} 
+uint8\+\_\+t uart\+\_\+receive\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+Receive a byte from the uart bus. This function is non-\/blocking.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The address where the read byte will be written. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if something was read, 0 otherwise. 
+\end{DoxyReturn}
+\Hypertarget{pingpong_2UART_2uart_8h_a8c06afe2f1e393776650ebe7f0b336f2}\index{uart.h@{uart.h}!uart\_send\_byte@{uart\_send\_byte}}
+\index{uart\_send\_byte@{uart\_send\_byte}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_send\_byte()}{uart\_send\_byte()}}
+{\footnotesize\ttfamily \label{pingpong_2UART_2uart_8h_a8c06afe2f1e393776650ebe7f0b336f2} 
+void uart\+\_\+send\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data}{}\end{DoxyParamCaption})}
+
+Send a byte on the uart bus.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The byte to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pingpong_2UART_2uart_8h_adc5ab09aa19841e18a039de4b3250da4}\index{uart.h@{uart.h}!uart\_send\_string@{uart\_send\_string}}
+\index{uart\_send\_string@{uart\_send\_string}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_send\_string()}{uart\_send\_string()}}
+{\footnotesize\ttfamily \label{pingpong_2UART_2uart_8h_adc5ab09aa19841e18a039de4b3250da4} 
+void uart\+\_\+send\+\_\+string (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+

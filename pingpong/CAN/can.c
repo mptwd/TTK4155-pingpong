@@ -16,35 +16,30 @@
 
 void can_init(void)
 {
-	cli(); 
+	cli();
 	// Reset MCP2515
 	can_controller_reset();
 	_delay_ms(10);
 
 	// bit timing
 	// 16 MHz
-	can_controller_write(MCP_CNF1, 0x03);  // SJW=0 (t_sjw = 1xTQ), BRP=3 --> TQ = 0.5 us 
-	can_controller_write(MCP_CNF2, 0xB0);  // BTLMODE=1, PHSEG1=6 (t_ps1 = 7xTQ), PRSEG=0 (t_propSeg = 1xTQ)
-	can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=5 (t_ps2 = 6xTQ)
+	can_controller_write(MCP_CNF1, 0x03);  // SJW=0 (t_sjw = 1*TQ), BRP=3 --> TQ = 0.5 us 
+	can_controller_write(MCP_CNF2, 0xB0);  // BTLMODE=1, PHSEG1=6 (t_ps1 = 7*TQ), PRSEG=0 (t_propSeg = 1*TQ)
+	can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=5 (t_ps2 = 6*TQ)
 	
-	//can_controller_write(MCP_CNF1, 0x07);  // SJW=0 (t_sjw = 1xTQ), BRP=7 --> TQ = 1 us 
-	//can_controller_write(MCP_CNF2, 0xAA);  // BTLMODE=1, PHSEG1=5 (t_ps1 = 6xTQ), PRSEG=2 (t_propSeg = 3xTQ)
-	//can_controller_write(MCP_CNF3, 0x05);  // PHSEG2=5 (t_ps2 = 6xTQ)
-	
-
 	can_controller_write(MCP_CANINTE, 0x03); // For interruption (receive interruptions)
 	can_controller_write(MCP_RXB0CTRL, 0x64); // For reception, deactivate masks and filters
-	can_controller_write(MCP_RXB1CTRL, 0x60); 
+	can_controller_write(MCP_RXB1CTRL, 0x60);
 	
-	MCUCR |= (1<<ISC01); 
-	MCUCR &= ~(1<<ISC00); 
-	GICR |= (1<<INT0); 
+  // Set interruptions.
+	MCUCR |= (1<<ISC01);
+	MCUCR &= ~(1<<ISC00);
+	GICR |= (1<<INT0);
 	sei(); // activate interrupts
 
-	can_controller_write(MCP_CANCTRL, 0x04); // Mode Loopback
+	can_controller_write(MCP_CANCTRL, 0x04); // Normal Mode
 	_delay_ms(1);
 }
-
 
 
 void can_transmit(can_message_t *tx)
@@ -67,19 +62,19 @@ void can_transmit(can_message_t *tx)
 	}
 
 	// Request to send (RTS)
-	can_controller_request_send(0x01); // RTS pour TXB0
+	can_controller_request_send(0x01); // RTS for TXB0
 }
 
 uint8_t can_rx_flag;
 
 ISR (INT0_vect) {
-	can_rx_flag = can_controller_read(MCP_CANINTF); 
+	can_rx_flag = can_controller_read(MCP_CANINTF);
 }
 
 
 uint8_t can_receive(can_message_t *rx)
-{	
-	//printf("%d\n", can_rx_flag);
+{
+  // There are two buffers, value to read is in buffer described in the status flag.
 	if(can_rx_flag & 1) {
 		uint8_t sidh = can_controller_read(MCP_RXB0SIDH);
 		uint8_t sidl = can_controller_read(0x62); //MCP_RXB0SIDL
@@ -111,11 +106,6 @@ uint8_t can_receive(can_message_t *rx)
 		return 1; // Message received
 
 	}
-	if (can_rx_flag > 2) {
-		//printf("err=%d\n", can_controller_read(0x2D));
-	}
-	can_controller_write(MCP_CANINTF, 0x00);
-
-
+	can_controller_write(MCP_CANINTF, 0x00); // Clearing the interrupts seems to help, but not sure.
 	return 0; // No message
 }
