@@ -66,6 +66,15 @@ void draw_main_menu_to_buffer() {
 	request_buffer_swap();
 }
 
+/*
+0                   1024                2048
++-------------------+-------------------+------+---+---+---+----+---+---+---+----+-----
+| oled buffer 1 ... | oled buffer 2 ... | size | A | B | C | 22 | D | E | F | 18 |...
++-------------------+-------------------+------+---+---+---+----+---+---+---+----+-----
+ <------------double buffers----------->        <-----user1----> <-----user2---->
+
+                                         <-----------------leaderboard--------------->
+*/
 void draw_leaderboard_to_buffer() {
 	draw_string_big_to_buffer(0, 0, "Leaderboard");
 	
